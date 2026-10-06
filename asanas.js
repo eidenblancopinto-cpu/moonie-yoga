@@ -1,3004 +1,2871 @@
 /* =========================================================
    MOONIE YOGA 🌙🪷
    ASANA LIBRARY
-   Version: 2.0
+   Biblioteca completa de posturas
+   Imágenes: Wikimedia Commons
    ========================================================= */
 
 const COMMONS = "https://commons.wikimedia.org/wiki/Special:Redirect/file/";
 
-function commonsImage(filename) {
-  return COMMONS + encodeURIComponent(filename);
+function img(file) {
+  return {
+    url: COMMONS + encodeURIComponent(file),
+    source: "Wikimedia Commons",
+    sourcePage: "https://commons.wikimedia.org/wiki/Category:Asanas_by_name",
+    license: "Consultar licencia del archivo original",
+    author: "Consultar ficha del archivo original"
+  };
 }
 
-const ASANAS = [
-
-  /* =======================================================
-     1. BALASANA
-     ======================================================= */
-
-  {
-    id: "balasana",
-    name: "Postura del niño",
-    sanskrit: "बालासन",
-    transliteration: "Bālāsana",
-    family: "Flexión hacia delante",
-    category: "Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose1.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura de descanso que flexiona suavemente caderas y columna.",
-
-    execution: [
-      "Comienza de rodillas sobre la esterilla.",
-      "Junta los dedos gordos de los pies y separa ligeramente las rodillas.",
-      "Lleva lentamente la pelvis hacia los talones.",
-      "Inclina el torso hacia delante desde las caderas.",
-      "Apoya la frente sobre la esterilla o sobre un soporte.",
-      "Deja los brazos hacia delante o junto al cuerpo.",
-      "Permite que el abdomen descanse sin comprimir la respiración."
-    ],
-
-    breathing:
-      "Respira lentamente por la nariz. Deja que cada inspiración expanda la espalda y cada exhalación facilite la relajación.",
-
-    anatomy:
-      "Flexión de caderas, flexión de rodillas y flexión global de la columna. Puede producir una sensación de elongación en la musculatura posterior.",
-
-    benefits: [
-      "Favorece el descanso.",
-      "Reduce la exigencia de la práctica.",
-      "Moviliza suavemente caderas y columna.",
-      "Puede utilizarse como postura de integración."
-    ],
-
-    precautions: [
-      "Coloca un cojín entre glúteos y talones si las rodillas necesitan espacio.",
-      "Utiliza soporte bajo la frente si el cuello queda incómodo."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla.",
-      "Molestia importante de tobillo.",
-      "Situaciones en las que la flexión profunda de cadera resulte incómoda."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo.",
-      "Pérdida de fuerza.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Cojín",
-      "Bolster",
-      "Manta"
-    ],
-
-    duration: "1–5 minutos",
-
-    variations: [
-      "Rodillas juntas.",
-      "Rodillas separadas.",
-      "Brazos hacia delante.",
-      "Brazos junto al cuerpo.",
-      "Frente sobre bolster."
-    ]
-  },
-
-
-  /* =======================================================
-     2. BADDHA KONASANA
-     ======================================================= */
-
-  {
-    id: "baddha-konasana",
-    name: "Mariposa",
-    sanskrit: "बद्धकोणासन",
-    transliteration: "Baddha Koṇāsana",
-    family: "Apertura de caderas",
-    category: "Yin / Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Baddha Konasana...jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Baddha_Konasana",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura sentada con las plantas de los pies juntas.",
-
-    execution: [
-      "Siéntate con las piernas extendidas.",
-      "Flexiona las rodillas.",
-      "Acerca los pies hacia la pelvis.",
-      "Une las plantas de los pies.",
-      "Deja que las rodillas se abran hacia los lados.",
-      "Mantén la pelvis estable.",
-      "Puedes permanecer erguido o inclinar ligeramente el torso hacia delante."
-    ],
-
-    breathing:
-      "Inspira alargando la columna. Exhala permitiendo que las caderas se relajen sin empujar las rodillas.",
-
-    anatomy:
-      "Abducción y rotación externa de cadera. Las rodillas permanecen flexionadas y los aductores reciben parte importante de la carga.",
-
-    benefits: [
-      "Moviliza la articulación de la cadera.",
-      "Trabaja la musculatura aductora.",
-      "Puede utilizarse como preparación para flexiones hacia delante.",
-      "Muy habitual en Yin Yoga."
-    ],
-
-    precautions: [
-      "No empujes las rodillas hacia el suelo.",
-      "Eleva la pelvis sobre una manta si la espalda se redondea excesivamente."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla.",
-      "Lesiones recientes de cadera."
-    ],
-
-    redFlags: [
-      "Dolor agudo en rodilla.",
-      "Sensación de bloqueo.",
-      "Dolor punzante en la ingle."
-    ],
-
-    props: [
-      "Manta",
-      "Bloques",
-      "Cojines bajo las rodillas"
-    ],
-
-    duration: "2–5 minutos",
-
-    variations: [
-      "Mariposa erguida.",
-      "Mariposa hacia delante.",
-      "Mariposa con soporte bajo rodillas.",
-      "Supta Baddha Konasana."
-    ]
-  },
-
-
-  /* =======================================================
-     3. HALF BUTTERFLY
-     ======================================================= */
-
-  {
-    id: "half-butterfly",
-    name: "Media mariposa",
-    sanskrit: "Ardha Baddha Konasana",
-    transliteration: "Ardha Baddha Koṇāsana",
-    family: "Flexión asimétrica",
-    category: "Yin",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose2.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Variación asimétrica que combina una pierna extendida con otra flexionada.",
-
-    execution: [
-      "Siéntate con ambas piernas extendidas.",
-      "Flexiona una rodilla.",
-      "Lleva la planta del pie hacia el muslo contrario.",
-      "Deja que la rodilla flexionada repose cómodamente.",
-      "Alarga la columna.",
-      "Inclínate lentamente sobre la pierna extendida.",
-      "Relaja el cuello."
-    ],
-
-    breathing:
-      "Inspira para alargar la columna y exhala para profundizar únicamente si el cuerpo lo permite.",
-
-    anatomy:
-      "Combina flexión de cadera, extensión de rodilla en la pierna extendida y apertura de la cadera contraria.",
-
-    benefits: [
-      "Moviliza isquiotibiales.",
-      "Trabaja de forma asimétrica.",
-      "Puede ayudar a identificar diferencias entre ambos lados."
-    ],
-
-    precautions: [
-      "Mantén la rodilla flexionada cómoda.",
-      "No fuerces la inclinación."
-    ],
-
-    contraindications: [
-      "Lesión aguda de rodilla.",
-      "Dolor lumbar agudo."
-    ],
-
-    redFlags: [
-      "Dolor eléctrico.",
-      "Hormigueo.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Manta",
-      "Cinturón",
-      "Bolster"
-    ],
-
-    duration: "2–4 minutos por lado",
-
-    variations: [
-      "Torso vertical.",
-      "Flexión suave.",
-      "Flexión profunda con soporte."
-    ]
-  },
-
-
-  /* =======================================================
-     4. SPHINX
-     ======================================================= */
-
-  {
-    id: "sphinx",
-    name: "Esfinge",
-    sanskrit: "सलम्ब भुजङ्गासन",
-    transliteration: "Salamba Bhujangāsana",
-    family: "Extensión de columna",
-    category: "Yin",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("IMG 0549 2 Sphinx.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Salamba_Bhujangasana",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Extensión suave de la columna realizada tumbado boca abajo.",
-
-    execution: [
-      "Túmbate boca abajo.",
-      "Coloca los antebrazos sobre la esterilla.",
-      "Sitúa los codos aproximadamente debajo o ligeramente por delante de los hombros.",
-      "Presiona suavemente los antebrazos.",
-      "Eleva el pecho sin colapsar la zona lumbar.",
-      "Mantén las piernas relajadas.",
-      "Busca longitud antes que altura."
-    ],
-
-    breathing:
-      "Respira de forma natural. Evita bloquear el abdomen o contener la respiración.",
-
-    anatomy:
-      "Extensión de la columna con participación de musculatura extensora vertebral. La posición también implica extensión de cadera y trabajo de estabilización escapular.",
-
-    benefits: [
-      "Moviliza la extensión de la columna.",
-      "Puede resultar agradable después de flexiones prolongadas.",
-      "Trabaja suavemente la cadena posterior."
-    ],
-
-    precautions: [
-      "Reduce la altura si notas compresión lumbar.",
-      "Aleja los codos si necesitas una extensión más suave."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo.",
-      "Molestias importantes en hombros."
-    ],
-
-    redFlags: [
-      "Dolor punzante lumbar.",
-      "Dolor irradiado.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Manta",
-      "Bolster bajo pecho si procede"
-    ],
-
-    duration: "2–5 minutos",
-
-    variations: [
-      "Esfinge baja.",
-      "Esfinge con brazos más adelantados.",
-      "Baby Cobra."
-    ]
-  },
-
-
-  /* =======================================================
-     5. DRAGON
-     ======================================================= */
-
-  {
-    id: "dragon",
-    name: "Dragón",
-    sanskrit: "Anjaneyasana / variantes Yin",
-    transliteration: "Añjaneyāsana",
-    family: "Apertura de caderas",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Ашва Санчаланасана.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Familia de posturas de zancada utilizadas en Yin para trabajar cadera y cadena anterior.",
-
-    execution: [
-      "Comienza desde cuatro apoyos.",
-      "Lleva un pie entre las manos.",
-      "Desplaza progresivamente la pelvis hacia delante.",
-      "Mantén la pierna trasera extendida o apoya la rodilla.",
-      "Permite que el torso permanezca erguido o descienda.",
-      "Ajusta la posición hasta encontrar una intensidad sostenible."
-    ],
-
-    breathing:
-      "Respira lenta y profundamente sin utilizar la respiración para forzar el rango.",
-
-    anatomy:
-      "Puede implicar extensión de cadera de la pierna trasera, flexión de cadera de la delantera y carga variable sobre flexores de cadera, aductores y glúteos.",
-
-    benefits: [
-      "Moviliza la cadera.",
-      "Trabaja diferentes líneas de la musculatura alrededor de la pelvis.",
-      "Muy utilizado en secuencias Yin."
-    ],
-
-    precautions: [
-      "Utiliza bloques para elevar las manos.",
-      "Reduce la amplitud si aparece presión incómoda en la rodilla."
-    ],
-
-    contraindications: [
-      "Lesiones recientes de rodilla.",
-      "Dolor agudo de cadera."
-    ],
-
-    redFlags: [
-      "Dolor agudo.",
-      "Hormigueo.",
-      "Pérdida de fuerza."
-    ],
-
-    props: [
-      "Bloques",
-      "Manta",
-      "Bolster"
-    ],
-
-    duration: "2–4 minutos por lado",
-
-    variations: [
-      "Dragón alto.",
-      "Dragón bajo.",
-      "Dragón con manos sobre bloques.",
-      "Dragón lateral."
-    ]
-  },
-
-
-  /* =======================================================
-     6. DEER
-     ======================================================= */
-
-  {
-    id: "deer",
-    name: "Ciervo",
-    sanskrit: "Mṛgāsana",
-    transliteration: "Mṛgāsana",
-    family: "Rotación de cadera",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose13.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura sentada asimétrica que combina diferentes posiciones de las piernas.",
-
-    execution: [
-      "Siéntate cómodamente.",
-      "Flexiona ambas piernas.",
-      "Deja una rodilla hacia delante y otra hacia un lateral.",
-      "Busca una pelvis estable.",
-      "Alarga la columna.",
-      "Puedes permanecer erguido o inclinarte ligeramente hacia delante.",
-      "Repite hacia el otro lado."
-    ],
-
-    breathing:
-      "Respiración nasal lenta y continua.",
-
-    anatomy:
-      "Combina rotación interna y externa de cadera dependiendo de la configuración de las piernas.",
-
-    benefits: [
-      "Movilidad multidireccional de cadera.",
-      "Trabajo asimétrico.",
-      "Puede utilizarse como preparación para torsiones."
-    ],
-
-    precautions: [
-      "No fuerces ninguna rodilla hacia el suelo.",
-      "Coloca soporte bajo las caderas si la pelvis se desequilibra."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla o cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Bloqueo articular."
-    ],
-
-    props: [
-      "Manta",
-      "Cojín"
-    ],
-
-    duration: "2–4 minutos por lado",
-
-    variations: [
-      "Ciervo erguido.",
-      "Ciervo con flexión.",
-      "Ciervo con torsión."
-    ]
-  },
-
-
-  /* =======================================================
-     7. SLEEPING SWAN
-     ======================================================= */
-
-  {
-    id: "sleeping-swan",
-    name: "Cisne dormido",
-    sanskrit: "Eka Pada Rajakapotasana",
-    transliteration: "Eka Pāda Rājakapotāsana",
-    family: "Apertura de cadera",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Mr-yoga-yogananda 1.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Eka_Pada_Rajakapotasana",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Variación Yin del pigeon pose utilizada para trabajar la región de la cadera.",
-
-    execution: [
-      "Desde cuatro apoyos lleva una pierna hacia delante.",
-      "Coloca la tibia en una posición cómoda, sin necesidad de paralelizarla al borde de la esterilla.",
-      "Extiende la pierna posterior.",
-      "Asegura una base estable.",
-      "Desciende progresivamente el torso.",
-      "Apoya la frente o el pecho sobre un soporte."
-    ],
-
-    breathing:
-      "Respira lentamente y utiliza cada exhalación para reducir tensión innecesaria.",
-
-    anatomy:
-      "La pierna delantera combina flexión, abducción y rotación externa de cadera. La pierna posterior se aproxima a una posición de extensión de cadera.",
-
-    benefits: [
-      "Movilización de caderas.",
-      "Trabajo asimétrico.",
-      "Puede integrarse en secuencias Yin profundas."
-    ],
-
-    precautions: [
-      "No busques una posición extrema.",
-      "Utiliza un bolster debajo del torso.",
-      "Mantén la pelvis apoyada de forma estable."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla.",
-      "Lesiones recientes de cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante en rodilla.",
-      "Hormigueo.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Bolster",
-      "Bloques",
-      "Manta"
-    ],
-
-    duration: "2–5 minutos por lado",
-
-    variations: [
-      "Cisne alto.",
-      "Cisne dormido.",
-      "Cisne con soporte."
-    ]
-  },
-
-
-  /* =======================================================
-     8. CATERPILLAR
-     ======================================================= */
-
-  {
-    id: "caterpillar",
-    name: "Oruga",
-    sanskrit: "Paschimottanasana",
-    transliteration: "Paścimottānāsana",
-    family: "Flexión hacia delante",
-    category: "Yin",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose8.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Flexión sentada hacia delante con las piernas extendidas.",
-
-    execution: [
-      "Siéntate con las piernas extendidas.",
-      "Flexiona ligeramente las rodillas si es necesario.",
-      "Alarga la columna.",
-      "Inclina la pelvis y después permite que el torso avance.",
-      "Deja que la espalda se redondee progresivamente si resulta cómodo.",
-      "Relaja cabeza y cuello.",
-      "No tires de los pies para aumentar el rango."
-    ],
-
-    breathing:
-      "Respira hacia la parte posterior del cuerpo.",
-
-    anatomy:
-      "Flexión de cadera y columna con extensión de rodilla. La intensidad varía según la movilidad de isquiotibiales y pelvis.",
-
-    benefits: [
-      "Trabaja la cadena posterior.",
-      "Favorece una práctica introspectiva.",
-      "Muy utilizada en Yin."
-    ],
-
-    precautions: [
-      "Dobla las rodillas si la tensión posterior es excesiva.",
-      "Evita forzar la columna."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo.",
-      "Lesión reciente de isquiotibiales."
-    ],
-
-    redFlags: [
-      "Dolor irradiado.",
-      "Hormigueo.",
-      "Dolor agudo."
-    ],
-
-    props: [
-      "Manta",
-      "Bolster",
-      "Cinturón"
-    ],
-
-    duration: "2–5 minutos",
-
-    variations: [
-      "Rodillas flexionadas.",
-      "Piernas extendidas.",
-      "Bolster sobre piernas.",
-      "Cinturón alrededor de los pies."
-    ]
-  },
-
-
-  /* =======================================================
-     9. ANAHATASANA
-     ======================================================= */
-
-  {
-    id: "anahatasana",
-    name: "Corazón derretido",
-    sanskrit: "अनाहतासन",
-    transliteration: "Anāhatāsana",
-    family: "Extensión torácica",
-    category: "Yin",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose19.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura de cuatro apoyos con brazos extendidos que moviliza hombros y columna torácica.",
-
-    execution: [
-      "Comienza en cuatro apoyos.",
-      "Mantén las caderas aproximadamente sobre las rodillas.",
-      "Camina las manos hacia delante.",
-      "Permite que el pecho descienda gradualmente.",
-      "Mantén la pelvis estable.",
-      "Apoya la frente o el mentón según la versión elegida."
-    ],
-
-    breathing:
-      "Respira suavemente expandiendo las costillas.",
-
-    anatomy:
-      "Extensión torácica y flexión de hombros. La columna lumbar puede participar si no se estabiliza adecuadamente la pelvis.",
-
-    benefits: [
-      "Movilidad de hombros.",
-      "Extensión torácica.",
-      "Trabajo suave de la cadena anterior."
-    ],
-
-    precautions: [
-      "Evita colapsar la zona lumbar.",
-      "Reduce el rango si existe molestia de hombros."
-    ],
-
-    contraindications: [
-      "Lesión aguda de hombro.",
-      "Dolor lumbar que empeora con extensión."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Bolster",
-      "Bloques"
-    ],
-
-    duration: "2–4 minutos",
-
-    variations: [
-      "Frente apoyada.",
-      "Mentón apoyado.",
-      "Brazos separados.",
-      "Brazos en forma de cactus."
-    ]
-  },
-
-
-  /* =======================================================
-     10. SUPINE TWIST
-     ======================================================= */
-
-  {
-    id: "supine-twist",
-    name: "Torsión supina",
-    sanskrit: "Jathara Parivartanasana",
-    transliteration: "Jaṭhara Parivartanāsana",
-    family: "Torsión",
-    category: "Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose24.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Torsión tumbada que moviliza suavemente la columna.",
-
-    execution: [
-      "Túmbate boca arriba.",
-      "Flexiona las rodillas.",
-      "Lleva ambas piernas hacia un lado.",
-      "Mantén hombros cómodamente apoyados.",
-      "Gira la cabeza solo si el cuello está cómodo.",
-      "Respira durante la permanencia.",
-      "Repite hacia el otro lado."
-    ],
-
-    breathing:
-      "Respira lentamente y evita utilizar la exhalación para empujar las piernas más lejos.",
-
-    anatomy:
-      "Rotación de la columna y movimiento de caderas. La intensidad depende de la posición de las piernas y de la movilidad individual.",
-
-    benefits: [
-      "Movilidad rotacional.",
-      "Sensación de liberación al final de la práctica.",
-      "Transición adecuada hacia Savasana."
-    ],
-
-    precautions: [
-      "Coloca un bolster bajo las rodillas.",
-      "No fuerces los hombros contra el suelo."
-    ],
-
-    contraindications: [
-      "Dolor agudo de columna.",
-      "Lesión reciente de cadera."
-    ],
-
-    redFlags: [
-      "Dolor irradiado.",
-      "Hormigueo.",
-      "Dolor agudo."
-    ],
-
-    props: [
-      "Bolster",
-      "Manta"
-    ],
-
-    duration: "1–3 minutos por lado",
-
-    variations: [
-      "Rodillas juntas.",
-      "Piernas separadas.",
-      "Piernas sobre bolster.",
-      "Brazos en cruz."
-    ]
-  },
-
-
-  /* =======================================================
-     11. VIPARITA KARANI
-     ======================================================= */
-
-  {
-    id: "viparita-karani",
-    name: "Piernas en la pared",
-    sanskrit: "विपरीतकरणी",
-    transliteration: "Viparīta Karaṇī",
-    family: "Inversión suave",
-    category: "Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Mr-yoga-reclined-bound-angle.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Viparita_Karani",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura restaurativa con las piernas elevadas.",
-
-    execution: [
-      "Siéntate lateralmente junto a una pared.",
-      "Gira el cuerpo y lleva las piernas hacia arriba.",
-      "Acomoda los glúteos a una distancia cómoda de la pared.",
-      "Deja que los brazos descansen.",
-      "Relaja mandíbula, hombros y abdomen.",
-      "Permanece sin buscar ninguna intensidad."
-    ],
-
-    breathing:
-      "Respiración lenta y natural.",
-
-    anatomy:
-      "Flexión de cadera con piernas elevadas y baja demanda muscular.",
-
-    benefits: [
-      "Favorece el descanso.",
-      "Es adecuada para prácticas restaurativas.",
-      "Puede utilizarse antes de Savasana."
-    ],
-
-    precautions: [
-      "No necesitas acercarte completamente a la pared.",
-      "Sal de la postura lentamente."
-    ],
-
-    contraindications: [
-      "Situaciones médicas en las que las inversiones estén desaconsejadas."
-    ],
-
-    redFlags: [
-      "Mareo intenso.",
-      "Dolor.",
-      "Dificultad respiratoria."
-    ],
-
-    props: [
-      "Pared",
-      "Manta",
-      "Bolster"
-    ],
-
-    duration: "3–10 minutos",
-
-    variations: [
-      "Piernas directamente en pared.",
-      "Rodillas ligeramente flexionadas.",
-      "Bolster bajo pelvis."
-    ]
-  },
-
-
-  /* =======================================================
-     12. SAVASANA
-     ======================================================= */
-
-  {
-    id: "savasana",
-    name: "Postura del cadáver",
-    sanskrit: "शवासन",
-    transliteration: "Śavāsana",
-    family: "Reposo",
-    category: "Meditación / Restaurativo",
-    level: "Todos",
-
-    image: {
-      url: commonsImage("Bpose20.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Postura final de descanso e integración.",
-
-    execution: [
-      "Túmbate boca arriba.",
-      "Separa ligeramente los pies.",
-      "Deja los brazos a los lados.",
-      "Coloca la cabeza de forma cómoda.",
-      "Cierra los ojos si lo deseas.",
-      "Permite que el peso del cuerpo descanse sobre la esterilla.",
-      "Observa la respiración sin modificarla."
-    ],
-
-    breathing:
-      "Respiración natural. No necesitas controlar el ritmo.",
-
-    anatomy:
-      "Postura de mínima demanda muscular voluntaria.",
-
-    benefits: [
-      "Favorece la integración de la práctica.",
-      "Permite observar la respiración.",
-      "Reduce la demanda física de la sesión."
-    ],
-
-    precautions: [
-      "Utiliza soporte bajo las rodillas si la zona lumbar está incómoda.",
-      "Utiliza una manta para mantener temperatura."
-    ],
-
-    contraindications: [],
-
-    redFlags: [
-      "Ninguna específica; abandona la postura si aparece dolor o dificultad respiratoria."
-    ],
-
-    props: [
-      "Bolster",
-      "Manta",
-      "Cojín ocular"
-    ],
-
-    duration: "3–15 minutos",
-
-    variations: [
-      "Rodillas apoyadas.",
-      "Piernas sobre bolster.",
-      "Savasana lateral."
-    ]
-  },
-
-
-  /* =======================================================
-     13. DOWNWARD DOG
-     ======================================================= */
-
-  {
-    id: "downward-dog",
-    name: "Perro boca abajo",
-    sanskrit: "अधोमुखश्वानासन",
-    transliteration: "Adho Mukha Śvānāsana",
-    family: "Inversión",
-    category: "Hatha / Vinyasa",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Downward-Facing-Dog.JPG"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/File:Downward-Facing-Dog.JPG",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Postura fundamental de apoyo en manos y pies.",
-
-    execution: [
-      "Comienza en cuatro apoyos.",
-      "Coloca manos ligeramente por delante de hombros.",
-      "Eleva las rodillas.",
-      "Lleva las caderas hacia atrás y arriba.",
-      "Mantén las rodillas flexionadas si es necesario.",
-      "Alarga la columna.",
-      "Empuja suavemente el suelo con las manos."
-    ],
-
-    breathing:
-      "Respira de forma estable y continua.",
-
-    anatomy:
-      "Flexión de hombros, extensión de cadera y trabajo de brazos, piernas y musculatura estabilizadora.",
-
-    benefits: [
-      "Fortalece brazos.",
-      "Moviliza hombros.",
-      "Trabaja la cadena posterior.",
-      "Es una transición habitual en Vinyasa."
-    ],
-
-    precautions: [
-      "Dobla las rodillas para priorizar longitud de columna.",
-      "Reduce la carga si las muñecas molestan."
-    ],
-
-    contraindications: [
-      "Dolor agudo de muñeca u hombro."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo.",
-      "Pérdida de fuerza."
-    ],
-
-    props: [
-      "Bloques",
-      "Correa"
-    ],
-
-    duration: "5–60 segundos",
-
-    variations: [
-      "Rodillas flexionadas.",
-      "Pedaleo de piernas.",
-      "Tres patas.",
-      "Perro dinámico."
-    ]
-  },
-
-
-  /* =======================================================
-     14. WARRIOR I
-     ======================================================= */
-
-  {
-    id: "warrior-one",
-    name: "Guerrero I",
-    sanskrit: "वीरभद्रासन I",
-    transliteration: "Vīrabhadrāsana I",
-    family: "De pie",
-    category: "Hatha / Vinyasa",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Virabhadrasana I - Warrior Pose I.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Virabhadrasana_I",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Postura de pie que combina fuerza, estabilidad y movilidad.",
-
-    execution: [
-      "Desde una posición de pie, lleva una pierna hacia atrás.",
-      "Flexiona la rodilla delantera.",
-      "Mantén la pelvis estable.",
-      "Apoya el talón trasero según la versión.",
-      "Eleva los brazos.",
-      "Alarga la columna.",
-      "Mantén la respiración fluida."
-    ],
-
-    breathing:
-      "Inspira alargando el torso. Exhala manteniendo estabilidad.",
-
-    anatomy:
-      "Flexión de la cadera y rodilla delanteras, extensión de cadera posterior y elevación de brazos.",
-
-    benefits: [
-      "Fortalece piernas.",
-      "Mejora estabilidad.",
-      "Trabaja coordinación y postura."
-    ],
-
-    precautions: [
-      "Reduce la amplitud de la zancada si la pelvis se descontrola.",
-      "No bloquees la rodilla."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla o cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Pérdida de equilibrio repetida acompañada de síntomas."
-    ],
-
-    props: [
-      "Bloques",
-      "Pared"
-    ],
-
-    duration: "20–60 segundos por lado",
-
-    variations: [
-      "Rodilla menos flexionada.",
-      "Talón posterior elevado.",
-      "Brazos separados.",
-      "Brazos arriba."
-    ]
-  },
-
-
-  /* =======================================================
-     15. WARRIOR II
-     ======================================================= */
-
-  {
-    id: "warrior-two",
-    name: "Guerrero II",
-    sanskrit: "वीरभद्रासन II",
-    transliteration: "Vīrabhadrāsana II",
-    family: "De pie",
-    category: "Hatha / Vinyasa",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Warrier Pose.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Virabhadrasana_II",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Postura de pie con piernas separadas y brazos abiertos.",
-
-    execution: [
-      "Separa ampliamente los pies.",
-      "Gira un pie hacia delante.",
-      "Flexiona la rodilla delantera.",
-      "Mantén la otra pierna extendida.",
-      "Abre los brazos a la altura de los hombros.",
-      "Mira hacia la mano delantera.",
-      "Mantén el torso vertical."
-    ],
-
-    breathing:
-      "Respira de manera uniforme.",
-
-    anatomy:
-      "Trabajo de piernas, abducción de brazos y estabilidad de pelvis y tronco.",
-
-    benefits: [
-      "Fortalece piernas.",
-      "Desarrolla estabilidad.",
-      "Trabaja resistencia postural."
-    ],
-
-    precautions: [
-      "La rodilla delantera debe acompañar la dirección del pie.",
-      "No necesitas bajar mucho."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Sensación de inestabilidad articular."
-    ],
-
-    props: [
-      "Pared",
-      "Bloques"
-    ],
-
-    duration: "20–60 segundos por lado",
-
-    variations: [
-      "Postura alta.",
-      "Postura más profunda.",
-      "Brazos modificados."
-    ]
-  },
-
-
-  /* =======================================================
-     16. WARRIOR III
-     ======================================================= */
-
-  {
-    id: "warrior-three",
-    name: "Guerrero III",
-    sanskrit: "वीरभद्रासन III",
-    transliteration: "Vīrabhadrāsana III",
-    family: "Equilibrio",
-    category: "Hatha / Vinyasa",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Tuladandasana - Virabhadrasana III.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Virabhadrasana_III",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Equilibrio sobre una pierna con el torso inclinado hacia delante.",
-
-    execution: [
-      "Comienza de pie.",
-      "Traslada el peso a una pierna.",
-      "Inclina el torso hacia delante.",
-      "Extiende la pierna posterior.",
-      "Mantén las caderas aproximadamente niveladas.",
-      "Extiende los brazos hacia delante o hacia los lados.",
-      "Busca longitud antes que altura."
-    ],
-
-    breathing:
-      "Respira de forma estable y evita contener la respiración.",
-
-    anatomy:
-      "Trabajo intenso de estabilización de tobillo, rodilla, cadera y tronco.",
-
-    benefits: [
-      "Mejora equilibrio.",
-      "Fortalece cadena posterior.",
-      "Trabaja concentración."
-    ],
-
-    precautions: [
-      "Practica cerca de una pared.",
-      "Mantén una microflexión de la rodilla de apoyo."
-    ],
-
-    contraindications: [
-      "Lesión aguda de tobillo o rodilla."
-    ],
-
-    redFlags: [
-      "Dolor.",
-      "Mareo.",
-      "Pérdida de fuerza."
-    ],
-
-    props: [
-      "Pared",
-      "Bloques"
-    ],
-
-    duration: "10–30 segundos por lado",
-
-    variations: [
-      "Manos en bloques.",
-      "Brazos abiertos.",
-      "Brazos hacia delante.",
-      "Rodilla de apoyo ligeramente flexionada."
-    ]
-  },
-
-
-  /* =======================================================
-     17. TRIANGLE
-     ======================================================= */
-
-  {
-    id: "triangle",
-    name: "Triángulo",
-    sanskrit: "त्रिकोणासन",
-    transliteration: "Trikoṇāsana",
-    family: "De pie",
-    category: "Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose7.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Trikonasana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Postura lateral de pie con piernas separadas.",
-
-    execution: [
-      "Separa los pies.",
-      "Gira el pie delantero.",
-      "Extiende ambas piernas sin bloquear las rodillas.",
-      "Inclina el torso hacia el lado de la pierna delantera.",
-      "Apoya la mano sobre pierna, bloque o suelo.",
-      "Eleva el brazo contrario.",
-      "Mantén el pecho abierto."
-    ],
-
-    breathing:
-      "Inspira alargando la columna y exhala manteniendo la posición.",
-
-    anatomy:
-      "Combina abducción de cadera, inclinación lateral del tronco y trabajo de estabilidad de piernas.",
-
-    benefits: [
-      "Fortalece piernas.",
-      "Moviliza el tronco lateralmente.",
-      "Trabaja estabilidad."
-    ],
-
-    precautions: [
-      "Utiliza un bloque para evitar colapsar el torso.",
-      "No fuerces la mano al suelo."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Mareo."
-    ],
-
-    props: [
-      "Bloque"
-    ],
-
-    duration: "20–45 segundos por lado",
-
-    variations: [
-      "Mano en bloque.",
-      "Mano en espinilla.",
-      "Brazo superior extendido."
-    ]
-  },
-
-
-  /* =======================================================
-     18. HALF MOON
-     ======================================================= */
-
-  {
-    id: "half-moon",
-    name: "Media luna",
-    sanskrit: "अर्धचन्द्रासन",
-    transliteration: "Ardha Candrāsana",
-    family: "Equilibrio",
-    category: "Hatha",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Ardha Candrāsana-half-moon.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Ardha_Chandrasana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Equilibrio lateral sobre una pierna.",
-
-    execution: [
-      "Comienza desde una postura de pie.",
-      "Inclina el torso hacia delante.",
-      "Apoya una mano sobre un bloque.",
-      "Eleva la pierna posterior.",
-      "Abre progresivamente la pelvis.",
-      "Eleva el brazo superior.",
-      "Mantén la pierna de apoyo estable."
-    ],
-
-    breathing:
-      "Respira de forma constante.",
-
-    anatomy:
-      "Estabilización de tobillo y cadera con trabajo de glúteos, musculatura lateral del tronco y hombros.",
-
-    benefits: [
-      "Mejora equilibrio.",
-      "Fortalece la pierna de apoyo.",
-      "Trabaja coordinación."
-    ],
-
-    precautions: [
-      "Utiliza un bloque.",
-      "Practica junto a una pared."
-    ],
-
-    contraindications: [
-      "Lesiones recientes de tobillo o rodilla."
-    ],
-
-    redFlags: [
-      "Dolor agudo.",
-      "Mareo.",
-      "Pérdida repentina de equilibrio."
-    ],
-
-    props: [
-      "Bloque",
-      "Pared"
-    ],
-
-    duration: "10–30 segundos por lado",
-
-    variations: [
-      "Bloque alto.",
-      "Bloque bajo.",
-      "Espalda contra pared.",
-      "Media luna con brazo elevado."
-    ]
-  },
-
-
-  /* =======================================================
-     19. TREE
-     ======================================================= */
-
-  {
-    id: "tree",
-    name: "Árbol",
-    sanskrit: "वृक्षासन",
-    transliteration: "Vṛkṣāsana",
-    family: "Equilibrio",
-    category: "Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Postura da Árvore Yoga.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Vrikshasana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Equilibrio de pie con una pierna.",
-
-    execution: [
-      "Colócate de pie.",
-      "Traslada el peso a una pierna.",
-      "Coloca la planta del otro pie en el tobillo, pantorrilla o muslo.",
-      "Evita apoyar directamente sobre la rodilla.",
-      "Junta las manos frente al pecho o eleva los brazos.",
-      "Mantén la mirada fija."
-    ],
-
-    breathing:
-      "Respira lenta y regularmente.",
-
-    anatomy:
-      "Estabilización de tobillo, rodilla, cadera y musculatura profunda del tronco.",
-
-    benefits: [
-      "Mejora equilibrio.",
-      "Favorece concentración.",
-      "Fortalece la pierna de apoyo."
-    ],
-
-    precautions: [
-      "Utiliza pared si es necesario.",
-      "No coloques el pie sobre la rodilla."
-    ],
-
-    contraindications: [
-      "Lesión aguda de tobillo o rodilla."
-    ],
-
-    redFlags: [
-      "Dolor.",
-      "Mareo."
-    ],
-
-    props: [
-      "Pared"
-    ],
-
-    duration: "20–60 segundos por lado",
-
-    variations: [
-      "Pie en tobillo.",
-      "Pie en pantorrilla.",
-      "Pie en muslo.",
-      "Brazos arriba."
-    ]
-  },
-
-
-  /* =======================================================
-     20. BOAT
-     ======================================================= */
-
-  {
-    id: "boat",
-    name: "Barca",
-    sanskrit: "नावासन",
-    transliteration: "Nāvāsana",
-    family: "Fuerza del centro",
-    category: "Hatha / Fuerza",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Boat pose.JPG"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Nāvāsana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Equilibrio sentado que desarrolla fuerza del tronco.",
-
-    execution: [
-      "Siéntate con las rodillas flexionadas.",
-      "Inclina ligeramente el torso hacia atrás.",
-      "Eleva los pies.",
-      "Mantén la columna larga.",
-      "Extiende las piernas progresivamente.",
-      "Eleva los brazos.",
-      "Mantén la respiración."
-    ],
-
-    breathing:
-      "Respira sin bloquear el abdomen.",
-
-    anatomy:
-      "Alta demanda de flexores de cadera y musculatura abdominal, además de estabilización del tronco.",
-
-    benefits: [
-      "Fortalece el centro.",
-      "Mejora estabilidad.",
-      "Desarrolla control corporal."
-    ],
-
-    precautions: [
-      "Mantén rodillas flexionadas si la espalda pierde estabilidad.",
-      "No fuerces la extensión de piernas."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo."
-    ],
-
-    redFlags: [
-      "Dolor lumbar.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Manta"
-    ],
-
-    duration: "10–30 segundos",
-
-    variations: [
-      "Rodillas flexionadas.",
-      "Media barca.",
-      "Barca completa.",
-      "Manos detrás de muslos."
-    ]
-  },
-
-
-  /* =======================================================
-     21. BRIDGE
-     ======================================================= */
-
-  {
-    id: "bridge",
-    name: "Puente",
-    sanskrit: "सेतु बन्ध सर्वाङ्गासन",
-    transliteration: "Setu Bandha Sarvāṅgāsana",
-    family: "Extensión de columna",
-    category: "Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Setubandhasan.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Setu_Bandhasana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Extensión de cadera y columna realizada tumbado boca arriba.",
-
-    execution: [
-      "Túmbate boca arriba.",
-      "Flexiona las rodillas.",
-      "Coloca los pies aproximadamente bajo las rodillas.",
-      "Presiona los pies contra el suelo.",
-      "Eleva progresivamente la pelvis.",
-      "Mantén las rodillas alineadas.",
-      "Desciende lentamente."
-    ],
-
-    breathing:
-      "Inspira al elevar y respira de forma estable durante la permanencia.",
-
-    anatomy:
-      "Extensión de cadera y columna con participación de glúteos, isquiotibiales y musculatura posterior.",
-
-    benefits: [
-      "Fortalece la cadena posterior.",
-      "Moviliza extensión de cadera.",
-      "Puede utilizarse como preparación para extensiones más intensas."
-    ],
-
-    precautions: [
-      "No abras excesivamente las rodillas.",
-      "Evita comprimir el cuello."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo.",
-      "Lesiones cervicales relevantes."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo.",
-      "Mareo."
-    ],
-
-    props: [
-      "Bloque"
-    ],
-
-    duration: "20–60 segundos",
-
-    variations: [
-      "Puente dinámico.",
-      "Puente sostenido.",
-      "Puente con bloque.",
-      "Puente con brazos."
-    ]
-  },
-
-
-  /* =======================================================
-     22. CAT COW
-     ======================================================= */
-
-  {
-    id: "cat-cow",
-    name: "Gato-vaca",
-    sanskrit: "Marjaryasana / Bitilasana",
-    transliteration: "Mārjaryāsana / Bitilāsana",
-    family: "Movilidad de columna",
-    category: "Movilidad",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose16.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual antes de redistribuir"
-    },
-
-    shortDescription:
-      "Movimiento dinámico de flexión y extensión de la columna.",
-
-    execution: [
-      "Colócate en cuatro apoyos.",
-      "Manos bajo hombros y rodillas bajo caderas.",
-      "Inspira mientras llevas el pecho hacia delante y extiendes la columna.",
-      "Exhala mientras redondeas la espalda.",
-      "Coordina el movimiento con la respiración.",
-      "Repite lentamente."
-    ],
-
-    breathing:
-      "Inspiración para extensión y exhalación para flexión, sin necesidad de forzar el movimiento.",
-
-    anatomy:
-      "Moviliza sucesivamente diferentes segmentos de la columna.",
-
-    benefits: [
-      "Calienta la columna.",
-      "Mejora coordinación respiración-movimiento.",
-      "Prepara para prácticas dinámicas."
-    ],
-
-    precautions: [
-      "Reduce el rango si existe dolor de muñecas."
-    ],
-
-    contraindications: [
-      "Dolor agudo de muñeca o columna."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Manta bajo rodillas"
-    ],
-
-    duration: "1–3 minutos",
-
-    variations: [
-      "Movimiento lento.",
-      "Movimiento ondulatorio.",
-      "Círculos de columna."
-    ]
-  },
-
-
-  /* =======================================================
-     23. COBRA
-     ======================================================= */
-
-  {
-    id: "cobra",
-    name: "Cobra",
-    sanskrit: "भुजङ्गासन",
-    transliteration: "Bhujaṅgāsana",
-    family: "Extensión de columna",
-    category: "Hatha / Vinyasa",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bhujangasana.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Bhujangasana",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Extensión activa de la columna desde posición tumbada.",
-
-    execution: [
-      "Túmbate boca abajo.",
-      "Coloca las manos cerca de las costillas.",
-      "Presiona suavemente los empeines.",
-      "Eleva el pecho utilizando principalmente la musculatura de la espalda.",
-      "Mantén los hombros alejados de las orejas.",
-      "No necesitas elevar mucho el torso."
-    ],
-
-    breathing:
-      "Inspira al elevar el pecho y respira con naturalidad.",
-
-    anatomy:
-      "Extensión vertebral con participación de extensores de columna, hombros y musculatura posterior.",
-
-    benefits: [
-      "Fortalece espalda.",
-      "Moviliza extensión.",
-      "Forma parte de muchas secuencias Vinyasa."
-    ],
-
-    precautions: [
-      "No fuerces la extensión lumbar.",
-      "Mantén codos ligeramente flexionados."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Manta"
-    ],
-
-    duration: "10–30 segundos",
-
-    variations: [
-      "Baby Cobra.",
-      "Cobra baja.",
-      "Cobra tradicional."
-    ]
-  },
-
-
-  /* =======================================================
-     24. CHILD'S POSE
-     ======================================================= */
-
-  {
-    id: "child-pose-wide",
-    name: "Niño con piernas abiertas",
-    sanskrit: "Balāsana",
-    transliteration: "Bālāsana",
-    family: "Descanso",
-    category: "Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Pose 1.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Variación amplia de Balasana.",
-
-    execution: [
-      "Separa las rodillas.",
-      "Lleva la pelvis hacia los talones.",
-      "Alarga los brazos.",
-      "Apoya la frente.",
-      "Relaja hombros."
-    ],
-
-    breathing:
-      "Respiración lenta hacia la espalda.",
-
-    anatomy:
-      "Flexión de cadera y columna con rodillas flexionadas.",
-
-    benefits: [
-      "Descanso.",
-      "Movilidad de cadera.",
-      "Relajación."
-    ],
-
-    precautions: [
-      "Utiliza soporte bajo la frente."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla."
-    ],
-
-    redFlags: [
-      "Dolor agudo."
-    ],
-
-    props: [
-      "Bolster",
-      "Manta"
-    ],
-
-    duration: "1–5 minutos",
-
-    variations: [
-      "Frente sobre soporte.",
-      "Brazos hacia atrás.",
-      "Rodillas muy abiertas."
-    ]
-  },
-
-
-  /* =======================================================
-     25. STAFF POSE
-     ======================================================= */
-
-  {
-    id: "dandasana",
-    name: "Bastón",
-    sanskrit: "दण्डासन",
-    transliteration: "Daṇḍāsana",
-    family: "Sentado",
-    category: "Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose3.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura sentada de alineación fundamental.",
-
-    execution: [
-      "Siéntate con las piernas extendidas.",
-      "Apoya las manos junto a las caderas.",
-      "Alarga la columna.",
-      "Flexiona ligeramente las rodillas si es necesario.",
-      "Mantén los pies activos."
-    ],
-
-    breathing:
-      "Respira manteniendo la columna larga.",
-
-    anatomy:
-      "Flexión de cadera y extensión de rodillas con estabilización del tronco.",
-
-    benefits: [
-      "Prepara flexiones.",
-      "Ayuda a observar la alineación.",
-      "Fortalece la postura sentada."
-    ],
-
-    precautions: [
-      "Si la pelvis cae hacia atrás, siéntate sobre una manta."
-    ],
-
-    contraindications: [],
-
-    redFlags: [
-      "Dolor lumbar."
-    ],
-
-    props: [
-      "Manta"
-    ],
-
-    duration: "30–90 segundos",
-
-    variations: [
-      "Rodillas flexionadas.",
-      "Espalda contra pared."
-    ]
-  },
-
-
-  /* =======================================================
-     26. STAFF / FORWARD FOLD
-     ======================================================= */
-
-  {
-    id: "seated-forward-fold",
-    name: "Pinza sentada",
-    sanskrit: "Paścimottānāsana",
-    transliteration: "Paścimottānāsana",
-    family: "Flexión",
-    category: "Hatha / Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose18.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Flexión sentada hacia delante.",
-
-    execution: [
-      "Comienza en Dandasana.",
-      "Inspira y alarga la columna.",
-      "Inclina la pelvis hacia delante.",
-      "Desciende el torso.",
-      "Relaja el cuello.",
-      "Mantén las rodillas flexionadas si es necesario."
-    ],
-
-    breathing:
-      "Respira hacia la espalda y las costillas posteriores.",
-
-    anatomy:
-      "Flexión de cadera y columna y extensión de rodillas.",
-
-    benefits: [
-      "Moviliza cadena posterior.",
-      "Trabaja flexión de cadera."
-    ],
-
-    precautions: [
-      "No tires de los pies.",
-      "Utiliza cinturón si es necesario."
-    ],
-
-    contraindications: [
-      "Dolor lumbar agudo."
-    ],
-
-    redFlags: [
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Cinturón",
-      "Bolster"
-    ],
-
-    duration: "1–5 minutos",
-
-    variations: [
-      "Rodillas flexionadas.",
-      "Bolster sobre piernas."
-    ]
-  },
-
-
-  /* =======================================================
-     27. SHOELACE
-     ======================================================= */
-
-  {
-    id: "shoelace",
-    name: "Cordones",
-    sanskrit: "Gomukhāsana",
-    transliteration: "Gomukhāsana",
-    family: "Caderas",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose22.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura sentada que coloca las piernas cruzadas de manera asimétrica.",
-
-    execution: [
-      "Siéntate con las piernas flexionadas.",
-      "Cruza una pierna sobre la otra.",
-      "Apila las rodillas aproximadamente.",
-      "Ajusta los pies hacia los lados.",
-      "Mantén la pelvis estable.",
-      "Inclínate hacia delante si deseas."
-    ],
-
-    breathing:
-      "Respira lentamente sin forzar las caderas.",
-
-    anatomy:
-      "Rotación interna y externa de cadera dependiendo del lado.",
-
-    benefits: [
-      "Movilidad de cadera.",
-      "Trabajo asimétrico."
-    ],
-
-    precautions: [
-      "Utiliza manta bajo las caderas."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla o cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante."
-    ],
-
-    props: [
-      "Manta",
-      "Bolster"
-    ],
-
-    duration: "2–4 minutos por lado",
-
-    variations: [
-      "Torso erguido.",
-      "Flexión hacia delante.",
-      "Soporte bajo pelvis."
-    ]
-  },
-
-
-  /* =======================================================
-     28. DRAGONFLY
-     ======================================================= */
-
-  {
-    id: "dragonfly",
-    name: "Libélula",
-    sanskrit: "Upaviṣṭha Koṇāsana",
-    transliteration: "Upaviṣṭha Koṇāsana",
-    family: "Aductores",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose13.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Flexión sentada con las piernas ampliamente separadas.",
-
-    execution: [
-      "Siéntate con las piernas abiertas.",
-      "Flexiona ligeramente las rodillas si lo necesitas.",
-      "Alarga la columna.",
-      "Inclina el torso hacia delante.",
-      "Deja que los brazos descansen."
-    ],
-
-    breathing:
-      "Respira hacia la parte posterior de las costillas.",
-
-    anatomy:
-      "Abducción de caderas y flexión del tronco.",
-
-    benefits: [
-      "Moviliza aductores.",
-      "Trabaja caderas."
-    ],
-
-    precautions: [
-      "No fuerces la apertura."
-    ],
-
-    contraindications: [
-      "Lesiones agudas de cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante."
-    ],
-
-    props: [
-      "Bolster",
-      "Manta"
-    ],
-
-    duration: "2–5 minutos",
-
-    variations: [
-      "Piernas menos abiertas.",
-      "Bolster delante.",
-      "Flexión lateral."
-    ]
-  },
-
-
-  /* =======================================================
-     29. SADDLE
-     ======================================================= */
-
-  {
-    id: "saddle",
-    name: "Sillín",
-    sanskrit: "Virasana / Supta Virasana",
-    transliteration: "Vīrāsana",
-    family: "Extensión",
-    category: "Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose23.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Virasana",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura Yin de extensión que puede trabajar muslos y flexores de cadera.",
-
-    execution: [
-      "Comienza arrodillado.",
-      "Separa los pies y lleva la pelvis hacia el espacio entre ellos.",
-      "Utiliza soporte bajo la pelvis.",
-      "Permanece erguido o inclínate hacia atrás progresivamente.",
-      "Detente antes de sentir compresión dolorosa."
-    ],
-
-    breathing:
-      "Respira de forma suave.",
-
-    anatomy:
-      "Flexión de rodilla y extensión de cadera variable.",
-
-    benefits: [
-      "Moviliza la cadena anterior.",
-      "Puede trabajar flexores de cadera."
-    ],
-
-    precautions: [
-      "Utiliza mucho soporte.",
-      "No fuerces la rodilla."
-    ],
-
-    contraindications: [
-      "Problemas importantes de rodilla."
-    ],
-
-    redFlags: [
-      "Dolor punzante de rodilla."
-    ],
-
-    props: [
-      "Bolster",
-      "Bloques",
-      "Mantas"
-    ],
-
-    duration: "1–4 minutos",
-
-    variations: [
-      "Sillín erguido.",
-      "Sillín reclinado.",
-      "Sillín con bolster."
-    ]
-  },
-
-
-  /* =======================================================
-     30. DOLPHIN
-     ======================================================= */
-
-  {
-    id: "dolphin",
-    name: "Delfín",
-    sanskrit: "Ardha Pincha Mayūrāsana",
-    transliteration: "Ardha Piñcha Mayūrāsana",
-    family: "Fuerza / Inversión",
-    category: "Hatha",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose9.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura sobre antebrazos que fortalece hombros y tronco.",
-
-    execution: [
-      "Coloca los antebrazos sobre la esterilla.",
-      "Eleva las caderas.",
-      "Camina los pies hacia las manos.",
-      "Empuja el suelo con los antebrazos.",
-      "Mantén la cabeza libre.",
-      "Regresa lentamente."
-    ],
-
-    breathing:
-      "Respira sin bloquear el abdomen.",
-
-    anatomy:
-      "Carga sobre hombros, brazos y musculatura estabilizadora del tronco.",
-
-    benefits: [
-      "Fortalece hombros.",
-      "Prepara inversiones."
-    ],
-
-    precautions: [
-      "No cargues el cuello.",
-      "Reduce tiempo si los hombros se fatigan."
-    ],
-
-    contraindications: [
-      "Lesión aguda de hombro."
-    ],
-
-    redFlags: [
-      "Dolor cervical.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Bloques"
-    ],
-
-    duration: "15–45 segundos",
-
-    variations: [
-      "Delfín estático.",
-      "Delfín dinámico.",
-      "Rodillas apoyadas."
-    ]
-  },
-
-
-  /* =======================================================
-     31. PLANK
-     ======================================================= */
-
-  {
-    id: "plank",
-    name: "Plancha",
-    sanskrit: "Phalakasana",
-    transliteration: "Phalakāsana",
-    family: "Fuerza",
-    category: "Vinyasa / Fuerza",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose4.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura de apoyo que fortalece el cuerpo completo.",
-
-    execution: [
-      "Desde cuatro apoyos lleva las piernas hacia atrás.",
-      "Coloca hombros aproximadamente sobre muñecas.",
-      "Empuja el suelo.",
-      "Activa abdomen y piernas.",
-      "Mantén una línea estable desde cabeza hasta talones.",
-      "Puedes apoyar las rodillas."
-    ],
-
-    breathing:
-      "Respira de forma continua.",
-
-    anatomy:
-      "Alta demanda de estabilización del tronco, hombros, cadera y piernas.",
-
-    benefits: [
-      "Fortalece el centro.",
-      "Fortalece brazos.",
-      "Mejora estabilidad."
-    ],
-
-    precautions: [
-      "Apoya rodillas si es necesario."
-    ],
-
-    contraindications: [
-      "Dolor agudo de muñeca u hombro."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Pérdida de fuerza."
-    ],
-
-    props: [
-      "Manta"
-    ],
-
-    duration: "10–60 segundos",
-
-    variations: [
-      "Rodillas apoyadas.",
-      "Plancha completa.",
-      "Plancha lateral."
-    ]
-  },
-
-
-  /* =======================================================
-     32. SIDE PLANK
-     ======================================================= */
-
-  {
-    id: "side-plank",
-    name: "Plancha lateral",
-    sanskrit: "Vasiṣṭhāsana",
-    transliteration: "Vasiṣṭhāsana",
-    family: "Equilibrio / Fuerza",
-    category: "Hatha / Vinyasa",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose5.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura lateral de fuerza y estabilidad.",
-
-    execution: [
-      "Desde plancha desplaza el peso hacia una mano.",
-      "Gira el cuerpo lateralmente.",
-      "Apoya un pie sobre el otro o coloca una rodilla en el suelo.",
-      "Eleva la cadera.",
-      "Extiende el brazo superior."
-    ],
-
-    breathing:
-      "Respira de manera constante.",
-
-    anatomy:
-      "Trabajo intenso de hombro, oblicuos, glúteos y musculatura estabilizadora.",
-
-    benefits: [
-      "Fortalece el core.",
-      "Mejora estabilidad lateral."
-    ],
-
-    precautions: [
-      "Apoya la rodilla inferior para modificar."
-    ],
-
-    contraindications: [
-      "Dolor agudo de muñeca u hombro."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Manta"
-    ],
-
-    duration: "10–30 segundos por lado",
-
-    variations: [
-      "Rodilla inferior apoyada.",
-      "Piernas extendidas.",
-      "Brazo superior arriba."
-    ]
-  },
-
-
-  /* =======================================================
-     33. CHAIR
-     ======================================================= */
-
-  {
-    id: "chair",
-    name: "Silla",
-    sanskrit: "Utkatāsana",
-    transliteration: "Utkatāsana",
-    family: "Fuerza",
-    category: "Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose6.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura de pie con flexión de rodillas y caderas.",
-
-    execution: [
-      "Ponte de pie.",
-      "Flexiona caderas y rodillas.",
-      "Lleva la pelvis hacia atrás.",
-      "Mantén el peso distribuido en los pies.",
-      "Eleva los brazos.",
-      "Mantén el pecho amplio."
-    ],
-
-    breathing:
-      "Respira continuamente.",
-
-    anatomy:
-      "Fortalecimiento de cuádriceps, glúteos y musculatura estabilizadora.",
-
-    benefits: [
-      "Fortalece piernas.",
-      "Mejora resistencia."
-    ],
-
-    precautions: [
-      "No necesitas bajar mucho.",
-      "Mantén las rodillas siguiendo la dirección de los pies."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla."
-    ],
-
-    redFlags: [
-      "Dolor punzante."
-    ],
-
-    props: [
-      "Pared"
-    ],
-
-    duration: "15–45 segundos",
-
-    variations: [
-      "Silla alta.",
-      "Silla profunda.",
-      "Brazos delante."
-    ]
-  },
-
-
-  /* =======================================================
-     34. EASY POSE
-     ======================================================= */
-
-  {
-    id: "easy-pose",
-    name: "Postura fácil",
-    sanskrit: "सुखासन",
-    transliteration: "Sukhāsana",
-    family: "Meditación",
-    category: "Meditación / Pranayama",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose10.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura sentada sencilla para respiración y meditación.",
-
-    execution: [
-      "Siéntate con las piernas cruzadas.",
-      "Eleva ligeramente la pelvis si lo necesitas.",
-      "Alarga la columna.",
-      "Relaja hombros.",
-      "Apoya las manos sobre muslos."
-    ],
-
-    breathing:
-      "Respira lentamente por la nariz.",
-
-    anatomy:
-      "Postura sentada con demanda muscular moderada.",
-
-    benefits: [
-      "Facilita prácticas de respiración.",
-      "Favorece meditación."
-    ],
-
-    precautions: [
-      "Siéntate sobre una manta."
-    ],
-
-    contraindications: [],
-
-    redFlags: [
-      "Dolor intenso de cadera o rodilla."
-    ],
-
-    props: [
-      "Manta",
-      "Cojín de meditación"
-    ],
-
-    duration: "2–30 minutos",
-
-    variations: [
-      "Piernas cruzadas.",
-      "Piernas una delante de otra.",
-      "Sentado sobre soporte."
-    ]
-  },
-
-
-  /* =======================================================
-     35. VAJRASANA
-     ======================================================= */
-
-  {
-    id: "vajrasana",
-    name: "Postura del diamante",
-    sanskrit: "वज्रासन",
-    transliteration: "Vajrāsana",
-    family: "Arrodillado",
-    category: "Meditación / Hatha",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose11.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura arrodillada utilizada para meditación y respiración.",
-
-    execution: [
-      "Arrodíllate.",
-      "Lleva los glúteos hacia los talones.",
-      "Mantén la columna vertical.",
-      "Apoya las manos sobre los muslos.",
-      "Relaja hombros."
-    ],
-
-    breathing:
-      "Respiración nasal natural.",
-
-    anatomy:
-      "Flexión de rodillas y tobillos con estabilización del tronco.",
-
-    benefits: [
-      "Postura estable para pranayama.",
-      "Facilita meditación."
-    ],
-
-    precautions: [
-      "Utiliza un bloque o cojín entre pelvis y talones."
-    ],
-
-    contraindications: [
-      "Dolor importante de rodillas o tobillos."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Hormigueo."
-    ],
-
-    props: [
-      "Cojín",
-      "Bloque"
-    ],
-
-    duration: "1–20 minutos",
-
-    variations: [
-      "Sentado sobre soporte.",
-      "Rodillas ligeramente separadas."
-    ]
-  },
-
-
-  /* =======================================================
-     36. CORPSE SIDE
-     ======================================================= */
-
-  {
-    id: "side-savasana",
-    name: "Descanso lateral",
-    sanskrit: "Śavāsana variante",
-    transliteration: "Śavāsana",
-    family: "Reposo",
-    category: "Restaurativo",
-    level: "Todos",
-
-    image: {
-      url: commonsImage("Bpose12.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Variación lateral de descanso.",
-
-    execution: [
-      "Túmbate sobre un lado.",
-      "Coloca un cojín bajo la cabeza.",
-      "Flexiona ligeramente las piernas.",
-      "Apoya una mano sobre el abdomen.",
-      "Relaja todo el cuerpo."
-    ],
-
-    breathing:
-      "Respiración libre.",
-
-    anatomy:
-      "Postura de baja demanda muscular.",
-
-    benefits: [
-      "Alternativa cómoda a Savasana."
-    ],
-
-    precautions: [
-      "Asegura que el cuello quede alineado."
-    ],
-
-    contraindications: [],
-
-    redFlags: [],
-
-    props: [
-      "Cojín",
-      "Manta"
-    ],
-
-    duration: "3–15 minutos",
-
-    variations: [
-      "Piernas flexionadas.",
-      "Piernas extendidas.",
-      "Bolster entre rodillas."
-    ]
-  },
-
-
-  /* =======================================================
-     37. HALF SPLIT
-     ======================================================= */
-
-  {
-    id: "half-split",
-    name: "Media apertura",
-    sanskrit: "Ardha Hanumānāsana",
-    transliteration: "Ardha Hanumānāsana",
-    family: "Isquiotibiales",
-    category: "Hatha / Yin",
-    level: "Intermedio",
-
-    image: {
-      url: commonsImage("Bpose14.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Extensión de una pierna desde una posición de zancada.",
-
-    execution: [
-      "Comienza desde una zancada.",
-      "Lleva la pelvis hacia atrás.",
-      "Extiende la pierna delantera.",
-      "Flexiona ligeramente la rodilla.",
-      "Alarga la columna.",
-      "Inclínate hacia delante desde la cadera."
-    ],
-
-    breathing:
-      "Respira sin forzar.",
-
-    anatomy:
-      "Extensión de rodilla y flexión de cadera.",
-
-    benefits: [
-      "Moviliza isquiotibiales.",
-      "Prepara Hanumanasana."
-    ],
-
-    precautions: [
-      "Mantén rodilla ligeramente flexionada."
-    ],
-
-    contraindications: [
-      "Lesión reciente de isquiotibiales."
-    ],
-
-    redFlags: [
-      "Dolor punzante.",
-      "Dolor irradiado."
-    ],
-
-    props: [
-      "Bloques"
-    ],
-
-    duration: "30–90 segundos por lado",
-
-    variations: [
-      "Rodilla flexionada.",
-      "Pierna más extendida.",
-      "Manos en bloques."
-    ]
-  },
-
-
-  /* =======================================================
-     38. LOW LUNGE
-     ======================================================= */
-
-  {
-    id: "low-lunge",
-    name: "Zancada baja",
-    sanskrit: "Anjaneyāsana",
-    transliteration: "Añjaneyāsana",
-    family: "Caderas",
-    category: "Hatha / Vinyasa",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Ашва Санчаланасана.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Zancada con la rodilla posterior apoyada.",
-
-    execution: [
-      "Desde cuatro apoyos lleva un pie hacia delante.",
-      "Apoya la rodilla posterior.",
-      "Ajusta la distancia.",
-      "Eleva el torso.",
-      "Mantén pelvis estable."
-    ],
-
-    breathing:
-      "Respira de manera continua.",
-
-    anatomy:
-      "Extensión de cadera posterior y flexión de cadera delantera.",
-
-    benefits: [
-      "Moviliza flexores de cadera.",
-      "Prepara secuencias de pie."
-    ],
-
-    precautions: [
-      "Coloca manta bajo la rodilla."
-    ],
-
-    contraindications: [
-      "Dolor agudo de rodilla."
-    ],
-
-    redFlags: [
-      "Dolor punzante."
-    ],
-
-    props: [
-      "Manta",
-      "Bloques"
-    ],
-
-    duration: "30–90 segundos por lado",
-
-    variations: [
-      "Torso vertical.",
-      "Brazos arriba.",
-      "Zancada lateral."
-    ]
-  },
-
-
-  /* =======================================================
-     39. HAPPY BABY
-     ======================================================= */
-
-  {
-    id: "happy-baby",
-    name: "Bebé feliz",
-    sanskrit: "Ānanda Bālāsana",
-    transliteration: "Ānanda Bālāsana",
-    family: "Caderas",
-    category: "Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("Bpose15.jpg"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Asana_tutorial_drawings",
-      license: "Verificar licencia individual"
-    },
-
-    shortDescription:
-      "Postura tumbada que moviliza caderas.",
-
-    execution: [
-      "Túmbate boca arriba.",
-      "Flexiona las rodillas hacia el pecho.",
-      "Sujeta pies, tobillos o muslos.",
-      "Lleva suavemente las rodillas hacia los lados.",
-      "Mantén el sacro cómodo."
-    ],
-
-    breathing:
-      "Respira lentamente.",
-
-    anatomy:
-      "Flexión y abducción de cadera.",
-
-    benefits: [
-      "Moviliza caderas.",
-      "Relaja la zona lumbar."
-    ],
-
-    precautions: [
-      "No tires de los pies."
-    ],
-
-    contraindications: [
-      "Lesión aguda de cadera."
-    ],
-
-    redFlags: [
-      "Dolor punzante."
-    ],
-
-    props: [
-      "Cinturón"
-    ],
-
-    duration: "1–3 minutos",
-
-    variations: [
-      "Sujetar muslos.",
-      "Sujetar pies.",
-      "Movimiento suave."
-    ]
-  },
-
-
-  /* =======================================================
-     40. LEGS UP WALL
-     ======================================================= */
-
-  {
-    id: "legs-up-wall",
-    name: "Piernas arriba",
-    sanskrit: "Viparīta Karaṇī",
-    transliteration: "Viparīta Karaṇī",
-    family: "Restaurativo",
-    category: "Yin / Restaurativo",
-    level: "Principiante",
-
-    image: {
-      url: commonsImage("A style of sarvangasana.JPG"),
-      source: "Wikimedia Commons",
-      sourcePage: "https://commons.wikimedia.org/wiki/Category:Viparita_Karani",
-      license: "Consultar licencia del archivo"
-    },
-
-    shortDescription:
-      "Versión restaurativa con piernas elevadas.",
-
-    execution: [
-      "Túmbate cerca de una pared.",
-      "Eleva las piernas.",
-      "Acomoda pelvis y cabeza.",
-      "Relaja brazos.",
-      "Mantén la mandíbula suave."
-    ],
-
-    breathing:
-      "Respiración natural.",
-
-    anatomy:
-      "Baja demanda muscular y posición invertida suave.",
-
-    benefits: [
-      "Descanso.",
-      "Preparación para relajación."
-    ],
-
-    precautions: [
-      "Sal lentamente."
-    ],
-
-    contraindications: [
-      "Condiciones en las que las inversiones estén desaconsejadas."
-    ],
-
-    redFlags: [
-      "Mareo intenso.",
-      "Dolor."
-    ],
-
-    props: [
-      "Pared",
-      "Bolster",
-      "Manta"
-    ],
-
-    duration: "3–10 minutos",
-
-    variations: [
-      "Piernas en pared.",
-      "Piernas sobre silla.",
-      "Bolster bajo pelvis."
-    ]
-  }
+const MOONIE_ASANAS = [
+
+/* =========================================================
+   01 — BALASANA
+   ========================================================= */
+
+{
+  id: "balasana",
+  name: "Postura del niño",
+  sanskrit: "बालासन",
+  transliteration: "Bālāsana",
+  family: "Flexión hacia delante",
+  category: "Restaurativo",
+  level: "Principiante",
+  image: img("Balasana.jpg"),
+
+  shortDescription:
+    "Postura de descanso con el tronco hacia delante y las caderas hacia los talones.",
+
+  execution: [
+    "Comienza de rodillas.",
+    "Lleva las caderas lentamente hacia los talones.",
+    "Inclina el tronco hacia delante.",
+    "Apoya la frente en la esterilla o en un soporte.",
+    "Puedes mantener los brazos hacia delante o relajarlos junto al cuerpo.",
+    "Deja que el abdomen y la espalda se relajen progresivamente."
+  ],
+
+  breathing:
+    "Respira lenta y silenciosamente. Deja que cada inspiración expanda la espalda y cada espiración suavice el cuerpo.",
+
+  anatomy:
+    "Flexión de caderas y rodillas, con participación de tobillos. La columna permanece en flexión cómoda. El grado de apertura de las rodillas modifica la sensación en caderas, abdomen y espalda.",
+
+  benefits: [
+    "Favorece una sensación de descanso.",
+    "Reduce la demanda física de la práctica.",
+    "Permite observar la respiración posterior.",
+    "Puede utilizarse como postura de transición."
+  ],
+
+  precautions: [
+    "Utiliza un bolster o cojín si la frente no llega cómodamente al suelo.",
+    "Separa las rodillas si necesitas más espacio abdominal."
+  ],
+
+  contraindications: [
+    "Evitar o modificar si existe dolor importante de rodillas o tobillos."
+  ],
+
+  redFlags: [
+    "Dolor agudo.",
+    "Hormigueo persistente.",
+    "Pérdida de sensibilidad."
+  ],
+
+  props: ["Bolster", "Cojín", "Manta"],
+  duration: "1–5 minutos",
+
+  variations: [
+    "Rodillas juntas.",
+    "Rodillas separadas.",
+    "Brazos hacia delante.",
+    "Brazos junto al cuerpo.",
+    "Frente sobre soporte."
+  ]
+},
+
+/* =========================================================
+   02 — TADASANA
+   ========================================================= */
+
+{
+  id: "tadasana",
+  name: "Postura de la montaña",
+  sanskrit: "ताडासन",
+  transliteration: "Tāḍāsana",
+  family: "De pie",
+  category: "Hatha",
+  level: "Principiante",
+  image: img("Mountain Pose.jpg"),
+
+  shortDescription:
+    "Postura fundamental de pie utilizada para desarrollar conciencia corporal y alineación.",
+
+  execution: [
+    "Coloca los pies aproximadamente al ancho de las caderas.",
+    "Distribuye el peso entre talón, base del dedo gordo y base del quinto dedo.",
+    "Alarga las piernas sin bloquear las rodillas.",
+    "Alarga la columna hacia arriba.",
+    "Relaja hombros y mandíbula.",
+    "Mantén la cabeza equilibrada sobre el tronco."
+  ],
+
+  breathing:
+    "Respiración nasal tranquila, manteniendo una sensación de estabilidad.",
+
+  anatomy:
+    "Trabajo global de miembros inferiores, musculatura postural, pies, pelvis y columna.",
+
+  benefits: [
+    "Mejora la conciencia de la postura.",
+    "Prepara para otras posturas de pie.",
+    "Favorece el equilibrio."
+  ],
+
+  precautions: [
+    "Mantén las rodillas suaves.",
+    "Si existe inestabilidad, practica cerca de una pared."
+  ],
+
+  contraindications: [],
+  redFlags: ["Mareo intenso", "Pérdida de equilibrio"],
+
+  props: ["Pared opcional"],
+  duration: "30 segundos–2 minutos",
+
+  variations: [
+    "Brazos junto al cuerpo.",
+    "Manos en oración.",
+    "Brazos por encima de la cabeza."
+  ]
+},
+
+/* =========================================================
+   03 — SUKHASANA
+   ========================================================= */
+
+{
+  id: "sukhasana",
+  name: "Postura fácil",
+  sanskrit: "सुखासन",
+  transliteration: "Sukhāsana",
+  family: "Sentada",
+  category: "Meditación",
+  level: "Principiante",
+  image: img("Sukhasana.jpg"),
+
+  shortDescription:
+    "Postura sentada sencilla utilizada para respiración, meditación y preparación.",
+
+  execution: [
+    "Siéntate con las piernas cruzadas.",
+    "Eleva las caderas sobre un cojín si es necesario.",
+    "Alarga la columna.",
+    "Relaja hombros y rostro.",
+    "Apoya las manos sobre los muslos."
+  ],
+
+  breathing:
+    "Respira de manera natural, procurando que la inspiración y la espiración sean suaves.",
+
+  anatomy:
+    "Flexión de caderas y rodillas con estabilización de la columna.",
+
+  benefits: [
+    "Facilita la práctica de respiración.",
+    "Favorece la quietud.",
+    "Puede utilizarse como postura inicial."
+  ],
+
+  precautions: [
+    "Eleva la pelvis si las rodillas quedan muy por encima de las caderas."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo de rodilla o cadera"],
+
+  props: ["Cojín", "Manta", "Bloque"],
+  duration: "2–20 minutos",
+
+  variations: [
+    "Piernas cruzadas.",
+    "Pelvis elevada.",
+    "Sentado sobre bolster."
+  ]
+},
+
+/* =========================================================
+   04 — BADDHA KONASANA
+   ========================================================= */
+
+{
+  id: "baddha-konasana",
+  name: "Postura de la mariposa",
+  sanskrit: "बद्ध कोणासन",
+  transliteration: "Baddha Koṇāsana",
+  family: "Apertura de caderas",
+  category: "Yin",
+  level: "Principiante",
+  image: img("Advanced version of Baddha Konasana.jpg"),
+
+  shortDescription:
+    "Postura sentada con las plantas de los pies juntas y las rodillas abiertas.",
+
+  execution: [
+    "Siéntate sobre la esterilla.",
+    "Junta las plantas de los pies.",
+    "Acerca los talones según resulte cómodo.",
+    "Permite que las rodillas desciendan sin empujarlas.",
+    "Alarga la columna.",
+    "En Yin puedes inclinar lentamente el torso hacia delante."
+  ],
+
+  breathing:
+    "Respira hacia el abdomen y las costillas laterales. Evita forzar la amplitud.",
+
+  anatomy:
+    "Combina abducción y rotación externa de cadera con flexión de rodilla.",
+
+  benefits: [
+    "Moviliza las caderas.",
+    "Puede crear sensación de espacio en la zona interna de los muslos.",
+    "Es útil en prácticas Yin."
+  ],
+
+  precautions: [
+    "Apoya las rodillas sobre bloques si existe demasiada tensión.",
+    "No presiones las rodillas hacia el suelo."
+  ],
+
+  contraindications: [],
+  redFlags: [
+    "Dolor agudo en la ingle.",
+    "Dolor de rodilla."
+  ],
+
+  props: ["Bloques", "Cojín", "Bolster"],
+  duration: "2–5 minutos",
+
+  variations: [
+    "Vertical.",
+    "Flexión hacia delante.",
+    "Pies más alejados.",
+    "Rodillas apoyadas."
+  ]
+},
+
+/* =========================================================
+   05 — PASCHIMOTTANASANA
+   ========================================================= */
+
+{
+  id: "paschimottanasana",
+  name: "Pinza sentada",
+  sanskrit: "पश्चिमोत्तानासन",
+  transliteration: "Paścimottānāsana",
+  family: "Flexión",
+  category: "Hatha / Yin",
+  level: "Intermedio",
+  image: img("Paschimottanasana.jpg"),
+
+  shortDescription:
+    "Flexión sentada hacia las piernas con énfasis en la movilidad posterior.",
+
+  execution: [
+    "Siéntate con las piernas extendidas.",
+    "Flexiona ligeramente las rodillas si lo necesitas.",
+    "Inspira y alarga la columna.",
+    "Espira e inclínate desde las caderas.",
+    "Permite que las manos descansen donde lleguen cómodamente.",
+    "Relaja cuello y mandíbula."
+  ],
+
+  breathing:
+    "Inspira para crear longitud y espira para permitir una flexión cómoda.",
+
+  anatomy:
+    "Flexión de cadera y flexión progresiva de la columna. Participan isquiotibiales, glúteos y musculatura posterior.",
+
+  benefits: [
+    "Moviliza la cadena posterior.",
+    "Puede favorecer una sensación de calma.",
+    "Útil en Hatha y Yin."
+  ],
+
+  precautions: [
+    "No busques tocar los pies a cualquier precio.",
+    "Mantén las rodillas ligeramente flexionadas si existe mucha tensión."
+  ],
+
+  contraindications: [
+    "Modificar ante dolor lumbar agudo."
+  ],
+
+  redFlags: [
+    "Dolor irradiado.",
+    "Hormigueo.",
+    "Pérdida de fuerza."
+  ],
+
+  props: ["Cinturón", "Bolster", "Manta"],
+  duration: "1–5 minutos",
+
+  variations: [
+    "Rodillas flexionadas.",
+    "Cinturón en los pies.",
+    "Bolster bajo el torso."
+  ]
+},
+
+/* =========================================================
+   06 — JANU SIRSASANA
+   ========================================================= */
+
+{
+  id: "janu-sirsasana",
+  name: "Cabeza a la rodilla",
+  sanskrit: "जानुशीर्षासन",
+  transliteration: "Jānuśīrṣāsana",
+  family: "Flexión",
+  category: "Yin / Hatha",
+  level: "Intermedio",
+  image: img("Jānuśīrṣāsana.jpg"),
+
+  shortDescription:
+    "Flexión sentada asimétrica con una pierna extendida y otra flexionada.",
+
+  execution: [
+    "Extiende una pierna.",
+    "Flexiona la otra llevando la planta del pie hacia el muslo.",
+    "Gira el tronco hacia la pierna extendida.",
+    "Inspira y alarga la columna.",
+    "Espira e inclínate desde la cadera.",
+    "Mantén ambos lados de la pelvis lo más estables posible."
+  ],
+
+  breathing:
+    "Respira de manera lenta y continua.",
+
+  anatomy:
+    "Combina flexión de cadera, extensión de rodilla y rotación externa de la cadera flexionada.",
+
+  benefits: [
+    "Moviliza la cadena posterior.",
+    "Trabaja de forma asimétrica.",
+    "Útil para explorar diferencias entre ambos lados."
+  ],
+
+  precautions: [
+    "No fuerces la rodilla de la pierna flexionada.",
+    "Utiliza soporte bajo la pelvis si necesitas más altura."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo en rodilla o espalda"],
+
+  props: ["Cinturón", "Bolster", "Manta"],
+  duration: "1–4 minutos por lado",
+
+  variations: [
+    "Pierna flexionada más abierta.",
+    "Torso apoyado sobre bolster.",
+    "Rodilla extendida suavemente."
+  ]
+},
+
+/* =========================================================
+   07 — UPAVISTHA KONASANA
+   ========================================================= */
+
+{
+  id: "upavistha-konasana",
+  name: "Ángulo sentado",
+  sanskrit: "उपविष्ट कोणासन",
+  transliteration: "Upaviṣṭha Koṇāsana",
+  family: "Apertura de piernas",
+  category: "Yin / Hatha",
+  level: "Intermedio",
+  image: img("Upavistha Konasana.jpg"),
+
+  shortDescription:
+    "Postura sentada con las piernas abiertas.",
+
+  execution: [
+    "Siéntate y abre las piernas progresivamente.",
+    "Mantén las rodillas orientadas hacia el techo.",
+    "Eleva la columna.",
+    "Puedes permanecer vertical o inclinarte hacia delante.",
+    "No necesitas alcanzar el suelo."
+  ],
+
+  breathing:
+    "Respiración lenta y amplia.",
+
+  anatomy:
+    "Abducción de cadera, extensión de rodillas y demanda de movilidad de la cadena posterior.",
+
+  benefits: [
+    "Explora la movilidad de caderas.",
+    "Puede trabajar aductores de manera gradual."
+  ],
+
+  precautions: [
+    "No abras las piernas hasta el límite.",
+    "Reduce la amplitud si aparece dolor."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo en ingle o rodilla"],
+
+  props: ["Cojín", "Bolster", "Bloques"],
+  duration: "1–4 minutos",
+
+  variations: [
+    "Vertical.",
+    "Flexión frontal.",
+    "Bolster bajo el torso."
+  ]
+},
+
+/* =========================================================
+   08 — BHUJANGASANA
+   ========================================================= */
+
+{
+  id: "bhujangasana",
+  name: "Cobra",
+  sanskrit: "भुजङ्गासन",
+  transliteration: "Bhujaṅgāsana",
+  family: "Extensión",
+  category: "Hatha / Vinyasa",
+  level: "Principiante–Intermedio",
+  image: img("Bhujangasana.jpg"),
+
+  shortDescription:
+    "Extensión de columna realizada tumbado boca abajo.",
+
+  execution: [
+    "Túmbate boca abajo.",
+    "Coloca las manos cerca de las costillas.",
+    "Alarga las piernas hacia atrás.",
+    "Inspira y eleva suavemente el pecho.",
+    "Utiliza la musculatura de la espalda antes que la fuerza de los brazos.",
+    "Mantén los hombros alejados de las orejas."
+  ],
+
+  breathing:
+    "Inspira durante la extensión y espira para mantener o salir suavemente.",
+
+  anatomy:
+    "Extensión de columna, extensión de cadera y estabilización escapular.",
+
+  benefits: [
+    "Fortalece progresivamente la musculatura posterior.",
+    "Moviliza la extensión de columna.",
+    "Puede formar parte de Vinyasa."
+  ],
+
+  precautions: [
+    "No colapses la zona lumbar.",
+    "La altura no determina la calidad de la postura."
+  ],
+
+  contraindications: [
+    "Modificar si la extensión lumbar provoca dolor."
+  ],
+
+  redFlags: [
+    "Dolor lumbar agudo.",
+    "Dolor irradiado hacia las piernas."
+  ],
+
+  props: ["Manta bajo pelvis opcional"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Cobra baja.",
+    "Cobra media.",
+    "Cobra dinámica."
+  ]
+},
+
+/* =========================================================
+   09 — SALAMBA BHUJANGASANA / SPHINX
+   ========================================================= */
+
+{
+  id: "sphinx",
+  name: "Esfinge",
+  sanskrit: "सलम्ब भुजङ्गासन",
+  transliteration: "Salamba Bhujaṅgāsana",
+  family: "Extensión",
+  category: "Yin",
+  level: "Principiante",
+  image: img("IMG 0549 2 Sphinx.jpg"),
+
+  shortDescription:
+    "Extensión suave de columna apoyada sobre antebrazos.",
+
+  execution: [
+    "Túmbate boca abajo.",
+    "Coloca los antebrazos delante del cuerpo.",
+    "Mantén los codos aproximadamente bajo los hombros.",
+    "Presiona suavemente los antebrazos.",
+    "Permite una extensión cómoda de la columna.",
+    "Mantén las piernas relajadas."
+  ],
+
+  breathing:
+    "Respira de forma amplia hacia las costillas.",
+
+  anatomy:
+    "Extensión de columna con carga reducida sobre los brazos.",
+
+  benefits: [
+    "Introduce extensión de columna de forma gradual.",
+    "Puede utilizarse como postura Yin.",
+    "Favorece conciencia de la zona anterior del cuerpo."
+  ],
+
+  precautions: [
+    "Aleja los codos si la extensión resulta demasiado intensa.",
+    "Reduce el tiempo si aparece molestia lumbar."
+  ],
+
+  contraindications: [
+    "Modificar ante dolor lumbar agudo."
+  ],
+
+  redFlags: [
+    "Dolor agudo.",
+    "Dolor irradiado."
+  ],
+
+  props: ["Bolster", "Manta"],
+  duration: "2–5 minutos",
+
+  variations: [
+    "Esfinge baja.",
+    "Esfinge con brazos más adelantados.",
+    "Antebrazos sobre bolster."
+  ]
+},
+
+/* =========================================================
+   10 — ADHO MUKHA SVANASANA
+   ========================================================= */
+
+{
+  id: "adho-mukha-svanasana",
+  name: "Perro boca abajo",
+  sanskrit: "अधोमुखश्वानासन",
+  transliteration: "Adho Mukha Śvānāsana",
+  family: "Inversión suave",
+  category: "Vinyasa / Hatha",
+  level: "Principiante",
+  image: img("Downwarddog.JPG"),
+
+  shortDescription:
+    "Postura de apoyo en manos y pies con las caderas elevadas.",
+
+  execution: [
+    "Comienza a cuatro apoyos.",
+    "Apoya manos firmemente.",
+    "Eleva las rodillas.",
+    "Lleva las caderas hacia arriba y atrás.",
+    "Alarga la columna.",
+    "Mantén las rodillas flexionadas si necesitas liberar tensión."
+  ],
+
+  breathing:
+    "Respira de manera regular y evita contener el aire.",
+
+  anatomy:
+    "Carga sobre manos y cintura escapular, extensión de hombros y flexión de cadera.",
+
+  benefits: [
+    "Integra fuerza y movilidad.",
+    "Prepara transiciones de Vinyasa.",
+    "Trabaja la cadena posterior."
+  ],
+
+  precautions: [
+    "No necesitas apoyar los talones.",
+    "Distribuye el peso entre manos y pies."
+  ],
+
+  contraindications: [
+    "Modificar ante molestias importantes de muñeca."
+  ],
+
+  redFlags: [
+    "Hormigueo persistente en manos.",
+    "Dolor agudo."
+  ],
+
+  props: ["Bloques"],
+  duration: "30 segundos–2 minutos",
+
+  variations: [
+    "Rodillas flexionadas.",
+    "Pedaleo suave.",
+    "Talones elevados."
+  ]
+},
+
+/* =========================================================
+   11 — PHALAKASANA
+   ========================================================= */
+
+{
+  id: "phalakasana",
+  name: "Plancha",
+  sanskrit: "फलाकासन",
+  transliteration: "Phalakāsana",
+  family: "Apoyo de brazos",
+  category: "Fuerza",
+  level: "Principiante–Intermedio",
+  image: img("Phalakasana.jpg"),
+
+  shortDescription:
+    "Postura de apoyo frontal utilizada para desarrollar fuerza global.",
+
+  execution: [
+    "Coloca las manos bajo los hombros.",
+    "Extiende las piernas hacia atrás.",
+    "Activa abdomen y piernas.",
+    "Mantén una línea funcional entre cabeza, tronco y piernas.",
+    "Respira sin bloquear."
+  ],
+
+  breathing:
+    "Respiración continua y estable.",
+
+  anatomy:
+    "Trabajo integrado de hombros, brazos, abdomen, glúteos y piernas.",
+
+  benefits: [
+    "Desarrolla fuerza.",
+    "Prepara Chaturanga.",
+    "Mejora la estabilidad del tronco."
+  ],
+
+  precautions: [
+    "Apoya las rodillas para reducir carga.",
+    "No dejes caer la zona lumbar."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de muñeca", "Dolor de hombro"],
+
+  props: ["Esterilla"],
+  duration: "15–60 segundos",
+
+  variations: [
+    "Rodillas apoyadas.",
+    "Plancha alta.",
+    "Plancha baja."
+  ]
+},
+
+/* =========================================================
+   12 — CHATURANGA
+   ========================================================= */
+
+{
+  id: "chaturanga",
+  name: "Bastón de cuatro apoyos",
+  sanskrit: "चतुरङ्ग दण्डासन",
+  transliteration: "Caturaṅga Daṇḍāsana",
+  family: "Apoyo de brazos",
+  category: "Vinyasa / Fuerza",
+  level: "Intermedio",
+  image: img("Chaturanga Dandasana.jpg"),
+
+  shortDescription:
+    "Transición de fuerza en la que el cuerpo desciende manteniendo control.",
+
+  execution: [
+    "Comienza desde plancha.",
+    "Lleva ligeramente los hombros hacia delante.",
+    "Flexiona los codos manteniéndolos próximos al tronco.",
+    "Desciende sólo hasta donde puedas controlar.",
+    "Mantén abdomen y piernas activos."
+  ],
+
+  breathing:
+    "Inspira para preparar y espira durante el descenso.",
+
+  anatomy:
+    "Flexión de codos y extensión de muñecas con estabilización de hombros y tronco.",
+
+  benefits: [
+    "Desarrolla fuerza de brazos y tronco.",
+    "Prepara transiciones de Vinyasa."
+  ],
+
+  precautions: [
+    "Practica con rodillas apoyadas si todavía no controlas la postura.",
+    "No es necesario bajar hasta el suelo."
+  ],
+
+  contraindications: [
+    "Modificar ante dolor de muñeca u hombro."
+  ],
+
+  redFlags: [
+    "Dolor agudo de hombro.",
+    "Pérdida de control del tronco."
+  ],
+
+  props: ["Bloques opcionales"],
+  duration: "5–20 segundos",
+
+  variations: [
+    "Rodillas apoyadas.",
+    "Descenso parcial.",
+    "Chaturanga completo."
+  ]
+},
+
+/* =========================================================
+   13 — URDHVA MUKHA SVANASANA
+   ========================================================= */
+
+{
+  id: "urdhva-mukha-svanasana",
+  name: "Perro boca arriba",
+  sanskrit: "ऊर्ध्वमुखश्वानासन",
+  transliteration: "Ūrdhva Mukha Śvānāsana",
+  family: "Extensión",
+  category: "Vinyasa",
+  level: "Intermedio",
+  image: img("Urdhva Mukha Svanasana.jpg"),
+
+  shortDescription:
+    "Extensión activa de columna con apoyo principal en manos y empeines.",
+
+  execution: [
+    "Desde una posición boca abajo, coloca las manos junto al tórax.",
+    "Presiona las manos.",
+    "Eleva el pecho.",
+    "Mantén los muslos separados del suelo si es cómodo.",
+    "Alarga la columna.",
+    "Mantén los hombros alejados de las orejas."
+  ],
+
+  breathing:
+    "Inspira para crear longitud y extensión.",
+
+  anatomy:
+    "Extensión de columna y cadera con fuerte participación de hombros y brazos.",
+
+  benefits: [
+    "Desarrolla fuerza posterior.",
+    "Forma parte de algunas transiciones Vinyasa."
+  ],
+
+  precautions: [
+    "No fuerces la zona lumbar.",
+    "Utiliza Cobra como alternativa."
+  ],
+
+  contraindications: [
+    "Modificar ante dolor lumbar u hombros."
+  ],
+
+  redFlags: ["Dolor agudo", "Hormigueo"],
+
+  props: [],
+  duration: "10–30 segundos",
+
+  variations: [
+    "Cobra.",
+    "Perro boca arriba dinámico."
+  ]
+},
+
+/* =========================================================
+   14 — VIRABHADRASANA I
+   ========================================================= */
+
+{
+  id: "virabhadrasana-i",
+  name: "Guerrero I",
+  sanskrit: "वीरभद्रासन I",
+  transliteration: "Vīrabhadrāsana I",
+  family: "De pie",
+  category: "Hatha / Vinyasa",
+  level: "Principiante",
+  image: img("Virabhadrasana I - Warrior Pose I.jpg"),
+
+  shortDescription:
+    "Postura de pie con base amplia y brazos elevados.",
+
+  execution: [
+    "Da un paso largo hacia atrás.",
+    "Flexiona la rodilla delantera.",
+    "Gira ligeramente la pelvis hacia delante según tu movilidad.",
+    "Eleva los brazos.",
+    "Alarga la columna.",
+    "Mantén el peso distribuido entre ambos pies."
+  ],
+
+  breathing:
+    "Respiración estable, utilizando la espiración para asentarte en la postura.",
+
+  anatomy:
+    "Fortalecimiento de piernas y glúteos, extensión de cadera posterior y elevación de brazos.",
+
+  benefits: [
+    "Fortalece piernas.",
+    "Mejora estabilidad.",
+    "Prepara secuencias de pie."
+  ],
+
+  precautions: [
+    "Reduce la longitud de la zancada si la pelvis no puede estabilizarse."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de rodilla", "Pérdida de equilibrio"],
+
+  props: ["Pared opcional"],
+  duration: "30–60 segundos por lado",
+
+  variations: [
+    "Talón posterior elevado.",
+    "Talón posterior apoyado.",
+    "Brazos abiertos."
+  ]
+},
+
+/* =========================================================
+   15 — VIRABHADRASANA II
+   ========================================================= */
+
+{
+  id: "virabhadrasana-ii",
+  name: "Guerrero II",
+  sanskrit: "वीरभद्रासन II",
+  transliteration: "Vīrabhadrāsana II",
+  family: "De pie",
+  category: "Hatha / Vinyasa",
+  level: "Principiante",
+  image: img("WarriorII.jpg"),
+
+  shortDescription:
+    "Postura de pie con piernas abiertas y brazos extendidos.",
+
+  execution: [
+    "Abre las piernas ampliamente.",
+    "Gira un pie hacia fuera.",
+    "Flexiona la rodilla delantera.",
+    "Extiende los brazos a ambos lados.",
+    "Mantén la mirada sobre la mano delantera.",
+    "Alarga el torso."
+  ],
+
+  breathing:
+    "Respira de manera continua y estable.",
+
+  anatomy:
+    "Fortalecimiento de cuádriceps, glúteos y musculatura estabilizadora de cadera.",
+
+  benefits: [
+    "Fortalece piernas.",
+    "Mejora resistencia postural.",
+    "Trabaja coordinación."
+  ],
+
+  precautions: [
+    "Alinea la rodilla aproximadamente con el pie.",
+    "No permitas que la rodilla colapse hacia dentro."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo de rodilla o cadera"],
+
+  props: ["Pared opcional"],
+  duration: "30–60 segundos por lado",
+
+  variations: [
+    "Rodilla menos flexionada.",
+    "Base más corta.",
+    "Brazos relajados."
+  ]
+},
+
+/* =========================================================
+   16 — VIRABHADRASANA III
+   ========================================================= */
+
+{
+  id: "virabhadrasana-iii",
+  name: "Guerrero III",
+  sanskrit: "वीरभद्रासन III",
+  transliteration: "Vīrabhadrāsana III",
+  family: "Equilibrio",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Tuladandasana - Virabhadrasana III.jpg"),
+
+  shortDescription:
+    "Equilibrio sobre una pierna con el tronco inclinado hacia delante.",
+
+  execution: [
+    "Comienza de pie.",
+    "Traslada progresivamente el peso a una pierna.",
+    "Inclina el tronco hacia delante.",
+    "Extiende la pierna posterior.",
+    "Mantén las caderas aproximadamente niveladas.",
+    "Extiende los brazos o mantenlos junto al torso."
+  ],
+
+  breathing:
+    "Respira de forma continua mientras mantienes la estabilidad.",
+
+  anatomy:
+    "Trabajo de glúteos, isquiotibiales, pantorrillas, core y musculatura estabilizadora del pie.",
+
+  benefits: [
+    "Mejora equilibrio.",
+    "Desarrolla fuerza de pierna.",
+    "Trabaja coordinación."
+  ],
+
+  precautions: [
+    "Utiliza una pared.",
+    "No sacrifiques la estabilidad por elevar más la pierna."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo", "Inestabilidad marcada"],
+
+  props: ["Pared", "Bloques"],
+  duration: "15–45 segundos por lado",
+
+  variations: [
+    "Manos en pared.",
+    "Manos en bloques.",
+    "Brazos extendidos."
+  ]
+},
+
+/* =========================================================
+   17 — TRIKONASANA
+   ========================================================= */
+
+{
+  id: "trikonasana",
+  name: "Triángulo",
+  sanskrit: "त्रिकोणासन",
+  transliteration: "Trikoṇāsana",
+  family: "De pie",
+  category: "Hatha",
+  level: "Principiante–Intermedio",
+  image: img("Trikonasana.jpg"),
+
+  shortDescription:
+    "Postura lateral de pie con piernas extendidas y torso inclinado.",
+
+  execution: [
+    "Separa las piernas.",
+    "Gira un pie hacia fuera.",
+    "Extiende ambos brazos.",
+    "Inclina el tronco hacia la pierna delantera.",
+    "Apoya la mano en la pierna o en un bloque.",
+    "Extiende el otro brazo hacia arriba si resulta cómodo."
+  ],
+
+  breathing:
+    "Respira ampliamente hacia las costillas.",
+
+  anatomy:
+    "Combina abducción de cadera, extensión de rodillas y flexión lateral del tronco.",
+
+  benefits: [
+    "Trabaja piernas.",
+    "Moviliza el tronco lateral.",
+    "Desarrolla estabilidad."
+  ],
+
+  precautions: [
+    "Usa bloque para evitar colapsar el torso."
+  ],
+
+  contraindications: [],
+  redFlags: ["Mareo", "Dolor agudo"],
+
+  props: ["Bloque"],
+  duration: "30–60 segundos por lado",
+
+  variations: [
+    "Mano en bloque.",
+    "Mano en espinilla.",
+    "Brazo superior elevado."
+  ]
+},
+
+/* =========================================================
+   18 — ARDHA CHANDRASANA
+   ========================================================= */
+
+{
+  id: "ardha-chandrasana",
+  name: "Media luna",
+  sanskrit: "अर्धचन्द्रासन",
+  transliteration: "Ardha Candrāsana",
+  family: "Equilibrio",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Ardha Candrāsana-half-moon.jpg"),
+
+  shortDescription:
+    "Equilibrio lateral sobre una pierna con el torso abierto.",
+
+  execution: [
+    "Desde una postura de pie, inclina el tronco hacia delante.",
+    "Apoya una mano sobre un bloque.",
+    "Eleva la pierna posterior.",
+    "Abre progresivamente la pelvis.",
+    "Extiende el brazo superior.",
+    "Mantén la mirada en un punto estable."
+  ],
+
+  breathing:
+    "Respiración tranquila y estable.",
+
+  anatomy:
+    "Trabajo de glúteo medio, musculatura del pie, cadera y core.",
+
+  benefits: [
+    "Mejora equilibrio.",
+    "Fortalece la pierna de apoyo.",
+    "Trabaja apertura de cadera."
+  ],
+
+  precautions: [
+    "Utiliza bloque y pared.",
+    "No necesitas abrir completamente la pelvis."
+  ],
+
+  contraindications: [],
+  redFlags: ["Pérdida repetida del equilibrio", "Dolor agudo"],
+
+  props: ["Bloque", "Pared"],
+  duration: "15–40 segundos por lado",
+
+  variations: [
+    "Pared.",
+    "Bloque alto.",
+    "Pierna posterior menos elevada."
+  ]
+},
+
+/* =========================================================
+   19 — VRKSHASANA
+   ========================================================= */
+
+{
+  id: "vrikshasana",
+  name: "Árbol",
+  sanskrit: "वृक्षासन",
+  transliteration: "Vṛkṣāsana",
+  family: "Equilibrio",
+  category: "Hatha",
+  level: "Principiante",
+  image: img("Postura da Árvore Yoga.jpg"),
+
+  shortDescription:
+    "Equilibrio de pie con una pierna y la otra apoyada de forma progresiva.",
+
+  execution: [
+    "Comienza en Tadasana.",
+    "Traslada el peso a una pierna.",
+    "Coloca la otra planta en tobillo, pantorrilla o muslo, evitando la rodilla.",
+    "Junta las manos o elévalas.",
+    "Mantén la mirada fija."
+  ],
+
+  breathing:
+    "Respiración nasal lenta.",
+
+  anatomy:
+    "Estabilización de pie, tobillo, rodilla y cadera.",
+
+  benefits: [
+    "Desarrolla equilibrio.",
+    "Mejora concentración corporal.",
+    "Fortalece la pierna de apoyo."
+  ],
+
+  precautions: [
+    "No apoyes el pie directamente sobre la rodilla."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor", "Inestabilidad importante"],
+
+  props: ["Pared"],
+  duration: "20–60 segundos por lado",
+
+  variations: [
+    "Pie en tobillo.",
+    "Pie en pantorrilla.",
+    "Pie en muslo."
+  ]
+},
+
+/* =========================================================
+   20 — UTKATASANA
+   ========================================================= */
+
+{
+  id: "utkatasana",
+  name: "Silla",
+  sanskrit: "उत्कटासन",
+  transliteration: "Utkatāsana",
+  family: "De pie",
+  category: "Fuerza",
+  level: "Principiante",
+  image: img("Utkatasana.jpg"),
+
+  shortDescription:
+    "Postura de fuerza con flexión de rodillas y caderas.",
+
+  execution: [
+    "Colócate de pie.",
+    "Flexiona las rodillas y lleva las caderas hacia atrás.",
+    "Mantén el peso distribuido sobre los pies.",
+    "Eleva los brazos.",
+    "Alarga la columna.",
+    "Mantén el abdomen activo."
+  ],
+
+  breathing:
+    "Respira de manera continua.",
+
+  anatomy:
+    "Fortalecimiento de cuádriceps, glúteos y musculatura estabilizadora.",
+
+  benefits: [
+    "Fortalece piernas.",
+    "Desarrolla resistencia postural."
+  ],
+
+  precautions: [
+    "Reduce la flexión de rodillas si resulta excesiva.",
+    "Mantén el peso en todo el pie."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de rodilla"],
+
+  props: ["Pared"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Brazos al frente.",
+    "Brazos arriba.",
+    "Sentadilla más alta."
+  ]
+},
+
+/* =========================================================
+   21 — MALASANA
+   ========================================================= */
+
+{
+  id: "malasana",
+  name: "Guirnalda",
+  sanskrit: "मालासन",
+  transliteration: "Mālāsana",
+  family: "Sentadilla",
+  category: "Movilidad",
+  level: "Intermedio",
+  image: img("Upaveśāsana.jpg"),
+
+  shortDescription:
+    "Sentadilla profunda utilizada para explorar movilidad de tobillos, caderas y columna.",
+
+  execution: [
+    "Separa los pies.",
+    "Flexiona las rodillas.",
+    "Desciende las caderas.",
+    "Abre suavemente las rodillas.",
+    "Mantén el torso largo.",
+    "Puedes apoyar los talones sobre una manta."
+  ],
+
+  breathing:
+    "Respiración lenta.",
+
+  anatomy:
+    "Flexión profunda de rodillas y caderas, con dorsiflexión de tobillo.",
+
+  benefits: [
+    "Moviliza caderas y tobillos.",
+    "Fortalece piernas.",
+    "Puede preparar para posturas de suelo."
+  ],
+
+  precautions: [
+    "Eleva los talones si necesitas.",
+    "No fuerces las rodillas hacia fuera."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo de rodilla o tobillo"],
+
+  props: ["Manta", "Bloque"],
+  duration: "30 segundos–2 minutos",
+
+  variations: [
+    "Talones elevados.",
+    "Caderas sobre bloque.",
+    "Manos en oración."
+  ]
+},
+
+/* =========================================================
+   22 — SETU BANDHASANA
+   ========================================================= */
+
+{
+  id: "setu-bandhasana",
+  name: "Puente",
+  sanskrit: "सेतु बन्धासन",
+  transliteration: "Setu Bandhāsana",
+  family: "Extensión",
+  category: "Hatha / Fuerza",
+  level: "Principiante",
+  image: img("Setubandhasan.jpg"),
+
+  shortDescription:
+    "Extensión de cadera y columna realizada tumbado boca arriba.",
+
+  execution: [
+    "Túmbate boca arriba.",
+    "Flexiona las rodillas.",
+    "Apoya los pies cerca de la pelvis.",
+    "Presiona los pies.",
+    "Eleva la pelvis.",
+    "Mantén las rodillas aproximadamente alineadas con los pies."
+  ],
+
+  breathing:
+    "Inspira para preparar y espira suavemente mientras estabilizas.",
+
+  anatomy:
+    "Extensión de cadera con participación de glúteos, isquiotibiales y musculatura posterior.",
+
+  benefits: [
+    "Fortalece la cadena posterior.",
+    "Moviliza la extensión de cadera.",
+    "Puede formar parte de prácticas Hatha."
+  ],
+
+  precautions: [
+    "No hiperextiendas el cuello.",
+    "Mantén la barbilla natural."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor cervical o lumbar agudo"],
+
+  props: ["Bloque"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Puente dinámico.",
+    "Puente mantenido.",
+    "Bloque bajo el sacro."
+  ]
+},
+
+/* =========================================================
+   23 — SUPTA BADDHA KONASANA
+   ========================================================= */
+
+{
+  id: "supta-baddha-konasana",
+  name: "Mariposa tumbada",
+  sanskrit: "सुप्त बद्ध कोणासन",
+  transliteration: "Supta Baddha Koṇāsana",
+  family: "Supina",
+  category: "Restaurativo",
+  level: "Principiante",
+  image: img("Supta Baddha Konasana.jpg"),
+
+  shortDescription:
+    "Versión tumbada de Baddha Konasana.",
+
+  execution: [
+    "Túmbate boca arriba.",
+    "Junta las plantas de los pies.",
+    "Deja caer las rodillas hacia los lados.",
+    "Apoya cada rodilla sobre un soporte si es necesario.",
+    "Relaja brazos y mandíbula."
+  ],
+
+  breathing:
+    "Respiración tranquila y amplia.",
+
+  anatomy:
+    "Rotación externa y abducción de caderas con apoyo del cuerpo.",
+
+  benefits: [
+    "Favorece descanso.",
+    "Puede utilizarse en prácticas restaurativas."
+  ],
+
+  precautions: [
+    "Apoya las piernas si existe tensión."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de cadera o rodilla"],
+
+  props: ["Bolsters", "Cojines", "Mantas"],
+  duration: "3–10 minutos",
+
+  variations: [
+    "Soporte bajo ambas rodillas.",
+    "Bolster longitudinal bajo espalda.",
+    "Versión sin soporte."
+  ]
+},
+
+/* =========================================================
+   24 — VIPARITA KARANI
+   ========================================================= */
+
+{
+  id: "viparita-karani",
+  name: "Piernas en la pared",
+  sanskrit: "विपरीतकरणी",
+  transliteration: "Viparīta Karaṇī",
+  family: "Supina",
+  category: "Restaurativo",
+  level: "Principiante",
+  image: img("Viparita Karani.jpg"),
+
+  shortDescription:
+    "Postura restaurativa con las piernas elevadas.",
+
+  execution: [
+    "Siéntate cerca de una pared.",
+    "Gira el cuerpo y lleva las piernas hacia arriba.",
+    "Acomoda la pelvis según resulte cómodo.",
+    "Relaja el abdomen.",
+    "Deja los brazos descansar."
+  ],
+
+  breathing:
+    "Respiración lenta y natural.",
+
+  anatomy:
+    "Posición supina con caderas y piernas elevadas y bajo esfuerzo muscular.",
+
+  benefits: [
+    "Favorece una práctica de descanso.",
+    "Permite permanecer quieto durante varios minutos.",
+    "Útil al final de sesiones suaves."
+  ],
+
+  precautions: [
+    "Aléjate de la pared si sientes demasiada tensión posterior."
+  ],
+
+  contraindications: [],
+  redFlags: ["Mareo", "Malestar significativo"],
+
+  props: ["Manta", "Bolster"],
+  duration: "3–15 minutos",
+
+  variations: [
+    "Pelvis neutra.",
+    "Bolster bajo pelvis.",
+    "Rodillas ligeramente flexionadas."
+  ]
+},
+
+/* =========================================================
+   25 — SUPTA MATSYENDRASANA
+   ========================================================= */
+
+{
+  id: "supta-matsyendrasana",
+  name: "Torsión supina",
+  sanskrit: "सुप्त मत्स्येन्द्रासन",
+  transliteration: "Supta Matsyendrāsana",
+  family: "Torsión",
+  category: "Yin / Restaurativo",
+  level: "Principiante",
+  image: img("Jathara Parivartanasana.jpg"),
+
+  shortDescription:
+    "Torsión tumbada utilizada como postura de integración.",
+
+  execution: [
+    "Túmbate boca arriba.",
+    "Flexiona las rodillas.",
+    "Lleva ambas piernas hacia un lado.",
+    "Mantén hombros relajados.",
+    "Gira la cabeza sólo si resulta cómodo.",
+    "Repite hacia el otro lado."
+  ],
+
+  breathing:
+    "Respira hacia las costillas laterales y posteriores.",
+
+  anatomy:
+    "Rotación de columna combinada con movimiento de cadera.",
+
+  benefits: [
+    "Favorece movilidad rotacional.",
+    "Puede utilizarse para finalizar una práctica."
+  ],
+
+  precautions: [
+    "Reduce el rango si los hombros se levantan del suelo."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo o irradiado"],
+
+  props: ["Bolster", "Cojín"],
+  duration: "1–3 minutos por lado",
+
+  variations: [
+    "Rodillas juntas.",
+    "Pierna inferior extendida.",
+    "Soporte bajo las rodillas."
+  ]
+},
+
+/* =========================================================
+   26 — SAVASANA
+   ========================================================= */
+
+{
+  id: "savasana",
+  name: "Postura del cadáver",
+  sanskrit: "शवासन",
+  transliteration: "Śavāsana",
+  family: "Supina",
+  category: "Relajación",
+  level: "Todos",
+  image: img("Savasana.jpg"),
+
+  shortDescription:
+    "Postura final de descanso completamente tumbada.",
+
+  execution: [
+    "Túmbate boca arriba.",
+    "Separa ligeramente los pies.",
+    "Deja los brazos a los lados.",
+    "Relaja hombros, mandíbula y rostro.",
+    "Permite que el cuerpo descanse.",
+    "Permanece inmóvil sin forzar."
+  ],
+
+  breathing:
+    "Deja que la respiración vuelva a su ritmo natural.",
+
+  anatomy:
+    "Posición neutra y de descarga muscular relativa.",
+
+  benefits: [
+    "Favorece la integración de la práctica.",
+    "Permite observar cambios en respiración y sensaciones."
+  ],
+
+  precautions: [
+    "Coloca una manta bajo las rodillas si la zona lumbar lo agradece.",
+    "Utiliza manta para mantener temperatura."
+  ],
+
+  contraindications: [],
+  redFlags: [],
+
+  props: ["Manta", "Bolster", "Cojín"],
+  duration: "3–15 minutos",
+
+  variations: [
+    "Rodillas apoyadas.",
+    "Bolster bajo rodillas.",
+    "Versión lateral si estar boca arriba no resulta cómodo."
+  ]
+},
+
+/* =========================================================
+   27 — VAJRASANA
+   ========================================================= */
+
+{
+  id: "vajrasana",
+  name: "Postura del diamante",
+  sanskrit: "वज्रासन",
+  transliteration: "Vajrāsana",
+  family: "Arrodillada",
+  category: "Meditación",
+  level: "Principiante",
+  image: img("Vajrasana.jpg"),
+
+  shortDescription:
+    "Postura arrodillada utilizada tradicionalmente para meditación y respiración.",
+
+  execution: [
+    "Arrodíllate.",
+    "Lleva las caderas hacia los talones.",
+    "Mantén el torso erguido.",
+    "Apoya las manos sobre los muslos."
+  ],
+
+  breathing:
+    "Respiración natural.",
+
+  anatomy:
+    "Flexión de rodillas y tobillos con estabilización del tronco.",
+
+  benefits: [
+    "Facilita prácticas sentadas.",
+    "Favorece estabilidad."
+  ],
+
+  precautions: [
+    "Coloca un cojín entre caderas y talones si lo necesitas."
+  ],
+
+  contraindications: [
+    "Modificar ante molestias importantes de rodillas o tobillos."
+  ],
+
+  redFlags: ["Entumecimiento persistente"],
+
+  props: ["Bolster", "Cojín", "Manta"],
+  duration: "1–15 minutos",
+
+  variations: [
+    "Cojín entre talones y pelvis.",
+    "Rodillas ligeramente separadas."
+  ]
+},
+
+/* =========================================================
+   28 — GOMUKHASANA
+   ========================================================= */
+
+{
+  id: "gomukhasana",
+  name: "Cara de vaca",
+  sanskrit: "गोमुखासन",
+  transliteration: "Gomukhāsana",
+  family: "Caderas / Hombros",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Gomukhasana.jpg"),
+
+  shortDescription:
+    "Postura sentada que combina trabajo de caderas y hombros.",
+
+  execution: [
+    "Cruza una pierna sobre la otra.",
+    "Acomoda las rodillas una sobre otra según tu movilidad.",
+    "Eleva un brazo y llévalo detrás de la cabeza.",
+    "Lleva el otro brazo por detrás desde abajo.",
+    "Utiliza un cinturón si las manos no llegan."
+  ],
+
+  breathing:
+    "Respira lentamente manteniendo espacio en el pecho.",
+
+  anatomy:
+    "Combina rotación de cadera con diferentes posiciones de hombro.",
+
+  benefits: [
+    "Trabaja movilidad de caderas.",
+    "Explora movilidad de hombros."
+  ],
+
+  precautions: [
+    "No fuerces la unión de las manos."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de hombro o rodilla"],
+
+  props: ["Cinturón", "Manta"],
+  duration: "30–90 segundos por lado",
+
+  variations: [
+    "Piernas sencillas.",
+    "Cinturón entre manos.",
+    "Sólo brazos."
+  ]
+},
+
+/* =========================================================
+   29 — GARUDASANA
+   ========================================================= */
+
+{
+  id: "garudasana",
+  name: "Águila",
+  sanskrit: "गरुडासन",
+  transliteration: "Garuḍāsana",
+  family: "Equilibrio",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Garudasana.jpg"),
+
+  shortDescription:
+    "Equilibrio de pie con piernas y brazos entrelazados.",
+
+  execution: [
+    "Comienza de pie.",
+    "Flexiona ligeramente las rodillas.",
+    "Cruza una pierna sobre la otra.",
+    "Si puedes, engancha el pie detrás de la pantorrilla.",
+    "Cruza los brazos delante del pecho.",
+    "Mantén la mirada fija."
+  ],
+
+  breathing:
+    "Respira de manera continua.",
+
+  anatomy:
+    "Trabajo de equilibrio, estabilización de cadera y coordinación de hombros.",
+
+  benefits: [
+    "Desarrolla equilibrio.",
+    "Trabaja coordinación.",
+    "Fortalece la pierna de apoyo."
+  ],
+
+  precautions: [
+    "No es necesario enganchar completamente el pie."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de rodilla"],
+
+  props: ["Pared"],
+  duration: "20–45 segundos por lado",
+
+  variations: [
+    "Piernas sin enganchar.",
+    "Brazos sencillos.",
+    "Pared."
+  ]
+},
+
+/* =========================================================
+   30 — NATARAJASANA
+   ========================================================= */
+
+{
+  id: "natarajasana",
+  name: "Bailarín",
+  sanskrit: "नटराजासन",
+  transliteration: "Naṭarājāsana",
+  family: "Equilibrio / Extensión",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Natarajasana.jpg"),
+
+  shortDescription:
+    "Equilibrio sobre una pierna combinado con extensión de cadera y columna.",
+
+  execution: [
+    "Comienza de pie.",
+    "Flexiona una rodilla.",
+    "Sujeta el pie o tobillo.",
+    "Inclina ligeramente el tronco hacia delante.",
+    "Extiende la pierna posterior progresivamente.",
+    "Utiliza una pared si lo necesitas."
+  ],
+
+  breathing:
+    "Respiración estable.",
+
+  anatomy:
+    "Equilibrio unilateral con extensión de cadera y movilidad de hombro.",
+
+  benefits: [
+    "Trabaja equilibrio.",
+    "Fortalece la pierna de apoyo.",
+    "Integra movilidad y coordinación."
+  ],
+
+  precautions: [
+    "No fuerces la extensión lumbar.",
+    "Utiliza cinturón si no alcanzas el pie."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de rodilla o espalda"],
+
+  props: ["Cinturón", "Pared"],
+  duration: "15–40 segundos por lado",
+
+  variations: [
+    "Cinturón.",
+    "Pared.",
+    "Pierna posterior menos elevada."
+  ]
+},
+
+/* =========================================================
+   31 — HALASANA
+   ========================================================= */
+
+{
+  id: "halasana",
+  name: "Arado",
+  sanskrit: "हलासन",
+  transliteration: "Halāsana",
+  family: "Inversión",
+  category: "Hatha",
+  level: "Avanzado",
+  image: img("Halasana.jpg"),
+
+  shortDescription:
+    "Inversión en la que las piernas se desplazan por detrás de la cabeza.",
+
+  execution: [
+    "Practica sólo cuando tengas experiencia suficiente.",
+    "Eleva las piernas desde una posición supina.",
+    "Lleva las piernas progresivamente hacia atrás.",
+    "Mantén el peso distribuido sin comprimir el cuello.",
+    "Sal lentamente."
+  ],
+
+  breathing:
+    "Respiración tranquila, sin contener el aire.",
+
+  anatomy:
+    "Flexión de cadera con posición invertida del tronco.",
+
+  benefits: [
+    "Forma parte de algunas prácticas tradicionales de Hatha.",
+    "Desarrolla control corporal."
+  ],
+
+  precautions: [
+    "No gires la cabeza mientras estás en la postura.",
+    "Debe enseñarse progresivamente."
+  ],
+
+  contraindications: [
+    "No adecuada para todas las personas.",
+    "Evitar si existe dolor o lesión cervical."
+  ],
+
+  redFlags: [
+    "Presión o dolor cervical.",
+    "Mareo.",
+    "Alteraciones visuales."
+  ],
+
+  props: ["Mantas"],
+  duration: "10–60 segundos",
+
+  variations: [
+    "Piernas apoyadas sobre soporte.",
+    "Preparación con piernas elevadas."
+  ]
+},
+
+/* =========================================================
+   32 — SARVANGASANA
+   ========================================================= */
+
+{
+  id: "sarvangasana",
+  name: "Postura sobre los hombros",
+  sanskrit: "सर्वाङ्गासन",
+  transliteration: "Sarvāṅgāsana",
+  family: "Inversión",
+  category: "Hatha",
+  level: "Avanzado",
+  image: img("Sarvangasana.jpg"),
+
+  shortDescription:
+    "Inversión avanzada tradicional que requiere preparación específica.",
+
+  execution: [
+    "Debe aprenderse progresivamente.",
+    "Utiliza mantas bajo los hombros cuando corresponda.",
+    "Eleva las piernas de forma controlada.",
+    "Mantén el cuello estable.",
+    "No gires la cabeza.",
+    "Sal lentamente."
+  ],
+
+  breathing:
+    "Respiración tranquila y continua.",
+
+  anatomy:
+    "Inversión con demanda de estabilización de hombros y tronco.",
+
+  benefits: [
+    "Forma parte de determinadas secuencias tradicionales.",
+    "Desarrolla control corporal."
+  ],
+
+  precautions: [
+    "No debe aprenderse sin preparación.",
+    "El cuello debe permanecer estable."
+  ],
+
+  contraindications: [
+    "No practicar con lesiones cervicales.",
+    "Requiere valoración individual en determinadas situaciones."
+  ],
+
+  redFlags: [
+    "Dolor cervical.",
+    "Mareo.",
+    "Alteraciones visuales."
+  ],
+
+  props: ["Mantas"],
+  duration: "10–60 segundos",
+
+  variations: [
+    "Preparación con piernas elevadas.",
+    "Variaciones asistidas."
+  ]
+},
+
+/* =========================================================
+   33 — SIRSASANA
+   ========================================================= */
+
+{
+  id: "sirsasana",
+  name: "Parada sobre la cabeza",
+  sanskrit: "शीर्षासन",
+  transliteration: "Śīrṣāsana",
+  family: "Inversión",
+  category: "Hatha",
+  level: "Avanzado",
+  image: img("Sirsasana.jpg"),
+
+  shortDescription:
+    "Inversión avanzada que requiere una preparación técnica considerable.",
+
+  execution: [
+    "Practica con supervisión adecuada si estás aprendiendo.",
+    "Prepara hombros y cintura escapular.",
+    "Construye primero la base con antebrazos y manos.",
+    "Eleva las caderas.",
+    "Progresa sin saltar.",
+    "Mantén el control durante entrada y salida."
+  ],
+
+  breathing:
+    "Respiración estable. Nunca contengas el aire deliberadamente.",
+
+  anatomy:
+    "Gran demanda de cintura escapular, brazos, tronco y control espacial.",
+
+  benefits: [
+    "Desarrolla equilibrio avanzado.",
+    "Trabaja control corporal."
+  ],
+
+  precautions: [
+    "No practicar sin preparación.",
+    "No saltar para entrar.",
+    "Utiliza pared al principio."
+  ],
+
+  contraindications: [
+    "Debe evitarse ante determinadas lesiones cervicales u oculares."
+  ],
+
+  redFlags: [
+    "Dolor cervical.",
+    "Mareo.",
+    "Dolor de cabeza intenso.",
+    "Alteraciones visuales."
+  ],
+
+  props: ["Pared", "Manta"],
+  duration: "5–30 segundos",
+
+  variations: [
+    "Preparación con pies en suelo.",
+    "Pared.",
+    "Entrada controlada."
+  ]
+},
+
+/* =========================================================
+   34 — BAKASANA
+   ========================================================= */
+
+{
+  id: "bakasana",
+  name: "Cuervo",
+  sanskrit: "बकासन",
+  transliteration: "Bakāsana",
+  family: "Equilibrio de brazos",
+  category: "Fuerza",
+  level: "Avanzado",
+  image: img("Bakasana.jpg"),
+
+  shortDescription:
+    "Equilibrio sobre las manos con las rodillas apoyadas sobre los brazos.",
+
+  execution: [
+    "Coloca las manos en el suelo.",
+    "Separa los dedos.",
+    "Eleva las caderas.",
+    "Coloca las rodillas sobre los brazos.",
+    "Traslada el peso hacia delante.",
+    "Eleva progresivamente los pies."
+  ],
+
+  breathing:
+    "Respira de manera estable y controlada.",
+
+  anatomy:
+    "Gran demanda de muñecas, hombros, core y flexores de cadera.",
+
+  benefits: [
+    "Desarrolla fuerza de brazos.",
+    "Mejora equilibrio.",
+    "Trabaja coordinación."
+  ],
+
+  precautions: [
+    "Practica sobre una superficie estable.",
+    "Puedes utilizar un cojín delante para practicar."
+  ],
+
+  contraindications: [
+    "Modificar ante lesiones de muñeca u hombro."
+  ],
+
+  redFlags: [
+    "Dolor agudo de muñeca.",
+    "Pérdida brusca de control."
+  ],
+
+  props: ["Cojín", "Bloques"],
+  duration: "5–30 segundos",
+
+  variations: [
+    "Pies elevados uno a uno.",
+    "Cuervo con soporte.",
+    "Bakasana completo."
+  ]
+},
+
+/* =========================================================
+   35 — PINCHA MAYURASANA
+   ========================================================= */
+
+{
+  id: "pincha-mayurasana",
+  name: "Equilibrio sobre antebrazos",
+  sanskrit: "पिञ्च मयूरासन",
+  transliteration: "Piñcha Mayūrāsana",
+  family: "Inversión",
+  category: "Fuerza",
+  level: "Avanzado",
+  image: img("Pincha Mayurasana.jpg"),
+
+  shortDescription:
+    "Equilibrio invertido sobre antebrazos.",
+
+  execution: [
+    "Prepara hombros y antebrazos.",
+    "Coloca los antebrazos paralelos.",
+    "Eleva las caderas.",
+    "Practica primero con un pie.",
+    "Progresivamente lleva las piernas hacia arriba.",
+    "Utiliza una pared."
+  ],
+
+  breathing:
+    "Respiración estable.",
+
+  anatomy:
+    "Alta demanda de hombros, escápulas, core y equilibrio.",
+
+  benefits: [
+    "Desarrolla fuerza de hombros.",
+    "Mejora equilibrio avanzado."
+  ],
+
+  precautions: [
+    "Progresión gradual.",
+    "No utilizar impulso excesivo."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de hombro", "Mareo"],
+
+  props: ["Pared", "Correa"],
+  duration: "5–30 segundos",
+
+  variations: [
+    "Preparación con pies en pared.",
+    "Una pierna.",
+    "Completa."
+  ]
+},
+
+/* =========================================================
+   36 — USTRASANA
+   ========================================================= */
+
+{
+  id: "ustrasana",
+  name: "Camello",
+  sanskrit: "उष्ट्रासन",
+  transliteration: "Uṣṭrāsana",
+  family: "Extensión",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Ustrasana.jpg"),
+
+  shortDescription:
+    "Extensión de columna realizada desde una posición de rodillas.",
+
+  execution: [
+    "Arrodíllate con las caderas sobre las rodillas.",
+    "Apoya las manos en la pelvis.",
+    "Eleva el pecho.",
+    "Extiende la columna progresivamente.",
+    "Sólo lleva las manos a los talones si puedes mantener control.",
+    "Sal elevando primero el pecho."
+  ],
+
+  breathing:
+    "Inspira para crear longitud y espira para estabilizar.",
+
+  anatomy:
+    "Extensión de columna y cadera con trabajo de muslos y hombros.",
+
+  benefits: [
+    "Moviliza la extensión de columna.",
+    "Trabaja la parte anterior del cuerpo."
+  ],
+
+  precautions: [
+    "No colapses la zona lumbar.",
+    "Comienza con manos en pelvis."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor lumbar o cervical"],
+
+  props: ["Bloques"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Manos en pelvis.",
+    "Manos en bloques.",
+    "Manos en talones."
+  ]
+},
+
+/* =========================================================
+   37 — ANAHATASANA
+   ========================================================= */
+
+{
+  id: "anahatasana",
+  name: "Corazón derretido",
+  sanskrit: "अनाहतासन",
+  transliteration: "Anāhatāsana",
+  family: "Extensión de hombros",
+  category: "Yin",
+  level: "Principiante",
+  image: img("Anahatasana.jpg"),
+
+  shortDescription:
+    "Postura de rodillas que lleva el pecho hacia el suelo mientras las caderas permanecen elevadas.",
+
+  execution: [
+    "Comienza a cuatro apoyos.",
+    "Mantén las caderas sobre las rodillas.",
+    "Camina las manos hacia delante.",
+    "Deja descender el pecho progresivamente.",
+    "Mantén el cuello cómodo."
+  ],
+
+  breathing:
+    "Respira hacia las costillas posteriores.",
+
+  anatomy:
+    "Flexión de hombros y extensión torácica.",
+
+  benefits: [
+    "Trabaja movilidad de hombros.",
+    "Puede generar apertura del pecho."
+  ],
+
+  precautions: [
+    "Reduce el rango si hay molestia de hombro."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo de hombro"],
+
+  props: ["Bolster", "Bloque"],
+  duration: "1–4 minutos",
+
+  variations: [
+    "Pecho sobre bolster.",
+    "Brazos más separados.",
+    "Brazos más juntos."
+  ]
+},
+
+/* =========================================================
+   38 — MARJARYASANA / BITILASANA
+   ========================================================= */
+
+{
+  id: "cat-cow",
+  name: "Gato–vaca",
+  sanskrit: "मार्जरीआसन / बितिलासन",
+  transliteration: "Mārjaryāsana / Bitilāsana",
+  family: "Movilidad espinal",
+  category: "Movilidad",
+  level: "Principiante",
+  image: img("Cat Cow Yoga.jpg"),
+
+  shortDescription:
+    "Movimiento dinámico de flexión y extensión de columna.",
+
+  execution: [
+    "Colócate a cuatro apoyos.",
+    "Inspira mientras llevas el pecho hacia delante.",
+    "Espira mientras redondeas la columna.",
+    "Mueve la columna de forma gradual.",
+    "Coordina respiración y movimiento."
+  ],
+
+  breathing:
+    "Inspira en extensión y espira en flexión.",
+
+  anatomy:
+    "Movilización segmentaria de la columna y estabilización de hombros y caderas.",
+
+  benefits: [
+    "Prepara la columna.",
+    "Coordina respiración y movimiento."
+  ],
+
+  precautions: [
+    "Reduce el rango si existe dolor."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor irradiado"],
+
+  props: ["Esterilla"],
+  duration: "1–3 minutos",
+
+  variations: [
+    "Movimiento lento.",
+    "Movimiento amplio.",
+    "Movimiento pequeño."
+  ]
+},
+
+/* =========================================================
+   39 — BALANCE TABLE
+   ========================================================= */
+
+{
+  id: "bird-dog",
+  name: "Mesa equilibrada",
+  sanskrit: "Vyāghrāsana",
+  transliteration: "Vyāghrāsana",
+  family: "Equilibrio",
+  category: "Hatha / Movilidad",
+  level: "Principiante",
+  image: img("Vyaghrasana.jpg"),
+
+  shortDescription:
+    "Equilibrio a cuatro apoyos extendiendo brazo y pierna contrarios.",
+
+  execution: [
+    "Comienza a cuatro apoyos.",
+    "Activa suavemente el abdomen.",
+    "Extiende una pierna hacia atrás.",
+    "Extiende el brazo contrario.",
+    "Mantén la pelvis estable.",
+    "Regresa lentamente y cambia de lado."
+  ],
+
+  breathing:
+    "Inspira para extender y espira para regresar.",
+
+  anatomy:
+    "Trabajo de core, glúteos, hombros y musculatura estabilizadora.",
+
+  benefits: [
+    "Mejora estabilidad.",
+    "Trabaja coordinación.",
+    "Prepara equilibrios."
+  ],
+
+  precautions: [
+    "Reduce la amplitud si la pelvis rota."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de muñeca u hombro"],
+
+  props: ["Esterilla"],
+  duration: "30–60 segundos por lado",
+
+  variations: [
+    "Sólo pierna.",
+    "Sólo brazo.",
+    "Brazo y pierna."
+  ]
+},
+
+/* =========================================================
+   40 — PURVOTTANASANA
+   ========================================================= */
+
+{
+  id: "purvottanasana",
+  name: "Plano inclinado",
+  sanskrit: "पूर्वोत्तानासन",
+  transliteration: "Pūrvottānāsana",
+  family: "Extensión",
+  category: "Fuerza",
+  level: "Intermedio",
+  image: img("Purvottanasana.jpg"),
+
+  shortDescription:
+    "Postura de fuerza y extensión con el cuerpo apoyado en manos y pies.",
+
+  execution: [
+    "Siéntate con las piernas extendidas.",
+    "Coloca las manos detrás de la pelvis.",
+    "Presiona manos y pies.",
+    "Eleva las caderas.",
+    "Activa glúteos y piernas.",
+    "Mantén el cuello cómodo."
+  ],
+
+  breathing:
+    "Respiración estable.",
+
+  anatomy:
+    "Extensión de hombros y cadera con activación de cadena posterior.",
+
+  benefits: [
+    "Fortalece brazos y piernas.",
+    "Trabaja cadena posterior."
+  ],
+
+  precautions: [
+    "Flexiona las rodillas para reducir la intensidad."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de muñeca u hombro"],
+
+  props: ["Bloques"],
+  duration: "10–30 segundos",
+
+  variations: [
+    "Rodillas flexionadas.",
+    "Piernas extendidas.",
+    "Bloques bajo manos."
+  ]
+},
+
+/* =========================================================
+   41 — NAVASANA
+   ========================================================= */
+
+{
+  id: "navasana",
+  name: "Barco",
+  sanskrit: "नावासन",
+  transliteration: "Nāvāsana",
+  family: "Core",
+  category: "Fuerza",
+  level: "Intermedio",
+  image: img("Navasana.jpg"),
+
+  shortDescription:
+    "Postura sentada de equilibrio y fortalecimiento abdominal.",
+
+  execution: [
+    "Siéntate con las rodillas flexionadas.",
+    "Inclina ligeramente el torso hacia atrás.",
+    "Eleva los pies.",
+    "Mantén el pecho abierto.",
+    "Extiende las piernas sólo si puedes mantener control."
+  ],
+
+  breathing:
+    "Respira de forma continua.",
+
+  anatomy:
+    "Trabajo de flexores de cadera, abdomen y estabilizadores del tronco.",
+
+  benefits: [
+    "Fortalece el core.",
+    "Mejora estabilidad."
+  ],
+
+  precautions: [
+    "Mantén las rodillas flexionadas si la postura completa compromete la espalda."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor lumbar agudo"],
+
+  props: ["Cinturón"],
+  duration: "15–45 segundos",
+
+  variations: [
+    "Rodillas flexionadas.",
+    "Piernas extendidas.",
+    "Pies apoyados."
+  ]
+},
+
+/* =========================================================
+   42 — VIRASANA
+   ========================================================= */
+
+{
+  id: "virasana",
+  name: "Héroe",
+  sanskrit: "वीरासन",
+  transliteration: "Vīrāsana",
+  family: "Arrodillada",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Virasana.jpg"),
+
+  shortDescription:
+    "Postura sentada entre los talones.",
+
+  execution: [
+    "Arrodíllate.",
+    "Separa ligeramente los pies.",
+    "Desciende las caderas entre los talones.",
+    "Alarga la columna.",
+    "Utiliza soporte si lo necesitas."
+  ],
+
+  breathing:
+    "Respiración natural.",
+
+  anatomy:
+    "Flexión profunda de rodillas y posición específica de tobillos.",
+
+  benefits: [
+    "Puede utilizarse para meditación.",
+    "Trabaja movilidad de tobillo y rodilla."
+  ],
+
+  precautions: [
+    "Usa un bolster bajo las caderas."
+  ],
+
+  contraindications: [
+    "Precaución especial ante molestias de rodillas."
+  ],
+
+  redFlags: ["Dolor o entumecimiento persistente"],
+
+  props: ["Bolster", "Bloque", "Manta"],
+  duration: "30 segundos–5 minutos",
+
+  variations: [
+    "Caderas elevadas.",
+    "Rodillas ligeramente separadas."
+  ]
+},
+
+/* =========================================================
+   43 — PADMASANA
+   ========================================================= */
+
+{
+  id: "padmasana",
+  name: "Loto",
+  sanskrit: "पद्मासन",
+  transliteration: "Padmāsana",
+  family: "Sentada",
+  category: "Meditación",
+  level: "Avanzado",
+  image: img("Padmasana.jpg"),
+
+  shortDescription:
+    "Postura sentada tradicional con las piernas cruzadas en rotación externa.",
+
+  execution: [
+    "Siéntate con la columna elevada.",
+    "Lleva una pierna hacia una posición de rotación externa.",
+    "Coloca el pie sobre el muslo contrario sólo si existe suficiente movilidad.",
+    "Repite con la otra pierna.",
+    "Mantén la columna natural."
+  ],
+
+  breathing:
+    "Respiración lenta y natural.",
+
+  anatomy:
+    "Requiere considerable rotación externa de cadera.",
+
+  benefits: [
+    "Puede proporcionar una base estable para meditación en personas con suficiente movilidad."
+  ],
+
+  precautions: [
+    "Nunca fuerces la posición.",
+    "La movilidad debe proceder de la cadera, no de la rodilla."
+  ],
+
+  contraindications: [
+    "No adecuada si provoca dolor de rodilla."
+  ],
+
+  redFlags: ["Dolor agudo de rodilla o cadera"],
+
+  props: ["Cojín", "Manta"],
+  duration: "30 segundos–20 minutos",
+
+  variations: [
+    "Medio loto.",
+    "Sukhasana.",
+    "Siddhasana."
+  ]
+},
+
+/* =========================================================
+   44 — SIDDHASANA
+   ========================================================= */
+
+{
+  id: "siddhasana",
+  name: "Postura perfecta",
+  sanskrit: "सिद्धासन",
+  transliteration: "Siddhāsana",
+  family: "Sentada",
+  category: "Meditación",
+  level: "Intermedio",
+  image: img("Siddhasana.svg"),
+
+  shortDescription:
+    "Postura sentada tradicional utilizada para meditación.",
+
+  execution: [
+    "Siéntate con las piernas cruzadas de forma estructurada.",
+    "Coloca los pies y talones según tu movilidad.",
+    "Eleva la pelvis sobre un cojín si es necesario.",
+    "Alarga la columna."
+  ],
+
+  breathing:
+    "Respiración natural o práctica de pranayama suave.",
+
+  anatomy:
+    "Flexión de caderas y rodillas con estabilización axial.",
+
+  benefits: [
+    "Proporciona una base estable para meditación.",
+    "Favorece la quietud."
+  ],
+
+  precautions: [
+    "Utiliza soporte bajo la pelvis."
+  ],
+
+  contraindications: [],
+  redFlags: ["Entumecimiento persistente"],
+
+  props: ["Cojín", "Manta"],
+  duration: "2–30 minutos",
+
+  variations: [
+    "Pelvis elevada.",
+    "Piernas cruzadas sencillas."
+  ]
+},
+
+/* =========================================================
+   45 — PADAHASTASANA / UTTANASANA
+   ========================================================= */
+
+{
+  id: "uttanasana",
+  name: "Pinza de pie",
+  sanskrit: "उत्तानासन",
+  transliteration: "Uttānāsana",
+  family: "Flexión",
+  category: "Hatha / Vinyasa",
+  level: "Principiante",
+  image: img("Uttanasana.jpg"),
+
+  shortDescription:
+    "Flexión hacia delante desde la posición de pie.",
+
+  execution: [
+    "Comienza de pie.",
+    "Flexiona ligeramente las rodillas.",
+    "Inclínate desde las caderas.",
+    "Deja que el torso descienda.",
+    "Relaja el cuello.",
+    "Mantén las manos en piernas, bloques o suelo."
+  ],
+
+  breathing:
+    "Inspira para alargar y espira para suavizar la flexión.",
+
+  anatomy:
+    "Flexión de cadera con participación de isquiotibiales y columna.",
+
+  benefits: [
+    "Moviliza cadena posterior.",
+    "Se utiliza frecuentemente en Vinyasa."
+  ],
+
+  precautions: [
+    "Flexiona las rodillas si existe mucha tensión."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor irradiado", "Mareo"],
+
+  props: ["Bloques"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Rodillas flexionadas.",
+    "Manos en bloques.",
+    "Piernas más separadas."
+  ]
+},
+
+/* =========================================================
+   46 — PRASARITA PADOTTANASANA
+   ========================================================= */
+
+{
+  id: "prasarita-padottanasana",
+  name: "Flexión de piernas separadas",
+  sanskrit: "प्रसारित पादोत्तानासन",
+  transliteration: "Prasārita Pādottānāsana",
+  family: "Flexión",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Prasarita Padottanasana.jpg"),
+
+  shortDescription:
+    "Flexión hacia delante con piernas separadas.",
+
+  execution: [
+    "Separa ampliamente los pies.",
+    "Mantén las piernas activas.",
+    "Inclínate desde las caderas.",
+    "Lleva las manos al suelo o bloques.",
+    "Mantén el cuello relajado."
+  ],
+
+  breathing:
+    "Respiración lenta.",
+
+  anatomy:
+    "Abducción de cadera y flexión de cadera.",
+
+  benefits: [
+    "Moviliza cadena posterior.",
+    "Fortalece piernas."
+  ],
+
+  precautions: [
+    "Reduce la amplitud de la base si necesitas."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo"],
+
+  props: ["Bloques"],
+  duration: "30–90 segundos",
+
+  variations: [
+    "Manos en bloques.",
+    "Cabeza hacia el suelo.",
+    "Torso parcialmente elevado."
+  ]
+},
+
+/* =========================================================
+   47 — UTTHITA PARSVAKONASANA
+   ========================================================= */
+
+{
+  id: "utthita-parsvakonasana",
+  name: "Ángulo lateral extendido",
+  sanskrit: "उत्थित पार्श्वकोणासन",
+  transliteration: "Utthita Pārśvakoṇāsana",
+  family: "De pie",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Utthita Parsvakonasana.jpg"),
+
+  shortDescription:
+    "Postura de pie que combina fuerza de piernas con inclinación lateral.",
+
+  execution: [
+    "Adopta una base similar al Guerrero II.",
+    "Flexiona la rodilla delantera.",
+    "Apoya el antebrazo sobre el muslo o la mano en un bloque.",
+    "Extiende el brazo superior.",
+    "Alarga el lateral del torso."
+  ],
+
+  breathing:
+    "Respira hacia las costillas laterales.",
+
+  anatomy:
+    "Trabajo de piernas, cadera y flexión lateral del tronco.",
+
+  benefits: [
+    "Fortalece piernas.",
+    "Moviliza el torso lateral."
+  ],
+
+  precautions: [
+    "Utiliza bloque para mantener espacio en el torso."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor de rodilla o espalda"],
+
+  props: ["Bloque"],
+  duration: "30–60 segundos por lado",
+
+  variations: [
+    "Antebrazo en muslo.",
+    "Mano en bloque.",
+    "Brazo superior extendido."
+  ]
+},
+
+/* =========================================================
+   48 — MARICHYASANA
+   ========================================================= */
+
+{
+  id: "marichyasana",
+  name: "Postura de Marichi",
+  sanskrit: "मरीच्यासन",
+  transliteration: "Marīcyāsana",
+  family: "Torsión / Flexión",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Marichyasana.jpg"),
+
+  shortDescription:
+    "Postura sentada que combina torsión y flexión.",
+
+  execution: [
+    "Siéntate con una pierna extendida.",
+    "Flexiona la otra.",
+    "Gira el tronco hacia la pierna flexionada.",
+    "Alarga la columna antes de profundizar.",
+    "Mantén la torsión cómoda."
+  ],
+
+  breathing:
+    "Inspira para alargar la columna y espira para mantener la rotación sin forzar.",
+
+  anatomy:
+    "Rotación de columna combinada con flexión de cadera.",
+
+  benefits: [
+    "Trabaja movilidad torácica.",
+    "Combina varias acciones corporales."
+  ],
+
+  precautions: [
+    "No utilices los brazos para forzar la torsión."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor agudo o irradiado"],
+
+  props: ["Cinturón"],
+  duration: "30–90 segundos por lado",
+
+  variations: [
+    "Sin agarre.",
+    "Con cinturón.",
+    "Torsión suave."
+  ]
+},
+
+/* =========================================================
+   49 — MATSYASANA
+   ========================================================= */
+
+{
+  id: "matsyasana",
+  name: "Pez",
+  sanskrit: "मत्स्यासन",
+  transliteration: "Matsyāsana",
+  family: "Extensión",
+  category: "Hatha",
+  level: "Intermedio",
+  image: img("Matsyasana.jpg"),
+
+  shortDescription:
+    "Extensión de columna y apertura torácica realizada tumbado.",
+
+  execution: [
+    "Túmbate boca arriba.",
+    "Apoya los antebrazos.",
+    "Eleva suavemente el pecho.",
+    "Permite una extensión controlada.",
+    "Mantén el cuello cómodo."
+  ],
+
+  breathing:
+    "Respira hacia las costillas superiores y laterales.",
+
+  anatomy:
+    "Extensión torácica y apertura de la parte anterior del cuerpo.",
+
+  benefits: [
+    "Moviliza extensión torácica.",
+    "Trabaja apertura anterior."
+  ],
+
+  precautions: [
+    "No comprimas el cuello."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor cervical"],
+
+  props: ["Bolster", "Bloques"],
+  duration: "20–60 segundos",
+
+  variations: [
+    "Bolster longitudinal.",
+    "Bloques bajo espalda."
+  ]
+},
+
+/* =========================================================
+   50 — SALABHASANA
+   ========================================================= */
+
+{
+  id: "salabhasana",
+  name: "Langosta",
+  sanskrit: "शलभासन",
+  transliteration: "Śalabhāsana",
+  family: "Extensión",
+  category: "Hatha / Fuerza",
+  level: "Intermedio",
+  image: img("Salabhasana.jpg"),
+
+  shortDescription:
+    "Extensión posterior tumbado boca abajo.",
+
+  execution: [
+    "Túmbate boca abajo.",
+    "Alarga las piernas.",
+    "Eleva ligeramente piernas y pecho.",
+    "Mantén el cuello largo.",
+    "Activa glúteos y espalda sin comprimir."
+  ],
+
+  breathing:
+    "Respiración continua.",
+
+  anatomy:
+    "Fortalecimiento de extensores de columna, glúteos y musculatura posterior.",
+
+  benefits: [
+    "Fortalece la cadena posterior.",
+    "Mejora control de extensión."
+  ],
+
+  precautions: [
+    "Haz una versión baja si la extensión resulta intensa."
+  ],
+
+  contraindications: [],
+  redFlags: ["Dolor lumbar agudo"],
+
+  props: ["Manta"],
+  duration: "10–30 segundos",
+
+  variations: [
+    "Sólo piernas.",
+    "Sólo pecho.",
+    "Piernas y pecho."
+  ]
+}
 
 ];
 
-
 /* =========================================================
-   UTILIDADES
+   FUNCIONES AUXILIARES
    ========================================================= */
 
 function getAsanaById(id) {
-  return ASANAS.find(asana => asana.id === id);
-}
-
-function searchAsanas(query) {
-  const text = query.toLowerCase().trim();
-
-  return ASANAS.filter(asana =>
-    asana.name.toLowerCase().includes(text) ||
-    asana.sanskrit.toLowerCase().includes(text) ||
-    asana.transliteration.toLowerCase().includes(text) ||
-    asana.category.toLowerCase().includes(text) ||
-    asana.family.toLowerCase().includes(text)
-  );
+  return MOONIE_ASANAS.find(asana => asana.id === id);
 }
 
 function getAsanasByCategory(category) {
-  return ASANAS.filter(asana =>
-    asana.category.toLowerCase() === category.toLowerCase()
+  return MOONIE_ASANAS.filter(
+    asana => asana.category === category
   );
 }
 
 function getAsanasByLevel(level) {
-  return ASANAS.filter(asana =>
-    asana.level.toLowerCase() === level.toLowerCase()
+  return MOONIE_ASANAS.filter(
+    asana => asana.level === level
   );
 }
 
-function getAsanasByFamily(family) {
-  return ASANAS.filter(asana =>
-    asana.family.toLowerCase() === family.toLowerCase()
+function searchAsanas(query) {
+  const q = query.toLowerCase().trim();
+
+  return MOONIE_ASANAS.filter(asana =>
+    asana.name.toLowerCase().includes(q) ||
+    asana.sanskrit.toLowerCase().includes(q) ||
+    asana.transliteration.toLowerCase().includes(q) ||
+    asana.family.toLowerCase().includes(q) ||
+    asana.category.toLowerCase().includes(q)
   );
 }
 
-
 /* =========================================================
-   COMPATIBILIDAD CON LA APP
+   COMPATIBILIDAD
    ========================================================= */
 
-const MOONIE_ASANAS = ASANAS;
-
-
-/* =========================================================
-   IMAGEN SEGURA
-   ========================================================= */
-
-function getAsanaImage(asana) {
-
-  if (
-    asana &&
-    asana.image &&
-    asana.image.url
-  ) {
-    return asana.image.url;
-  }
-
-  return "";
-}
-
-
-/* =========================================================
-   EXPORT GLOBAL
-   ========================================================= */
-
-window.MOONIE_ASANAS = ASANAS;
-window.ASANAS = ASANAS;
+window.MOONIE_ASANAS = MOONIE_ASANAS;
 window.getAsanaById = getAsanaById;
-window.searchAsanas = searchAsanas;
 window.getAsanasByCategory = getAsanasByCategory;
 window.getAsanasByLevel = getAsanasByLevel;
-window.getAsanasByFamily = getAsanasByFamily;
-window.getAsanaImage = getAsanaImage;
+window.searchAsanas = searchAsanas;
