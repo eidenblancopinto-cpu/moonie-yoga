@@ -1,317 +1,1305 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-  <meta name="viewport"
-        content="width=device-width,
-        initial-scale=1.0,
-        maximum-scale=1.0,
-        user-scalable=no">
+<title>Moonie Yoga 🌙</title>
 
-  <meta name="theme-color" content="#17101f">
+<link rel="manifest" href="./manifest.json">
 
-  <title>Moonie Yoga 🌙</title>
+<meta name="theme-color" content="#c77dba">
+<meta name="description" content="Moonie Yoga — Move · Breathe · Flow · Rest">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
 
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at top,
-        #4a2858 0%,
-        #21152d 45%,
-        #100b15 100%);
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      color: #fff7ff;
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
+:root {
+  --bg: #120d18;
+  --card: #1d1425;
+  --card2: #251a30;
+  --pink: #d99ad0;
+  --pink2: #b86caf;
+  --cream: #f8eadf;
+  --muted: #bbaabd;
+  --line: rgba(255,255,255,.08);
+  --green: #9cc9b1;
+}
 
-      overflow-x: hidden;
-    }
+body {
+  background:
+    radial-gradient(circle at top right, rgba(199,125,186,.18), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(120,80,150,.15), transparent 35%),
+    var(--bg);
+  color: var(--cream);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
 
-    .app {
-      width: 100%;
-      max-width: 520px;
-      min-height: 100vh;
-      margin: auto;
-      padding: 24px 20px 100px;
-    }
+button {
+  font: inherit;
+}
 
-    .moon {
-      text-align: center;
-      font-size: 58px;
-      margin-top: 20px;
-      filter: drop-shadow(0 0 20px #d9a9ff);
-    }
+.app {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px 18px;
+}
 
-    .brand {
-      text-align: center;
-      margin-top: 8px;
-    }
+header {
+  padding: 10px 0 25px;
+}
 
-    .brand h1 {
-      font-size: 34px;
-      letter-spacing: 1px;
-    }
+.logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+}
 
-    .brand p {
-      margin-top: 5px;
-      opacity: .75;
-      font-size: 14px;
-      letter-spacing: 2px;
-    }
+.logo span {
+  color: var(--pink);
+}
 
-    .card {
-      margin-top: 35px;
-      padding: 24px;
-      border-radius: 28px;
+.subtitle {
+  color: var(--muted);
+  margin-top: 5px;
+  font-size: 14px;
+}
 
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
+.section-title {
+  margin: 25px 0 13px;
+  font-size: 20px;
+}
 
-      backdrop-filter: blur(15px);
+.hero {
+  background:
+    linear-gradient(135deg, rgba(217,154,208,.22), rgba(80,50,100,.18)),
+    var(--card);
+  border: 1px solid var(--line);
+  border-radius: 25px;
+  padding: 23px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
 
-      box-shadow:
-        0 15px 40px rgba(0,0,0,.25);
-    }
+.hero small {
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
 
-    .card h2 {
-      font-size: 21px;
-      margin-bottom: 8px;
-    }
+.hero h1 {
+  font-size: 28px;
+  margin: 8px 0;
+}
 
-    .card p {
-      opacity: .75;
-      line-height: 1.5;
-    }
+.hero p {
+  color: var(--muted);
+  line-height: 1.5;
+}
 
-    .start {
-      width: 100%;
-      border: none;
-      border-radius: 20px;
+.primary {
+  margin-top: 18px;
+  border: none;
+  background: var(--pink);
+  color: #25152a;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-weight: 800;
+  width: 100%;
+  cursor: pointer;
+}
 
-      padding: 17px;
-      margin-top: 22px;
+.primary:active {
+  transform: scale(.98);
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #e9b7ff,
-          #b987e8
-        );
+.needs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
 
-      color: #24122d;
+.need {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 17px 13px;
+  color: var(--cream);
+  cursor: pointer;
+  text-align: left;
+}
 
-      font-size: 17px;
-      font-weight: 700;
+.need strong {
+  display: block;
+  margin-top: 7px;
+}
 
-      box-shadow:
-        0 8px 25px rgba(190,130,230,.3);
+.need small {
+  color: var(--muted);
+}
 
-      cursor: pointer;
-    }
+.routines {
+  display: grid;
+  gap: 11px;
+}
 
-    .section {
-      margin-top: 35px;
-    }
+.routine {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  padding: 17px;
+  cursor: pointer;
+}
 
-    .section h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-    }
+.routine-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
 
-    .quick-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 12px;
-    }
+.routine h3 {
+  font-size: 16px;
+}
 
-    .quick {
-      padding: 18px 14px;
-      border-radius: 20px;
+.routine p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 6px;
+}
 
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.08);
+.badge {
+  color: var(--pink);
+  font-size: 12px;
+  white-space: nowrap;
+}
 
-      font-size: 14px;
-    }
+.screen {
+  display: none;
+}
 
-    .quick span {
-      display: block;
-      font-size: 27px;
-      margin-bottom: 8px;
-    }
+.screen.active {
+  display: block;
+}
 
-    .bottom {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+.empty {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--muted);
+}
 
-      width: 100%;
-      max-width: 520px;
+.asana-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  padding: 18px;
+  margin-bottom: 10px;
+}
 
-      display: flex;
-      justify-content: space-around;
+.asana-card h3 {
+  color: var(--cream);
+}
 
-      padding: 12px 5px 18px;
+.asana-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 5px;
+}
 
-      background: rgba(16,11,21,.92);
-      backdrop-filter: blur(20px);
+.timer {
+  text-align: center;
+  padding-top: 15px;
+}
 
-      border-top:
-        1px solid rgba(255,255,255,.08);
-    }
+.timer-orb {
+  width: 230px;
+  height: 230px;
+  margin: 25px auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(217,154,208,.35), rgba(217,154,208,.05) 55%, transparent 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    .nav {
-      text-align: center;
-      font-size: 11px;
-      opacity: .7;
-    }
+.timer-time {
+  font-size: 58px;
+  font-weight: 300;
+  letter-spacing: -3px;
+}
 
-    .nav span {
-      display: block;
-      font-size: 22px;
-      margin-bottom: 3px;
-    }
+.timer-pose {
+  color: var(--pink);
+  font-size: 14px;
+  margin-top: 5px;
+}
 
-    .nav.active {
-      opacity: 1;
-    }
-  </style>
+.timer-next {
+  color: var(--muted);
+  margin: 10px 0 25px;
+}
+
+.timer-controls {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  gap: 8px;
+}
+
+.control {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--cream);
+  border-radius: 15px;
+  padding: 14px 8px;
+}
+
+.progress-wrap {
+  margin-top: 25px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--card);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0%;
+  background: var(--pink);
+  transition: width .3s;
+}
+
+.back {
+  border: none;
+  background: none;
+  color: var(--pink);
+  padding: 5px 0 20px;
+  cursor: pointer;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 700px;
+  margin: auto;
+  height: 76px;
+  background: rgba(18,13,24,.94);
+  backdrop-filter: blur(18px);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  z-index: 20;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.nav-btn span {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 3px;
+}
+
+.nav-btn.active {
+  color: var(--pink);
+}
+
+.moon {
+  font-size: 44px;
+  margin-bottom: 8px;
+}
+
+.back-home {
+  margin-top: 25px;
+}
+
+.success {
+  background: rgba(156,201,177,.12);
+  border: 1px solid rgba(156,201,177,.2);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 20px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <main class="app">
+<div class="app">
 
-    <div class="moon">
-      🌙
-    </div>
+  <!-- HOME -->
+  <section id="home" class="screen active">
 
-    <div class="brand">
-      <h1>Moonie Yoga</h1>
-      <p>MOVE · BREATHE · FLOW · REST</p>
-    </div>
+    <header>
+      <div class="logo">Moonie <span>Yoga 🌙</span></div>
+      <div class="subtitle">Move · Breathe · Flow · Rest</div>
+    </header>
 
-    <section class="card">
-
-      <h2>Práctica de hoy 🪷</h2>
-
-      <p>
-        Un momento para volver a ti.
-        Elige una práctica y deja que
-        tu respiración marque el ritmo.
+    <div class="hero">
+      <small>Práctica de hoy</small>
+      <h1 id="todayTitle">Soltar el Día</h1>
+      <p id="todayDescription">
+        Una práctica suave para liberar tensión y volver a tu cuerpo.
       </p>
+      <button class="primary" onclick="startRoutine('Soltar el Día')">
+        Comenzar práctica 🌙
+      </button>
+    </div>
 
-      <button
-        class="start"
-        onclick="startPractice()">
+    <h2 class="section-title">¿Qué necesitas hoy?</h2>
 
-        Comenzar práctica
+    <div class="needs">
 
+      <button class="need" onclick="filterNeed('descansar')">
+        😴
+        <strong>Descansar</strong>
+        <small>Bajar revoluciones</small>
       </button>
 
-    </section>
+      <button class="need" onclick="filterNeed('activar')">
+        ⚡
+        <strong>Activarme</strong>
+        <small>Despertar energía</small>
+      </button>
 
-    <section class="section">
+      <button class="need" onclick="filterNeed('relajar')">
+        🌿
+        <strong>Relajarme</strong>
+        <small>Soltar tensión</small>
+      </button>
 
-      <h3>¿Qué necesitas hoy?</h3>
+      <button class="need" onclick="filterNeed('fortalecer')">
+        💪
+        <strong>Fortalecer</strong>
+        <small>Crear fuerza</small>
+      </button>
 
-      <div class="quick-grid">
+      <button class="need" onclick="filterNeed('flexibilizar')">
+        🧘‍♀️
+        <strong>Flexibilizar</strong>
+        <small>Crear espacio</small>
+      </button>
 
-        <div class="quick">
-          <span>😴</span>
-          Descansar
+      <button class="need" onclick="filterNeed('dormir')">
+        🌙
+        <strong>Dormir</strong>
+        <small>Preparar el descanso</small>
+      </button>
+
+    </div>
+
+    <h2 class="section-title">Prácticas recomendadas</h2>
+
+    <div id="homeRoutines" class="routines"></div>
+
+  </section>
+
+
+  <!-- EXPLORE -->
+  <section id="explore" class="screen">
+
+    <header>
+      <div class="logo">Explorar 🌙</div>
+      <div class="subtitle">Encuentra la práctica que necesitas</div>
+    </header>
+
+    <h2 class="section-title">Estilos</h2>
+
+    <div class="routines">
+
+      <div class="routine" onclick="filterStyle('Yin')">
+        <div class="routine-top">
+          <h3>🌙 Yin Yoga</h3>
+          <span class="badge">Suave</span>
+        </div>
+        <p>Permanencias, quietud, respiración y escucha.</p>
+      </div>
+
+      <div class="routine" onclick="filterStyle('Hatha')">
+        <div class="routine-top">
+          <h3>🌿 Hatha</h3>
+          <span class="badge">Equilibrio</span>
+        </div>
+        <p>Posturas, respiración, concentración y presencia.</p>
+      </div>
+
+      <div class="routine" onclick="filterStyle('Vinyasa')">
+        <div class="routine-top">
+          <h3>🔥 Vinyasa</h3>
+          <span class="badge">Fluir</span>
+        </div>
+        <p>Movimiento sincronizado con la respiración.</p>
+      </div>
+
+      <div class="routine" onclick="filterStyle('Restaurativo')">
+        <div class="routine-top">
+          <h3>🫶 Restaurativo</h3>
+          <span class="badge">Descanso</span>
+        </div>
+        <p>Prácticas de muy bajo esfuerzo y relajación.</p>
+      </div>
+
+      <div class="routine" onclick="filterStyle('Nidra')">
+        <div class="routine-top">
+          <h3>🌌 Yoga Nidra</h3>
+          <span class="badge">Interior</span>
+        </div>
+        <p>Relajación guiada y atención consciente.</p>
+      </div>
+
+      <div class="routine" onclick="filterStyle('Pranayama')">
+        <div class="routine-top">
+          <h3>🫁 Pranayama</h3>
+          <span class="badge">Respiración</span>
+        </div>
+        <p>Explora diferentes formas tradicionales de trabajo respiratorio.</p>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">Todas las prácticas</h2>
+    <div id="allRoutines" class="routines"></div>
+
+  </section>
+
+
+  <!-- PRACTICE -->
+  <section id="practice" class="screen">
+
+    <button class="back" onclick="showScreen('home')">
+      ← Volver
+    </button>
+
+    <div class="timer">
+
+      <div class="moon">🌙</div>
+
+      <h2 id="routineName">Práctica</h2>
+
+      <div class="timer-orb">
+
+        <div id="timer" class="timer-time">
+          00:00
         </div>
 
-        <div class="quick">
-          <span>⚡</span>
-          Activarme
-        </div>
-
-        <div class="quick">
-          <span>🌿</span>
-          Relajarme
-        </div>
-
-        <div class="quick">
-          <span>💪</span>
-          Fortalecer
-        </div>
-
-        <div class="quick">
-          <span>🧘‍♀️</span>
-          Flexibilizar
-        </div>
-
-        <div class="quick">
-          <span>🌙</span>
-          Dormir
+        <div id="poseName" class="timer-pose">
+          Preparación
         </div>
 
       </div>
 
-    </section>
+      <div id="nextPose" class="timer-next">
+        Siguiente: —
+      </div>
 
-  </main>
+      <div class="timer-controls">
 
-  <nav class="bottom">
+        <button class="control" onclick="previousPose()">
+          ←
+        </button>
 
-    <div class="nav active">
-      <span>🏠</span>
-      Inicio
+        <button id="playButton" class="primary" onclick="toggleTimer()">
+          ▶ Comenzar
+        </button>
+
+        <button class="control" onclick="nextPose()">
+          →
+        </button>
+
+      </div>
+
+      <div class="progress-wrap">
+
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
+
+        <p id="stepCounter" style="color:var(--muted);font-size:12px;margin-top:8px;">
+          0 / 0
+        </p>
+
+      </div>
+
+      <button class="control back-home" onclick="resetTimer()">
+        Reiniciar práctica
+      </button>
+
     </div>
 
-    <div class="nav">
-      <span>🪷</span>
-      Explorar
+  </section>
+
+
+  <!-- ASANAS -->
+  <section id="asanas" class="screen">
+
+    <header>
+      <div class="logo">Asanas 🪷</div>
+      <div class="subtitle">Tu biblioteca de posturas</div>
+    </header>
+
+    <div id="asanaList"></div>
+
+  </section>
+
+
+  <!-- PROGRESS -->
+  <section id="progressScreen" class="screen">
+
+    <header>
+      <div class="logo">Tu camino 🌙</div>
+      <div class="subtitle">Cada práctica cuenta.</div>
+    </header>
+
+    <div class="hero">
+
+      <div class="moon">🌙</div>
+
+      <h1 id="completedCount">0</h1>
+
+      <p>prácticas completadas</p>
+
+      <div class="success">
+        🪷 Sigue volviendo a tu esterilla.
+        No necesitas hacerlo perfecto. Solo necesitas volver.
+      </div>
+
     </div>
 
-    <div class="nav">
-      <span>⏱️</span>
-      Práctica
+  </section>
+
+</div>
+
+
+<!-- NAVIGATION -->
+
+<nav class="bottom-nav">
+
+  <button class="nav-btn active" onclick="showScreen('home', this)">
+    <span>⌂</span>
+    Inicio
+  </button>
+
+  <button class="nav-btn" onclick="showScreen('explore', this)">
+    <span>✦</span>
+    Explorar
+  </button>
+
+  <button class="nav-btn" onclick="showScreen('asanas', this)">
+    <span>🪷</span>
+    Asanas
+  </button>
+
+  <button class="nav-btn" onclick="showScreen('progressScreen', this)">
+    <span>♡</span>
+    Progreso
+  </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   RUTINAS
+========================= */
+
+const routines = [
+
+  {
+    name: "Despertar Solar",
+    style: "Hatha",
+    duration: 15,
+    goal: "activar",
+    poses: [
+      ["Respiración consciente", 60],
+      ["Gato-Vaca", 60],
+      ["Postura del Niño", 60],
+      ["Perro Boca Abajo", 90],
+      ["Guerrero I", 90],
+      ["Guerrero II", 90],
+      ["Pinza de Pie", 90],
+      ["Savasana", 180]
+    ]
+  },
+
+  {
+    name: "Morning Flow",
+    style: "Vinyasa",
+    duration: 20,
+    goal: "activar",
+    poses: [
+      ["Respiración consciente", 60],
+      ["Gato-Vaca", 60],
+      ["Perro Boca Abajo", 90],
+      ["Plancha", 45],
+      ["Guerrero I", 90],
+      ["Guerrero II", 90],
+      ["Guerrero III", 60],
+      ["Perro Boca Abajo", 60],
+      ["Pinza de Pie", 90],
+      ["Savasana", 180]
+    ]
+  },
+
+  {
+    name: "Reset del Mediodía",
+    style: "Hatha",
+    duration: 15,
+    goal: "relajar",
+    poses: [
+      ["Postura del Niño", 120],
+      ["Gato-Vaca", 90],
+      ["Anahatasana", 120],
+      ["Torsión Supina", 120],
+      ["Savasana", 180]
+    ]
+  },
+
+  {
+    name: "Power 20",
+    style: "Vinyasa",
+    duration: 20,
+    goal: "fortalecer",
+    poses: [
+      ["Respiración consciente", 60],
+      ["Plancha", 45],
+      ["Chaturanga adaptado", 45],
+      ["Guerrero I", 90],
+      ["Guerrero II", 90],
+      ["Silla", 90],
+      ["Barca", 60],
+      ["Plancha lateral", 60],
+      ["Perro Boca Abajo", 90],
+      ["Savasana", 180]
+    ]
+  },
+
+  {
+    name: "Caderas Libres",
+    style: "Yin",
+    duration: 30,
+    goal: "flexibilizar",
+    poses: [
+      ["Mariposa", 240],
+      ["Rebote", 45],
+      ["Media Mariposa derecha", 180],
+      ["Rebote", 30],
+      ["Media Mariposa izquierda", 180],
+      ["Rebote", 30],
+      ["Dragón derecho", 180],
+      ["Rebote", 45],
+      ["Dragón izquierdo", 180],
+      ["Rebote", 45],
+      ["Ciervo derecho", 180],
+      ["Ciervo izquierdo", 180],
+      ["Savasana", 300]
+    ]
+  },
+
+  {
+    name: "Soltar el Día",
+    style: "Restaurativo",
+    duration: 20,
+    goal: "relajar",
+    poses: [
+      ["Postura del Niño", 180],
+      ["Mariposa", 240],
+      ["Caterpillar", 240],
+      ["Torsión Supina derecha", 120],
+      ["Torsión Supina izquierda", 120],
+      ["Piernas en la pared", 240],
+      ["Savasana", 300]
+    ]
+  },
+
+  {
+    name: "Yin Nocturno",
+    style: "Yin",
+    duration: 30,
+    goal: "dormir",
+    poses: [
+      ["Postura del Niño", 180],
+      ["Mariposa", 240],
+      ["Caterpillar", 240],
+      ["Cisne Dormido derecho", 180],
+      ["Cisne Dormido izquierdo", 180],
+      ["Ciervo derecho", 180],
+      ["Ciervo izquierdo", 180],
+      ["Torsión Supina", 120],
+      ["Piernas en la pared", 180],
+      ["Savasana", 300]
+    ]
+  },
+
+  {
+    name: "Hatha Fundamental",
+    style: "Hatha",
+    duration: 30,
+    goal: "fortalecer",
+    poses: [
+      ["Respiración consciente", 90],
+      ["Gato-Vaca", 90],
+      ["Postura del Niño", 90],
+      ["Perro Boca Abajo", 120],
+      ["Guerrero I", 90],
+      ["Guerrero II", 90],
+      ["Triángulo", 90],
+      ["Puente", 90],
+      ["Torsión Supina", 120],
+      ["Savasana", 240]
+    ]
+  },
+
+  {
+    name: "Respira",
+    style: "Pranayama",
+    duration: 15,
+    goal: "relajar",
+    poses: [
+      ["Respiración diafragmática", 180],
+      ["Respiración consciente", 180],
+      ["Nadi Shodhana suave", 300],
+      ["Respiración natural", 180],
+      ["Meditación silenciosa", 180]
+    ]
+  },
+
+  {
+    name: "Luna Nueva",
+    style: "Yin",
+    duration: 30,
+    goal: "descansar",
+    poses: [
+      ["Postura del Niño", 180],
+      ["Mariposa", 240],
+      ["Caterpillar", 240],
+      ["Dragón derecho", 180],
+      ["Dragón izquierdo", 180],
+      ["Ciervo derecho", 180],
+      ["Ciervo izquierdo", 180],
+      ["Torsión Supina", 180],
+      ["Savasana", 300]
+    ]
+  }
+
+];
+
+
+/* =========================
+   ASANAS
+========================= */
+
+const asanas = [
+
+  {
+    name: "Mariposa",
+    sanskrit: "Baddha Konasana",
+    description: "Sentada, plantas de los pies juntas y rodillas abiertas. En Yin se utiliza una permanencia relajada."
+  },
+
+  {
+    name: "Postura del Niño",
+    sanskrit: "Balasana",
+    description: "Rodillas flexionadas y torso hacia el suelo. Puede utilizarse como postura de descanso."
+  },
+
+  {
+    name: "Esfinge",
+    sanskrit: "Salamba Bhujangasana",
+    description: "Extensión suave de la columna con apoyo de los antebrazos."
+  },
+
+  {
+    name: "Dragón",
+    sanskrit: "Variante Yin de Anjaneyasana",
+    description: "Zancada profunda utilizada en Yin para explorar la zona de caderas y piernas."
+  },
+
+  {
+    name: "Ciervo",
+    sanskrit: "Mrigasana",
+    description: "Postura sentada con una pierna delante y otra hacia atrás, creando una rotación externa e interna de las caderas."
+  },
+
+  {
+    name: "Caterpillar",
+    sanskrit: "Variante Yin de Paschimottanasana",
+    description: "Flexión hacia delante con las piernas extendidas. En Yin se busca una actitud pasiva y sin forzar."
+  },
+
+  {
+    name: "Anahatasana",
+    sanskrit: "Uttana Shishosana",
+    description: "Corazón hacia el suelo mientras las caderas permanecen elevadas."
+  },
+
+  {
+    name: "Savasana",
+    sanskrit: "Shavasana",
+    description: "Tumbada boca arriba, cuerpo relajado y respiración natural."
+  },
+
+  {
+    name: "Piernas en la pared",
+    sanskrit: "Viparita Karani",
+    description: "Postura restaurativa con las piernas elevadas y apoyo cómodo."
+  },
+
+  {
+    name: "Guerrero I",
+    sanskrit: "Virabhadrasana I",
+    description: "Postura de pie que combina estabilidad, fuerza y apertura de la parte anterior del cuerpo."
+  },
+
+  {
+    name: "Guerrero II",
+    sanskrit: "Virabhadrasana II",
+    description: "Postura de pie con piernas activas y brazos extendidos."
+  },
+
+  {
+    name: "Triángulo",
+    sanskrit: "Utthita Trikonasana",
+    description: "Postura lateral de pie con extensión de la columna y apertura de piernas."
+  },
+
+  {
+    name: "Barca",
+    sanskrit: "Navasana",
+    description: "Postura de equilibrio que requiere participación de la musculatura del tronco."
+  },
+
+  {
+    name: "Puente",
+    sanskrit: "Setu Bandha Sarvangasana",
+    description: "Extensión de cadera y columna realizada tumbada boca arriba."
+  },
+
+  {
+    name: "Perro Boca Abajo",
+    sanskrit: "Adho Mukha Svanasana",
+    description: "Postura invertida con manos y pies apoyados, formando una V."
+  }
+
+];
+
+
+/* =========================
+   ESTADO
+========================= */
+
+let currentRoutine = null;
+let currentPose = 0;
+let remaining = 0;
+let timerInterval = null;
+let running = false;
+
+
+/* =========================
+   NAVEGACIÓN
+========================= */
+
+function showScreen(id, button) {
+
+  document.querySelectorAll(".screen")
+    .forEach(screen => screen.classList.remove("active"));
+
+  document.getElementById(id).classList.add("active");
+
+  if (button) {
+
+    document.querySelectorAll(".nav-btn")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+  }
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   RENDER RUTINAS
+========================= */
+
+function routineHTML(routine) {
+
+  return `
+    <div class="routine" onclick="startRoutine('${routine.name}')">
+
+      <div class="routine-top">
+        <h3>${routine.name}</h3>
+        <span class="badge">${routine.duration} min</span>
+      </div>
+
+      <p>${routine.style} · ${routine.goal}</p>
+
     </div>
+  `;
+}
 
-    <div class="nav">
-      <span>📚</span>
-      Asanas
-    </div>
 
-    <div class="nav">
-      <span>📊</span>
-      Progreso
-    </div>
+function renderRoutines(list = routines) {
 
-  </nav>
+  document.getElementById("homeRoutines").innerHTML =
+    list.slice(0,5).map(routineHTML).join("");
 
-  <script>
+  document.getElementById("allRoutines").innerHTML =
+    list.map(routineHTML).join("");
+}
 
-    function startPractice() {
 
-      if (navigator.vibrate) {
-        navigator.vibrate(60);
-      }
+renderRoutines();
 
-      alert(
-        "🌙 Tu práctica está a punto de comenzar.\n\n" +
-        "En la siguiente versión conectaremos " +
-        "el temporizador, las asanas y sus ilustraciones."
-      );
+
+/* =========================
+   FILTROS
+========================= */
+
+function filterNeed(goal) {
+
+  const filtered = routines.filter(r => r.goal === goal);
+
+  showScreen("explore");
+
+  document.getElementById("allRoutines").innerHTML =
+    filtered.map(routineHTML).join("");
+
+  window.scrollTo(0,0);
+}
+
+
+function filterStyle(style) {
+
+  const filtered = routines.filter(r => r.style === style);
+
+  showScreen("explore");
+
+  document.getElementById("allRoutines").innerHTML =
+    filtered.map(routineHTML).join("");
+
+  window.scrollTo(0,0);
+}
+
+
+/* =========================
+   TEMPORIZADOR
+========================= */
+
+function startRoutine(name) {
+
+  const found = routines.find(r => r.name === name);
+
+  if (!found) return;
+
+  currentRoutine = found;
+  currentPose = 0;
+  remaining = currentRoutine.poses[0][1];
+  running = false;
+
+  clearInterval(timerInterval);
+
+  document.getElementById("routineName").textContent =
+    currentRoutine.name;
+
+  updateTimer();
+
+  document.getElementById("playButton").textContent =
+    "▶ Comenzar";
+
+  showScreen("practice");
+
+}
+
+
+function toggleTimer() {
+
+  if (running) {
+
+    pauseTimer();
+
+  } else {
+
+    runTimer();
+
+  }
+
+}
+
+
+function runTimer() {
+
+  if (!currentRoutine) return;
+
+  running = true;
+
+  document.getElementById("playButton").textContent =
+    "Ⅱ Pausar";
+
+  timerInterval = setInterval(() => {
+
+    remaining--;
+
+    if (remaining <= 0) {
+
+      nextPose(true);
 
     }
 
-  </script>
+    updateTimer();
+
+  },1000);
+
+}
+
+
+function pauseTimer() {
+
+  running = false;
+
+  clearInterval(timerInterval);
+
+  document.getElementById("playButton").textContent =
+    "▶ Continuar";
+
+}
+
+
+function resetTimer() {
+
+  clearInterval(timerInterval);
+
+  running = false;
+  currentPose = 0;
+
+  if (currentRoutine) {
+    remaining = currentRoutine.poses[0][1];
+  }
+
+  updateTimer();
+
+  document.getElementById("playButton").textContent =
+    "▶ Comenzar";
+}
+
+
+function nextPose(automatic = false) {
+
+  if (!currentRoutine) return;
+
+  if (currentPose >= currentRoutine.poses.length - 1) {
+
+    finishRoutine();
+
+    return;
+  }
+
+  currentPose++;
+
+  remaining = currentRoutine.poses[currentPose][1];
+
+  vibrate([55]);
+
+  updateTimer();
+
+}
+
+
+function previousPose() {
+
+  if (!currentRoutine) return;
+
+  if (currentPose > 0) {
+
+    currentPose--;
+
+    remaining = currentRoutine.poses[currentPose][1];
+
+    vibrate([55]);
+
+    updateTimer();
+
+  }
+
+}
+
+
+function updateTimer() {
+
+  if (!currentRoutine) return;
+
+  const pose =
+    currentRoutine.poses[currentPose];
+
+  const minutes =
+    Math.floor(remaining / 60);
+
+  const seconds =
+    remaining % 60;
+
+  document.getElementById("timer").textContent =
+    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+  document.getElementById("poseName").textContent =
+    pose[0];
+
+  const next =
+    currentRoutine.poses[currentPose + 1];
+
+  document.getElementById("nextPose").textContent =
+    next
+      ? `Siguiente: ${next[0]}`
+      : "Última postura";
+
+  document.getElementById("stepCounter").textContent =
+    `${currentPose + 1} / ${currentRoutine.poses.length}`;
+
+  const percentage =
+    ((currentPose) / currentRoutine.poses.length) * 100;
+
+  document.getElementById("progress").style.width =
+    percentage + "%";
+
+}
+
+
+function finishRoutine() {
+
+  clearInterval(timerInterval);
+
+  running = false;
+
+  vibrate([55,90,55,90,55]);
+
+  let completed =
+    Number(localStorage.getItem("moonieCompleted") || 0);
+
+  completed++;
+
+  localStorage.setItem(
+    "moonieCompleted",
+    completed
+  );
+
+  updateProgress();
+
+  document.getElementById("timer").textContent =
+    "✨";
+
+  document.getElementById("poseName").textContent =
+    "Práctica completada";
+
+  document.getElementById("nextPose").textContent =
+    "Namaste 🌙";
+
+  document.getElementById("playButton").textContent =
+    "✓ Completada";
+
+}
+
+
+/* =========================
+   VIBRACIÓN
+========================= */
+
+function vibrate(pattern) {
+
+  if (
+    "vibrate" in navigator
+  ) {
+    navigator.vibrate(pattern);
+  }
+
+}
+
+
+/* =========================
+   ASANAS
+========================= */
+
+function renderAsanas() {
+
+  document.getElementById("asanaList").innerHTML =
+    asanas.map(asana => `
+
+      <div class="asana-card">
+
+        <h3>${asana.name}</h3>
+
+        <p>
+          <strong>${asana.sanskrit}</strong>
+        </p>
+
+        <p>
+          ${asana.description}
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+renderAsanas();
+
+
+/* =========================
+   PROGRESO
+========================= */
+
+function updateProgress() {
+
+  const completed =
+    Number(localStorage.getItem("moonieCompleted") || 0);
+
+  document.getElementById("completedCount").textContent =
+    completed;
+
+}
+
+
+updateProgress();
+
+
+/* =========================
+   SERVICE WORKER
+========================= */
+
+if ("serviceWorker" in navigator) {
+
+  window.addEventListener("load", () => {
+
+    navigator.serviceWorker.register("./sw.js")
+      .then(() => {
+        console.log("Moonie Yoga offline activado 🌙");
+      })
+      .catch(error => {
+        console.log("Service Worker:", error);
+      });
+
+  });
+
+}
+
+</script>
 
 </body>
-</html>
+  </html>
