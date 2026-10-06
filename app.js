@@ -1,774 +1,1244 @@
-/* =========================================
-   MOONIE YOGA — APP CORE
-========================================= */
+/* =========================================================
+   MOONIE YOGA 🌙🪷
+   APP.JS — CONTROL PRINCIPAL DE LA APLICACIÓN
+   ========================================================= */
 
-let activeRoutine = null;
-let activePose = 0;
-let secondsLeft = 0;
-let timer = null;
-let isRunning = false;
+(() => {
+  "use strict";
 
-const settings = {
-  vibration: localStorage.getItem("moonieVibration") !== "false"
-};
+  /* ---------------------------------------------------------
+     ESTADO
+     --------------------------------------------------------- */
 
+  let currentRoutine = null;
+  let currentSequence = [];
+  let currentIndex = 0;
+  let timerSeconds = 0;
+  let timerInterval = null;
+  let isRunning = false;
 
-/* =========================================
-   UTILIDADES
-========================================= */
+  let completedRoutines = JSON.parse(
+    localStorage.getItem("moonie_completed_routines") || "[]"
+  );
 
-function formatTime(seconds) {
-  const min = Math.floor(seconds / 60);
-  const sec = seconds % 60;
+  let completedAsanas = JSON.parse(
+    localStorage.getItem("moonie_completed_asanas") || "[]"
+  );
 
-  return `${String(min).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
-}
+  /* ---------------------------------------------------------
+     REFERENCIAS
+     --------------------------------------------------------- */
 
+  const $ = (id) => document.getElementById(id);
 
-function vibrate(pattern) {
-  if (settings.vibration && navigator.vibrate) {
-    navigator.vibrate(pattern);
+  const homeRoutines = $("homeRoutines");
+  const allRoutines = $("allRoutines");
+  const practice = $("practice");
+  const timer = $("timer");
+
+  const poseName = $("poseName");
+  const poseSanskrit = $("poseSanskrit");
+  const poseIllustration = $("poseIllustration");
+  const nextPose = $("nextPose");
+  const stepCounter = $("stepCounter");
+  const progress = $("progress");
+
+  const routineName = $("routineName");
+  const poseInformation = $("poseInformation");
+  const playButton = $("playButton");
+
+  const asanaList = $("asanaList");
+  const explore = $("explore");
+  const progressScreen = $("progressScreen");
+
+  const completedCount = $("completedCount");
+
+  const asanaModal = $("asanaModal");
+  const asanaModalContent = $("asanaModalContent");
+
+  /* ---------------------------------------------------------
+     DATOS
+     --------------------------------------------------------- */
+
+  const ROUTINES = Array.isArray(window.MOONIE_ROUTINES)
+    ? window.MOONIE_ROUTINES
+    : [];
+
+  const POSES = Array.isArray(window.MOONIE_POSES)
+    ? window.MOONIE_POSES
+    : [];
+
+  console.log("🌙 Moonie Yoga");
+  console.log("Prácticas cargadas:", ROUTINES.length);
+  console.log("Asanas cargadas:", POSES.length);
+
+  /* ---------------------------------------------------------
+     UTILIDADES
+     --------------------------------------------------------- */
+
+  function formatTime(seconds) {
+    seconds = Math.max(0, Math.floor(seconds));
+
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+
+    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(
+      2,
+      "0"
+    )}`;
   }
-}
 
+  function saveProgress() {
+    localStorage.setItem(
+      "moonie_completed_routines",
+      JSON.stringify(completedRoutines)
+    );
 
-/* =========================================
-   NAVEGACIÓN
-========================================= */
-
-function showScreen(id, button = null) {
-
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
-
-  const target = document.getElementById(id);
-
-  if (target) {
-    target.classList.add("active");
+    localStorage.setItem(
+      "moonie_completed_asanas",
+      JSON.stringify(completedAsanas)
+    );
   }
 
-  document.querySelectorAll(".nav-btn").forEach(btn => {
-    btn.classList.remove("active");
-  });
-
-  if (button) {
-    button.classList.add("active");
+  function getRoutineName(routine) {
+    return (
+      routine?.name ||
+      routine?.title ||
+      routine?.nombre ||
+      "Práctica Moonie"
+    );
   }
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+  function getRoutineDescription(routine) {
+    return (
+      routine?.description ||
+      routine?.descripcion ||
+      routine?.subtitle ||
+      "Una práctica creada para acompañarte hoy."
+    );
+  }
 
+  function getRoutineDuration(routine) {
+    if (typeof routine?.duration === "number") {
+      return routine.duration;
+    }
 
-/* =========================================
-   RUTINAS
-========================================= */
+    if (typeof routine?.durationMinutes === "number") {
+      return routine.durationMinutes;
+    }
 
-function renderRoutines(list = MOONIE_ROUTINES) {
+    if (Array.isArray(routine?.sequence)) {
+      return Math.ceil(
+        routine.sequence.reduce(
+          (total, item) => total + Number(item.duration || 0),
+          0
+        ) / 60
+      );
+    }
 
-  const html = list.map(routine => {
+    return 20;
+  }
 
-    return `
-      <div class="routine"
-           onclick="openRoutine('${routine.id}')">
+  function getSequence(routine) {
+    if (!routine) return [];
 
-        <div class="routine-top">
-          <h3>${routine.name}</h3>
+    if (Array.isArray(routine.sequence)) {
+      return routine.sequence;
+    }
 
-          <span class="badge">
-            ${routine.duration} min
-          </span>
+    if (Array.isArray(routine.poses)) {
+      return routine.poses;
+    }
+
+    if (Array.isArray(routine.asanas)) {
+      return routine.asanas;
+    }
+
+    return [];
+  }
+
+  function getPoseId(item) {
+    if (!item) return "";
+
+    if (typeof item === "string") {
+      return item;
+    }
+
+    return (
+      item.pose ||
+      item.asana ||
+      item.id ||
+      item.slug ||
+      item.name ||
+      ""
+    );
+  }
+
+  function getPoseData(item) {
+    const id = getPoseId(item);
+
+    if (!id) return null;
+
+    return (
+      POSES.find((pose) => {
+        return (
+          pose.id === id ||
+          pose.slug === id ||
+          pose.name === id ||
+          pose.sanskrit === id
+        );
+      }) || null
+    );
+  }
+
+  function getItemDuration(item) {
+    if (!item) return 60;
+
+    if (typeof item.duration === "number") {
+      return item.duration;
+    }
+
+    if (typeof item.seconds === "number") {
+      return item.seconds;
+    }
+
+    return 60;
+  }
+
+  function getPoseName(item) {
+    const pose = getPoseData(item);
+
+    if (pose) {
+      return pose.name || pose.title || pose.sanskrit || "Asana";
+    }
+
+    if (typeof item === "string") {
+      return item;
+    }
+
+    return item?.name || item?.title || "Asana";
+  }
+
+  function getPoseSanskrit(item) {
+    const pose = getPoseData(item);
+
+    return (
+      pose?.sanskrit ||
+      pose?.transliteration ||
+      pose?.sanscrito ||
+      ""
+    );
+  }
+
+  function getPoseImage(item) {
+    const pose = getPoseData(item);
+
+    return (
+      pose?.image ||
+      pose?.imageUrl ||
+      pose?.illustration ||
+      pose?.image_url ||
+      ""
+    );
+  }
+
+  /* ---------------------------------------------------------
+     NAVEGACIÓN
+     --------------------------------------------------------- */
+
+  function hideScreens() {
+    document
+      .querySelectorAll(".screen, section[data-screen]")
+      .forEach((screen) => {
+        screen.style.display = "none";
+      });
+  }
+
+  function showElement(element) {
+    if (!element) return;
+
+    element.style.display = "";
+    element.classList.add("active");
+  }
+
+  function showScreen(screen) {
+    hideScreens();
+
+    if (screen) {
+      screen.style.display = "";
+      screen.classList.add("active");
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+  function openHome() {
+    showScreen(homeRoutines);
+  }
+
+  function openRoutines() {
+    showScreen(allRoutines);
+    renderAllRoutines();
+  }
+
+  function openExplore() {
+    showScreen(explore);
+  }
+
+  function openAsanas() {
+    showScreen(asanaList);
+    renderAsanas();
+  }
+
+  function openProgress() {
+    showScreen(progressScreen);
+    renderProgress();
+  }
+
+  /* ---------------------------------------------------------
+     CREAR TARJETA DE PRÁCTICA
+     --------------------------------------------------------- */
+
+  function createRoutineCard(routine, number) {
+    const card = document.createElement("article");
+
+    card.className = "routine-card";
+
+    const name = getRoutineName(routine);
+    const description = getRoutineDescription(routine);
+    const duration = getRoutineDuration(routine);
+
+    card.innerHTML = `
+      <div class="routine-number">${number}</div>
+
+      <div class="routine-card-content">
+        <h3>${escapeHTML(name)}</h3>
+
+        <p>${escapeHTML(description)}</p>
+
+        <div class="routine-meta">
+          <span>🕯️ ${duration} min</span>
+          <span>🧘‍♀️ ${getSequence(routine).length} pasos</span>
         </div>
 
-        <p>
-          ${routine.style} · ${routine.level}
-        </p>
-
-        <p>
-          ${routine.description}
-        </p>
-
+        <button class="routine-start">
+          Empezar práctica
+        </button>
       </div>
     `;
 
-  }).join("");
+    const button = card.querySelector(".routine-start");
 
-  const home = document.getElementById("homeRoutines");
-  const all = document.getElementById("allRoutines");
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      startRoutine(routine);
+    });
 
-  if (home) {
-    home.innerHTML = MOONIE_ROUTINES
-      .slice(0, 5)
-      .map(routine => routineCard(routine))
-      .join("");
+    card.addEventListener("click", () => {
+      startRoutine(routine);
+    });
+
+    return card;
   }
 
-  if (all) {
-    all.innerHTML = html;
-  }
-}
+  /* ---------------------------------------------------------
+     MOSTRAR LAS 60 PRÁCTICAS
+     --------------------------------------------------------- */
 
+  function renderAllRoutines() {
+    if (!allRoutines) return;
 
-function routineCard(routine) {
+    let container = allRoutines.querySelector(".routines-container");
 
-  return `
-    <div class="routine"
-         onclick="openRoutine('${routine.id}')">
+    if (!container) {
+      container = document.createElement("div");
+      container.className = "routines-container";
 
-      <div class="routine-top">
+      allRoutines.appendChild(container);
+    }
 
-        <h3>${routine.name}</h3>
+    container.innerHTML = "";
 
-        <span class="badge">
-          ${routine.duration} min
-        </span>
-
-      </div>
-
-      <p>
-        ${routine.style} · ${routine.level}
-      </p>
-
-    </div>
-  `;
-}
-
-
-/* =========================================
-   ABRIR RUTINA
-========================================= */
-
-function openRoutine(id) {
-
-  const routine = MOONIE_ROUTINES.find(
-    item => item.id === id
-  );
-
-  if (!routine) return;
-
-  activeRoutine = routine;
-  activePose = 0;
-
-  secondsLeft =
-    routine.poses[0].duration;
-
-  isRunning = false;
-
-  clearInterval(timer);
-
-  updatePracticeScreen();
-
-  showScreen("practice");
-
-}
-
-
-/* =========================================
-   TEMPORIZADOR
-========================================= */
-
-function startTimer() {
-
-  if (!activeRoutine) return;
-
-  if (isRunning) return;
-
-  isRunning = true;
-
-  updatePlayButton();
-
-  timer = setInterval(() => {
-
-    secondsLeft--;
-
-    if (secondsLeft <= 0) {
-
-      goToNextPose();
+    if (!ROUTINES.length) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>🌙 No hay prácticas cargadas</h3>
+          <p>Comprueba que data.js se ha guardado correctamente.</p>
+        </div>
+      `;
 
       return;
     }
 
-    updatePracticeScreen();
+    /* IMPORTANTE:
+       NO hacemos slice()
+       NO limitamos a 5, 10, 20...
+       Se muestran TODAS.
+    */
 
-  }, 1000);
-}
+    ROUTINES.forEach((routine, index) => {
+      const card = createRoutineCard(routine, index + 1);
+      container.appendChild(card);
+    });
 
-
-function pauseTimer() {
-
-  isRunning = false;
-
-  clearInterval(timer);
-
-  updatePlayButton();
-}
-
-
-function toggleTimer() {
-
-  if (isRunning) {
-    pauseTimer();
-  } else {
-    startTimer();
-  }
-}
-
-
-function resetPractice() {
-
-  if (!activeRoutine) return;
-
-  clearInterval(timer);
-
-  isRunning = false;
-  activePose = 0;
-
-  secondsLeft =
-    activeRoutine.poses[0].duration;
-
-  updatePracticeScreen();
-  updatePlayButton();
-}
-
-
-/* =========================================
-   POSTURAS
-========================================= */
-
-function goToNextPose() {
-
-  if (!activeRoutine) return;
-
-  if (
-    activePose >=
-    activeRoutine.poses.length - 1
-  ) {
-
-    completeRoutine();
-
-    return;
+    console.log(
+      `🌙 Se han mostrado ${ROUTINES.length} prácticas de ${ROUTINES.length}`
+    );
   }
 
-  activePose++;
+  /* ---------------------------------------------------------
+     PRÁCTICAS DESTACADAS EN INICIO
+     --------------------------------------------------------- */
 
-  secondsLeft =
-    activeRoutine.poses[activePose].duration;
+  function renderHomeRoutines() {
+    if (!homeRoutines) return;
 
-  vibrate([55]);
+    const container =
+      homeRoutines.querySelector(".home-routines-container") ||
+      homeRoutines.querySelector(".routines-container");
 
-  updatePracticeScreen();
-}
+    if (!container) return;
 
+    container.innerHTML = "";
 
-function goToPreviousPose() {
-
-  if (!activeRoutine) return;
-
-  if (activePose === 0) return;
-
-  activePose--;
-
-  secondsLeft =
-    activeRoutine.poses[activePose].duration;
-
-  vibrate([55]);
-
-  updatePracticeScreen();
-}
-
-
-/* =========================================
-   ACTUALIZAR PANTALLA
-========================================= */
-
-function updatePracticeScreen() {
-
-  if (!activeRoutine) return;
-
-  const pose =
-    activeRoutine.poses[activePose];
-
-  const next =
-    activeRoutine.poses[activePose + 1];
-
-  const timerElement =
-    document.getElementById("timer");
-
-  const poseElement =
-    document.getElementById("poseName");
-
-  const nextElement =
-    document.getElementById("nextPose");
-
-  const counterElement =
-    document.getElementById("stepCounter");
-
-  const progressElement =
-    document.getElementById("progress");
-
-  const routineElement =
-    document.getElementById("routineName");
-
-
-  if (routineElement) {
-    routineElement.textContent =
-      activeRoutine.name;
+    ROUTINES.slice(0, 6).forEach((routine, index) => {
+      container.appendChild(
+        createRoutineCard(routine, index + 1)
+      );
+    });
   }
 
+  /* ---------------------------------------------------------
+     INICIAR PRÁCTICA
+     --------------------------------------------------------- */
 
-  if (timerElement) {
-    timerElement.textContent =
-      formatTime(secondsLeft);
+  function startRoutine(routine) {
+    if (!routine) return;
+
+    currentRoutine = routine;
+    currentSequence = getSequence(routine);
+    currentIndex = 0;
+
+    if (!currentSequence.length) {
+      alert(
+        "Esta práctica todavía no tiene una secuencia de asanas."
+      );
+      return;
+    }
+
+    if (routineName) {
+      routineName.textContent = getRoutineName(routine);
+    }
+
+    if (practice) {
+      showScreen(practice);
+    }
+
+    loadCurrentPose();
+
+    if (timer) {
+      timerSeconds = getItemDuration(currentSequence[0]);
+    }
+
+    updateTimerDisplay();
+    updateStepCounter();
+    updateProgressBar();
   }
 
+  /* ---------------------------------------------------------
+     CARGAR ASANA ACTUAL
+     --------------------------------------------------------- */
 
-  if (poseElement) {
-    poseElement.textContent =
-      pose.name;
+  function loadCurrentPose() {
+    const item = currentSequence[currentIndex];
+
+    if (!item) {
+      finishRoutine();
+      return;
+    }
+
+    const pose = getPoseData(item);
+
+    if (poseName) {
+      poseName.textContent = getPoseName(item);
+    }
+
+    if (poseSanskrit) {
+      poseSanskrit.textContent = getPoseSanskrit(item);
+    }
+
+    if (nextPose) {
+      const nextItem = currentSequence[currentIndex + 1];
+
+      nextPose.textContent = nextItem
+        ? `Siguiente: ${getPoseName(nextItem)}`
+        : "Última postura";
+    }
+
+    if (poseInformation) {
+      poseInformation.innerHTML = buildPoseInformation(
+        pose,
+        item
+      );
+    }
+
+    if (poseIllustration) {
+      const image = getPoseImage(item);
+
+      if (image) {
+        poseIllustration.innerHTML = `
+          <img
+            src="${escapeAttribute(image)}"
+            alt="${escapeAttribute(getPoseName(item))}"
+          >
+        `;
+      } else {
+        poseIllustration.innerHTML = `
+          <div class="pose-placeholder">
+            🧘‍♀️
+          </div>
+        `;
+      }
+    }
+
+    timerSeconds = getItemDuration(item);
+
+    updateTimerDisplay();
+    updateStepCounter();
+    updateProgressBar();
   }
 
+  /* ---------------------------------------------------------
+     INFORMACIÓN DE ASANA
+     --------------------------------------------------------- */
 
-  if (nextElement) {
+  function buildPoseInformation(pose, item) {
+    if (!pose) {
+      return `
+        <p>
+          Mantén una respiración lenta y cómoda.
+          No fuerces el rango de movimiento.
+        </p>
+      `;
+    }
 
-    nextElement.textContent =
-      next
-        ? `Siguiente: ${next.name}`
-        : "Última postura 🌙";
+    const sections = [];
+
+    if (pose.instructions || pose.execution || pose.ejecucion) {
+      sections.push(`
+        <div class="pose-section">
+          <h4>✨ Ejecución</h4>
+          <p>
+            ${escapeHTML(
+              pose.instructions ||
+              pose.execution ||
+              pose.ejecucion
+            )}
+          </p>
+        </div>
+      `);
+    }
+
+    if (pose.breathing || pose.respiracion) {
+      sections.push(`
+        <div class="pose-section">
+          <h4>🌬️ Respiración</h4>
+          <p>
+            ${escapeHTML(
+              pose.breathing || pose.respiracion
+            )}
+          </p>
+        </div>
+      `);
+    }
+
+    if (pose.benefits || pose.beneficios) {
+      sections.push(`
+        <div class="pose-section">
+          <h4>🌿 Beneficios</h4>
+          <p>
+            ${escapeHTML(
+              pose.benefits || pose.beneficios
+            )}
+          </p>
+        </div>
+      `);
+    }
+
+    if (pose.anatomy || pose.anatomia) {
+      sections.push(`
+        <div class="pose-section">
+          <h4>🦴 Anatomía</h4>
+          <p>
+            ${escapeHTML(
+              pose.anatomy || pose.anatomia
+            )}
+          </p>
+        </div>
+      `);
+    }
+
+    if (pose.precautions || pose.precauciones) {
+      sections.push(`
+        <div class="pose-section">
+          <h4>⚠️ Precauciones</h4>
+          <p>
+            ${escapeHTML(
+              pose.precautions || pose.precauciones
+            )}
+          </p>
+        </div>
+      `);
+    }
+
+    return sections.join("");
   }
 
+  /* ---------------------------------------------------------
+     TIMER
+     --------------------------------------------------------- */
 
-  if (counterElement) {
+  function updateTimerDisplay() {
+    if (!timer) return;
 
-    counterElement.textContent =
-      `${activePose + 1} / ${activeRoutine.poses.length}`;
+    const display =
+      timer.querySelector(".timer-display") ||
+      $("timerDisplay");
+
+    if (display) {
+      display.textContent = formatTime(timerSeconds);
+    }
   }
 
+  function updateStepCounter() {
+    if (!stepCounter) return;
 
-  if (progressElement) {
+    stepCounter.textContent =
+      `${currentIndex + 1} / ${currentSequence.length}`;
+  }
+
+  function updateProgressBar() {
+    if (!progress) return;
 
     const percentage =
-      ((activePose) /
-      activeRoutine.poses.length) * 100;
+      currentSequence.length > 0
+        ? ((currentIndex + 1) / currentSequence.length) * 100
+        : 0;
 
-    progressElement.style.width =
-      `${percentage}%`;
+    if (progress.tagName === "PROGRESS") {
+      progress.value = percentage;
+    } else {
+      progress.style.width = `${percentage}%`;
+    }
   }
 
-  updatePoseInformation(pose);
-}
+  function startTimer() {
+    if (isRunning) return;
 
+    isRunning = true;
 
-/* =========================================
-   INFORMACIÓN DE LA POSTURA
-========================================= */
+    updatePlayButton();
 
-function updatePoseInformation(pose) {
+    timerInterval = setInterval(() => {
+      if (timerSeconds > 0) {
+        timerSeconds--;
 
-  const info =
-    document.getElementById("poseInformation");
+        updateTimerDisplay();
+      } else {
+        nextPoseStep();
+      }
+    }, 1000);
+  }
 
-  if (!info) return;
+  function pauseTimer() {
+    isRunning = false;
 
-  info.innerHTML = `
+    clearInterval(timerInterval);
+    timerInterval = null;
 
-    <div class="asana-card">
+    updatePlayButton();
+  }
 
-      <h3>${pose.name}</h3>
+  function resetTimer() {
+    pauseTimer();
 
-      <p>
-        <strong>${pose.sanskrit}</strong>
-      </p>
+    const item = currentSequence[currentIndex];
 
-      <p>
-        ${pose.instruction}
-      </p>
+    timerSeconds = getItemDuration(item);
 
-      <p>
-        🫁 <strong>Respiración:</strong><br>
-        ${pose.breathing}
-      </p>
+    updateTimerDisplay();
+  }
 
-      <p>
-        🔄 <strong>Transición:</strong><br>
-        ${pose.transition}
-      </p>
+  function updatePlayButton() {
+    if (!playButton) return;
 
-      <p>
-        ⚠️ <strong>Precaución:</strong><br>
-        ${pose.warning}
-      </p>
+    playButton.textContent = isRunning
+      ? "⏸ Pausar"
+      : "▶️ Continuar";
+  }
 
-    </div>
-  `;
-}
+  function nextPoseStep() {
+    vibrate([80]);
 
+    if (currentIndex < currentSequence.length - 1) {
+      currentIndex++;
 
-/* =========================================
-   BOTÓN PLAY
-========================================= */
+      loadCurrentPose();
 
-function updatePlayButton() {
+      if (isRunning) {
+        timerSeconds = getItemDuration(
+          currentSequence[currentIndex]
+        );
 
-  const button =
-    document.getElementById("playButton");
+        updateTimerDisplay();
+      }
 
-  if (!button) return;
+      return;
+    }
 
-  button.textContent =
-    isRunning
-      ? "Ⅱ Pausar"
-      : "▶ Comenzar";
-}
+    finishRoutine();
+  }
 
+  function previousPoseStep() {
+    if (currentIndex <= 0) return;
 
-/* =========================================
-   FINALIZAR
-========================================= */
+    currentIndex--;
 
-function completeRoutine() {
+    loadCurrentPose();
 
-  clearInterval(timer);
+    if (isRunning) {
+      timerSeconds = getItemDuration(
+        currentSequence[currentIndex]
+      );
 
-  isRunning = false;
+      updateTimerDisplay();
+    }
+  }
 
-  vibrate([
-    55,
-    90,
-    55,
-    90,
-    55
-  ]);
+  /* ---------------------------------------------------------
+     FINALIZAR PRÁCTICA
+     --------------------------------------------------------- */
 
-  let completed =
-    Number(
-      localStorage.getItem(
-        "moonieCompleted"
-      ) || 0
+  function finishRoutine() {
+    pauseTimer();
+
+    vibrate([150, 100, 150, 100, 250]);
+
+    if (currentRoutine?.id) {
+      if (!completedRoutines.includes(currentRoutine.id)) {
+        completedRoutines.push(currentRoutine.id);
+      }
+    }
+
+    saveProgress();
+
+    alert(
+      `🌙✨ ¡Práctica completada!\n\n${getRoutineName(
+        currentRoutine
+      )}`
     );
 
-  completed++;
-
-  localStorage.setItem(
-    "moonieCompleted",
-    completed
-  );
-
-  activePose =
-    activeRoutine.poses.length - 1;
-
-  secondsLeft = 0;
-
-  updatePracticeScreen();
-
-  const timerElement =
-    document.getElementById("timer");
-
-  const poseElement =
-    document.getElementById("poseName");
-
-  const nextElement =
-    document.getElementById("nextPose");
-
-  if (timerElement) {
-    timerElement.textContent = "✨";
+    renderProgress();
   }
 
-  if (poseElement) {
-    poseElement.textContent =
-      "Práctica completada";
+  /* ---------------------------------------------------------
+     VIBRACIÓN
+     --------------------------------------------------------- */
+
+  function vibrate(pattern) {
+    try {
+      if (
+        navigator.vibrate &&
+        localStorage.getItem("moonie_vibration") !== "off"
+      ) {
+        navigator.vibrate(pattern);
+      }
+    } catch (error) {
+      console.log("Vibración no disponible.");
+    }
   }
 
-  if (nextElement) {
-    nextElement.textContent =
-      "Namaste 🌙";
-  }
+  /* ---------------------------------------------------------
+     ASANAS
+     --------------------------------------------------------- */
 
-  updateProgress();
-  updatePlayButton();
-}
+  function renderAsanas() {
+    if (!asanaList) return;
 
+    let container =
+      asanaList.querySelector(".asanas-container");
 
-/* =========================================
-   ASANAS
-========================================= */
+    if (!container) {
+      container = document.createElement("div");
+      container.className = "asanas-container";
 
-function renderAsanas() {
+      asanaList.appendChild(container);
+    }
 
-  const container =
-    document.getElementById("asanaList");
+    container.innerHTML = "";
 
-  if (!container) return;
+    if (!POSES.length) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <h3>🧘‍♀️ No hay asanas cargadas</h3>
+        </div>
+      `;
 
-  container.innerHTML =
-    MOONIE_ASANAS.map(asana => {
+      return;
+    }
 
-      return `
+    POSES.forEach((pose, index) => {
+      const card = document.createElement("article");
 
-        <div class="asana-card"
-             onclick="openAsana('${asana.id}')">
+      card.className = "asana-card";
+
+      const image =
+        pose.image ||
+        pose.imageUrl ||
+        pose.illustration ||
+        "";
+
+      card.innerHTML = `
+        <div class="asana-image">
+          ${
+            image
+              ? `<img src="${escapeAttribute(
+                  image
+                )}" alt="${escapeAttribute(
+                  pose.name || "Asana"
+                )}">`
+              : "🧘‍♀️"
+          }
+        </div>
+
+        <div class="asana-content">
+          <span class="asana-number">${index + 1}</span>
 
           <h3>
-            ${asana.name}
+            ${escapeHTML(
+              pose.name ||
+                pose.title ||
+                "Asana"
+            )}
           </h3>
 
           <p>
-            <strong>
-              ${asana.sanskrit}
-            </strong>
+            ${escapeHTML(
+              pose.sanskrit ||
+                pose.transliteration ||
+                ""
+            )}
           </p>
 
-          <p>
-            ${asana.shortDescription}
-          </p>
-
-          <p>
-            ${asana.level} ·
-            ${asana.family}
-          </p>
-
+          <button class="asana-open">
+            Ver postura
+          </button>
         </div>
-
       `;
 
-    }).join("");
-}
+      card
+        .querySelector(".asana-open")
+        .addEventListener("click", () => {
+          openAsana(pose);
+        });
 
+      container.appendChild(card);
+    });
+  }
 
-/* =========================================
-   FICHA DE ASANA
-========================================= */
+  function openAsana(pose) {
+    if (!asanaModal || !asanaModalContent) return;
 
-function openAsana(id) {
+    asanaModalContent.innerHTML = `
+      <div class="asana-detail">
 
-  const asana =
-    MOONIE_ASANAS.find(
-      item => item.id === id
-    );
+        <h2>
+          ${escapeHTML(
+            pose.name ||
+              pose.title ||
+              "Asana"
+          )}
+        </h2>
 
-  if (!asana) return;
+        <h3>
+          ${escapeHTML(
+            pose.sanskrit ||
+              pose.transliteration ||
+              ""
+          )}
+        </h3>
 
-  const container =
-    document.getElementById("asanaList");
+        ${
+          pose.image ||
+          pose.imageUrl ||
+          pose.illustration
+            ? `
+              <img
+                src="${escapeAttribute(
+                  pose.image ||
+                    pose.imageUrl ||
+                    pose.illustration
+                )}"
+                alt="${escapeAttribute(
+                  pose.name || "Asana"
+                )}"
+              >
+            `
+            : `
+              <div class="pose-placeholder">
+                🧘‍♀️
+              </div>
+            `
+        }
 
-  if (!container) return;
+        ${detailSection(
+          "✨ Ejecución",
+          pose.instructions ||
+            pose.execution ||
+            pose.ejecucion
+        )}
 
-  container.innerHTML = `
+        ${detailSection(
+          "🌬️ Respiración",
+          pose.breathing ||
+            pose.respiracion
+        )}
 
-    <button class="back"
-            onclick="renderAsanas()">
+        ${detailSection(
+          "🦴 Anatomía",
+          pose.anatomy ||
+            pose.anatomia
+        )}
 
-      ← Volver a asanas
+        ${detailSection(
+          "🌿 Beneficios",
+          pose.benefits ||
+            pose.beneficios
+        )}
 
-    </button>
+        ${detailSection(
+          "⚠️ Precauciones",
+          pose.precautions ||
+            pose.precauciones
+        )}
 
-    <div class="hero">
+        ${detailSection(
+          "🚫 Contraindicaciones",
+          pose.contraindications ||
+            pose.contraindicaciones
+        )}
 
-      <div class="moon">
-        🪷
+        ${detailSection(
+          "🔄 Variaciones",
+          pose.variations ||
+            pose.variaciones
+        )}
+
       </div>
+    `;
 
-      <h1>
-        ${asana.name}
-      </h1>
+    asanaModal.style.display = "flex";
+  }
 
-      <p>
-        ${asana.sanskrit}
-      </p>
+  function detailSection(title, text) {
+    if (!text) return "";
 
-      <p>
-        ${asana.shortDescription}
-      </p>
+    return `
+      <section class="asana-detail-section">
+        <h4>${title}</h4>
+        <p>${escapeHTML(text)}</p>
+      </section>
+    `;
+  }
 
-    </div>
+  function closeAsanaModal() {
+    if (asanaModal) {
+      asanaModal.style.display = "none";
+    }
+  }
 
+  /* ---------------------------------------------------------
+     PROGRESO
+     --------------------------------------------------------- */
 
-    <div class="asana-card">
+  function renderProgress() {
+    if (!progressScreen) return;
 
-      <h3>🧘‍♀️ Ejecución</h3>
+    if (completedCount) {
+      completedCount.textContent =
+        completedRoutines.length;
+    }
 
-      ${asana.execution
-        .map((step, index) =>
-          `<p>${index + 1}. ${step}</p>`
-        )
-        .join("")}
+    const percentage =
+      ROUTINES.length > 0
+        ? Math.round(
+            (completedRoutines.length /
+              ROUTINES.length) *
+              100
+          )
+        : 0;
 
-    </div>
+    let progressText =
+      progressScreen.querySelector(".progress-percentage");
 
+    if (!progressText) {
+      progressText = document.createElement("div");
+      progressText.className =
+        "progress-percentage";
 
-    <div class="asana-card">
+      progressScreen.appendChild(progressText);
+    }
 
-      <h3>🫁 Respiración</h3>
+    progressText.textContent =
+      `${percentage}% completado`;
+  }
 
-      <p>
-        ${asana.breathing}
-      </p>
+  /* ---------------------------------------------------------
+     BOTONES Y EVENTOS
+     --------------------------------------------------------- */
 
-    </div>
+  function setupNavigation() {
+    document.addEventListener("click", (event) => {
+      const target = event.target.closest(
+        "[data-screen], [data-nav]"
+      );
 
+      if (!target) return;
 
-    <div class="asana-card">
+      const destination =
+        target.dataset.screen ||
+        target.dataset.nav;
 
-      <h3>🦴 Anatomía</h3>
+      if (!destination) return;
 
-      <p>
-        ${asana.anatomy.primary}
-      </p>
+      if (
+        destination === "home" ||
+        destination === "inicio"
+      ) {
+        openHome();
+      }
 
-      <p>
-        <strong>Zonas:</strong>
-        ${asana.anatomy.areas.join(", ")}
-      </p>
+      if (
+        destination === "routines" ||
+        destination === "practices" ||
+        destination === "practicas"
+      ) {
+        openRoutines();
+      }
 
-    </div>
+      if (
+        destination === "explore" ||
+        destination === "explorar"
+      ) {
+        openExplore();
+      }
 
+      if (
+        destination === "asanas" ||
+        destination === "poses"
+      ) {
+        openAsanas();
+      }
 
-    <div class="asana-card">
+      if (
+        destination === "progress" ||
+        destination === "progreso"
+      ) {
+        openProgress();
+      }
+    });
 
-      <h3>✨ Beneficios</h3>
+    if (playButton) {
+      playButton.addEventListener("click", () => {
+        if (isRunning) {
+          pauseTimer();
+        } else {
+          startTimer();
+        }
+      });
+    }
 
-      ${asana.benefits
-        .map(item => `<p>• ${item}</p>`)
-        .join("")}
+    const nextButton =
+      $("nextPoseButton") ||
+      document.querySelector(
+        "[data-action='next-pose']"
+      );
 
-    </div>
+    if (nextButton) {
+      nextButton.addEventListener(
+        "click",
+        nextPoseStep
+      );
+    }
 
+    const previousButton =
+      $("previousPoseButton") ||
+      document.querySelector(
+        "[data-action='previous-pose']"
+      );
 
-    <div class="asana-card">
+    if (previousButton) {
+      previousButton.addEventListener(
+        "click",
+        previousPoseStep
+      );
+    }
 
-      <h3>⚠️ Precauciones</h3>
+    const resetButton =
+      $("resetTimer") ||
+      document.querySelector(
+        "[data-action='reset-timer']"
+      );
 
-      ${asana.precautions
-        .map(item => `<p>• ${item}</p>`)
-        .join("")}
+    if (resetButton) {
+      resetButton.addEventListener(
+        "click",
+        resetTimer
+      );
+    }
 
-    </div>
+    const closeModal =
+      document.querySelector(
+        "[data-action='close-asana']"
+      );
 
+    if (closeModal) {
+      closeModal.addEventListener(
+        "click",
+        closeAsanaModal
+      );
+    }
 
-    <div class="asana-card">
+    if (asanaModal) {
+      asanaModal.addEventListener(
+        "click",
+        (event) => {
+          if (event.target === asanaModal) {
+            closeAsanaModal();
+          }
+        }
+      );
+    }
+  }
 
-      <h3>🚨 Señales para detenerse</h3>
+  /* ---------------------------------------------------------
+     BÚSQUEDA DE PRÁCTICAS
+     --------------------------------------------------------- */
 
-      ${asana.redFlags
-        .map(item => `<p>• ${item}</p>`)
-        .join("")}
+  function setupRoutineSearch() {
+    const search =
+      document.querySelector(
+        "#routineSearch"
+      );
 
-    </div>
+    if (!search) return;
 
+    search.addEventListener("input", () => {
+      const query =
+        search.value
+          .trim()
+          .toLowerCase();
 
-    <div class="asana-card">
+      const cards =
+        allRoutines?.querySelectorAll(
+          ".routine-card"
+        );
 
-      <h3>🪷 Material</h3>
+      if (!cards) return;
 
-      ${asana.props
-        .map(item => `<p>• ${item}</p>`)
-        .join("")}
+      cards.forEach((card, index) => {
+        const routine =
+          ROUTINES[index];
 
-    </div>
+        const text =
+          `${getRoutineName(
+            routine
+          )} ${getRoutineDescription(
+            routine
+          )}`.toLowerCase();
 
+        card.style.display =
+          !query || text.includes(query)
+            ? ""
+            : "none";
+      });
+    });
+  }
 
-    <div class="asana-card">
+  /* ---------------------------------------------------------
+     ESCAPE HTML
+     --------------------------------------------------------- */
 
-      <h3>🔄 Variaciones</h3>
+  function escapeHTML(value) {
+    if (value === null || value === undefined) {
+      return "";
+    }
 
-      ${asana.variations
-        .map(item => `<p>• ${item}</p>`)
-        .join("")}
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
 
-    </div>
+  function escapeAttribute(value) {
+    return escapeHTML(value);
+  }
 
-  `;
-}
+  /* ---------------------------------------------------------
+     INICIALIZACIÓN
+     --------------------------------------------------------- */
 
+  function init() {
+    console.log("🌙 Inicializando Moonie Yoga...");
 
-/* =========================================
-   FILTROS
-========================================= */
-
-function filterNeed(goal) {
-
-  const filtered =
-    MOONIE_ROUTINES.filter(
-      routine => routine.goal === goal
+    console.log(
+      `🧘‍♀️ Prácticas disponibles: ${ROUTINES.length}`
     );
 
-  const container =
-    document.getElementById("allRoutines");
-
-  if (!container) return;
-
-  container.innerHTML =
-    filtered.map(routineCard).join("");
-
-  showScreen("explore");
-}
-
-
-function filterStyle(style) {
-
-  const filtered =
-    MOONIE_ROUTINES.filter(
-      routine =>
-        routine.style
-          .toLowerCase()
-          .includes(style.toLowerCase())
+    console.log(
+      `🌿 Asanas disponibles: ${POSES.length}`
     );
 
-  const container =
-    document.getElementById("allRoutines");
+    setupNavigation();
+    setupRoutineSearch();
 
-  if (!container) return;
+    renderHomeRoutines();
+    renderAllRoutines();
+    renderAsanas();
+    renderProgress();
 
-  container.innerHTML =
-    filtered.map(routineCard).join("");
+    /*
+      Dejamos la pantalla de inicio visible.
+    */
 
-  showScreen("explore");
-}
+    if (homeRoutines) {
+      showScreen(homeRoutines);
+    }
 
-
-/* =========================================
-   PROGRESO
-========================================= */
-
-function updateProgress() {
-
-  const element =
-    document.getElementById(
-      "completedCount"
+    console.log(
+      "✨ Moonie Yoga está lista."
     );
+  }
 
-  if (!element) return;
+  /* ---------------------------------------------------------
+     ARRANQUE
+     --------------------------------------------------------- */
 
-  element.textContent =
-    localStorage.getItem(
-      "moonieCompleted"
-    ) || "0";
-}
+  if (
+    document.readyState ===
+    "loading"
+  ) {
+    document.addEventListener(
+      "DOMContentLoaded",
+      init
+    );
+  } else {
+    init();
+  }
 
-
-/* =========================================
-   INICIALIZACIÓN
-========================================= */
-
-function initMoonieYoga() {
-
-  renderRoutines();
-
-  renderAsanas();
-
-  updateProgress();
-
-  updatePlayButton();
-
-  console.log(
-    "🌙 Moonie Yoga iniciada correctamente"
-  );
-}
-
-
-document.addEventListener(
-  "DOMContentLoaded",
-  initMoonieYoga
-);
+})();
