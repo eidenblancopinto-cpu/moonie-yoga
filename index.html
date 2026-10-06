@@ -1,1305 +1,1335 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#17121f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<title>Moonie Yoga 🌙</title>
+  <title>Moonie Yoga 🌙</title>
 
-<link rel="manifest" href="./manifest.json">
+  <style>
+    :root {
+      --bg: #17121f;
+      --bg-soft: #21192c;
+      --card: #281e35;
+      --card-light: #332642;
+      --pink: #e7a4c8;
+      --pink-soft: #f2c7df;
+      --purple: #ad8bd0;
+      --cream: #f8efe7;
+      --muted: #b9aabd;
+      --green: #a9c9ae;
+      --danger: #e8a3a3;
+      --shadow: 0 12px 35px rgba(0,0,0,.28);
+      --radius: 24px;
+    }
 
-<meta name="theme-color" content="#c77dba">
-<meta name="description" content="Moonie Yoga — Move · Breathe · Flow · Rest">
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-<style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(173,139,208,.16), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(231,164,200,.13), transparent 25%),
+        var(--bg);
+      color: var(--cream);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      padding-bottom: 88px;
+    }
 
-:root {
-  --bg: #120d18;
-  --card: #1d1425;
-  --card2: #251a30;
-  --pink: #d99ad0;
-  --pink2: #b86caf;
-  --cream: #f8eadf;
-  --muted: #bbaabd;
-  --line: rgba(255,255,255,.08);
-  --green: #9cc9b1;
-}
+    button {
+      font: inherit;
+    }
 
-body {
-  background:
-    radial-gradient(circle at top right, rgba(199,125,186,.18), transparent 35%),
-    radial-gradient(circle at bottom left, rgba(120,80,150,.15), transparent 35%),
-    var(--bg);
-  color: var(--cream);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  min-height: 100vh;
-  padding-bottom: 90px;
-}
+    .app {
+      width: 100%;
+      max-width: 700px;
+      margin: auto;
+      padding: 18px 16px 30px;
+    }
 
-button {
-  font: inherit;
-}
+    /* HEADER */
 
-.app {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px 18px;
-}
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 22px;
+    }
 
-header {
-  padding: 10px 0 25px;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.logo {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -.5px;
-}
+    .brand-moon {
+      font-size: 30px;
+    }
 
-.logo span {
-  color: var(--pink);
-}
+    .brand-title {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: .3px;
+    }
 
-.subtitle {
-  color: var(--muted);
-  margin-top: 5px;
-  font-size: 14px;
-}
+    .brand-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
-.section-title {
-  margin: 25px 0 13px;
-  font-size: 20px;
-}
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+      color: var(--cream);
+      cursor: pointer;
+    }
 
-.hero {
-  background:
-    linear-gradient(135deg, rgba(217,154,208,.22), rgba(80,50,100,.18)),
-    var(--card);
-  border: 1px solid var(--line);
-  border-radius: 25px;
-  padding: 23px;
-  box-shadow: 0 15px 40px rgba(0,0,0,.2);
-}
+    /* SCREENS */
 
-.hero small {
-  color: var(--pink);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-}
+    .screen {
+      display: none;
+      animation: fadeIn .25s ease;
+    }
 
-.hero h1 {
-  font-size: 28px;
-  margin: 8px 0;
-}
+    .screen.active {
+      display: block;
+    }
 
-.hero p {
-  color: var(--muted);
-  line-height: 1.5;
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.primary {
-  margin-top: 18px;
-  border: none;
-  background: var(--pink);
-  color: #25152a;
-  padding: 14px 20px;
-  border-radius: 16px;
-  font-weight: 800;
-  width: 100%;
-  cursor: pointer;
-}
+    /* HERO */
 
-.primary:active {
-  transform: scale(.98);
-}
+    .hero {
+      padding: 8px 2px 24px;
+    }
 
-.needs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
+    .eyebrow {
+      color: var(--pink);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
 
-.need {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 17px 13px;
-  color: var(--cream);
-  cursor: pointer;
-  text-align: left;
-}
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.08;
+      letter-spacing: -.8px;
+    }
 
-.need strong {
-  display: block;
-  margin-top: 7px;
-}
+    .hero p {
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 10px 0 0;
+      font-size: 15px;
+    }
 
-.need small {
-  color: var(--muted);
-}
+    /* DAILY CARD */
 
-.routines {
-  display: grid;
-  gap: 11px;
-}
+    .daily-card {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(231,164,200,.22), transparent 28%),
+        linear-gradient(145deg, #352442, #21192c);
+      border: 1px solid rgba(231,164,200,.14);
+      border-radius: 30px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
 
-.routine {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 19px;
-  padding: 17px;
-  cursor: pointer;
-}
+    .daily-card::after {
+      content: "☾";
+      position: absolute;
+      right: 18px;
+      top: 7px;
+      font-size: 100px;
+      color: rgba(255,255,255,.035);
+      pointer-events: none;
+    }
 
-.routine-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
+    .daily-label {
+      color: var(--pink-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
+    }
 
-.routine h3 {
-  font-size: 16px;
-}
+    .daily-card h2 {
+      margin: 0;
+      font-size: 25px;
+    }
 
-.routine p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 6px;
-}
+    .daily-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      max-width: 85%;
+    }
 
-.badge {
-  color: var(--pink);
-  font-size: 12px;
-  white-space: nowrap;
-}
+    .primary-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #211526;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 7px 20px rgba(231,164,200,.18);
+    }
 
-.screen {
-  display: none;
-}
+    .primary-button:active {
+      transform: scale(.97);
+    }
 
-.screen.active {
-  display: block;
-}
+    /* SECTION */
 
-.empty {
-  text-align: center;
-  padding: 50px 20px;
-  color: var(--muted);
-}
+    .section {
+      margin: 25px 0;
+    }
 
-.asana-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 19px;
-  padding: 18px;
-  margin-bottom: 10px;
-}
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 13px;
+    }
 
-.asana-card h3 {
-  color: var(--cream);
-}
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0;
+    }
 
-.asana-card p {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 5px;
-}
+    .section-link {
+      color: var(--pink);
+      font-size: 12px;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
 
-.timer {
-  text-align: center;
-  padding-top: 15px;
-}
+    /* NEEDS */
 
-.timer-orb {
-  width: 230px;
-  height: 230px;
-  margin: 25px auto;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(217,154,208,.35), rgba(217,154,208,.05) 55%, transparent 70%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+    .need-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
 
-.timer-time {
-  font-size: 58px;
-  font-weight: 300;
-  letter-spacing: -3px;
-}
+    .need-button {
+      text-align: left;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: var(--card);
+      color: var(--cream);
+      cursor: pointer;
+      min-height: 75px;
+    }
 
-.timer-pose {
-  color: var(--pink);
-  font-size: 14px;
-  margin-top: 5px;
-}
+    .need-button:active {
+      transform: scale(.98);
+    }
 
-.timer-next {
-  color: var(--muted);
-  margin: 10px 0 25px;
-}
+    .need-icon {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 6px;
+    }
 
-.timer-controls {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  gap: 8px;
-}
+    .need-name {
+      font-size: 13px;
+      font-weight: 600;
+    }
 
-.control {
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--cream);
-  border-radius: 15px;
-  padding: 14px 8px;
-}
+    /* ROUTINES */
 
-.progress-wrap {
-  margin-top: 25px;
-}
+    .routine-list {
+      display: grid;
+      gap: 12px;
+    }
 
-.progress-bar {
-  height: 6px;
-  background: var(--card);
-  border-radius: 10px;
-  overflow: hidden;
-}
+    .routine-card {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 15px;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.055);
+      border-radius: 22px;
+      cursor: pointer;
+    }
 
-.progress {
-  height: 100%;
-  width: 0%;
-  background: var(--pink);
-  transition: width .3s;
-}
+    .routine-card:active {
+      transform: scale(.985);
+    }
 
-.back {
-  border: none;
-  background: none;
-  color: var(--pink);
-  padding: 5px 0 20px;
-  cursor: pointer;
-}
+    .routine-art {
+      flex: 0 0 62px;
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle, rgba(231,164,200,.25), transparent 65%),
+        #21192c;
+      font-size: 29px;
+    }
 
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 700px;
-  margin: auto;
-  height: 76px;
-  background: rgba(18,13,24,.94);
-  backdrop-filter: blur(18px);
-  border-top: 1px solid var(--line);
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  z-index: 20;
-  padding-bottom: env(safe-area-inset-bottom);
-}
+    .routine-content {
+      min-width: 0;
+      flex: 1;
+    }
 
-.nav-btn {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-size: 11px;
-}
+    .routine-title {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
 
-.nav-btn span {
-  display: block;
-  font-size: 20px;
-  margin-bottom: 3px;
-}
+    .routine-meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-.nav-btn.active {
-  color: var(--pink);
-}
+    .routine-arrow {
+      color: var(--pink);
+      font-size: 20px;
+    }
 
-.moon {
-  font-size: 44px;
-  margin-bottom: 8px;
-}
+    /* EXPLORE */
 
-.back-home {
-  margin-top: 25px;
-}
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 11px;
+    }
 
-.success {
-  background: rgba(156,201,177,.12);
-  border: 1px solid rgba(156,201,177,.2);
-  border-radius: 18px;
-  padding: 18px;
-  margin-top: 20px;
-}
+    .style-card {
+      min-height: 110px;
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 23px;
+      padding: 17px;
+      text-align: left;
+      color: var(--cream);
+      background: var(--card);
+      cursor: pointer;
+    }
 
-</style>
+    .style-card strong {
+      display: block;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .style-card span {
+      color: var(--muted);
+      font-size: 11px;
+      display: block;
+      margin-top: 5px;
+      line-height: 1.3;
+    }
+
+    .style-icon {
+      font-size: 27px;
+    }
+
+    /* PRACTICE */
+
+    .practice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .back-button {
+      border: 0;
+      background: rgba(255,255,255,.06);
+      color: var(--cream);
+      padding: 9px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .practice-title {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .pose-card {
+      text-align: center;
+      padding: 20px 14px 25px;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(231,164,200,.14), transparent 32%),
+        var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .pose-illustration {
+      height: 230px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 8px;
+      border-radius: 25px;
+      background:
+        radial-gradient(circle, rgba(173,139,208,.14), transparent 65%),
+        #21192c;
+      font-size: 90px;
+    }
+
+    .pose-name {
+      margin: 8px 0 4px;
+      font-size: 25px;
+    }
+
+    .pose-sanskrit {
+      color: var(--pink);
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    .timer {
+      font-size: 64px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin: 20px 0;
+    }
+
+    .progress-track {
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border-radius: inherit;
+      transition: width .2s linear;
+    }
+
+    .practice-controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 17px;
+    }
+
+    .control-button {
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--card-light);
+      color: var(--cream);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .control-main {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #201525;
+      font-size: 22px;
+    }
+
+    .next-pose {
+      margin-top: 17px;
+      padding: 13px 15px;
+      border-radius: 17px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .next-pose strong {
+      color: var(--cream);
+    }
+
+    .pose-information {
+      margin-top: 15px;
+      padding: 18px;
+      border-radius: 21px;
+      background: var(--card);
+      line-height: 1.55;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ASANAS */
+
+    .asana-grid {
+      display: grid;
+      gap: 11px;
+    }
+
+    .asana-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 13px;
+      border: 1px solid rgba(255,255,255,.05);
+      cursor: pointer;
+    }
+
+    .asana-image {
+      width: 60px;
+      height: 60px;
+      flex: 0 0 60px;
+      border-radius: 17px;
+      display: grid;
+      place-items: center;
+      background: #21192c;
+      font-size: 28px;
+    }
+
+    .asana-info {
+      flex: 1;
+    }
+
+    .asana-info strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .asana-info span {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    /* PROGRESS */
+
+    .progress-card {
+      background: var(--card);
+      border-radius: 25px;
+      padding: 20px;
+      margin-bottom: 13px;
+    }
+
+    .progress-number {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--pink);
+    }
+
+    .progress-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+      gap: 6px;
+      margin-top: 18px;
+    }
+
+    .day {
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .day-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin: 7px auto 0;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,.06);
+    }
+
+    /* BOTTOM NAV */
+
+    .bottom-nav {
+      position: fixed;
+      z-index: 50;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+      background: rgba(23,18,31,.94);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(255,255,255,.07);
+      display: flex;
+      justify-content: center;
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 700px;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+    }
+
+    .nav-button {
+      border: 0;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 10px;
+    }
+
+    .nav-button span {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 2px;
+    }
+
+    .nav-button.active {
+      color: var(--pink);
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: flex-end;
+      background: rgba(0,0,0,.65);
+      padding: 0;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 700px;
+      margin: auto;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #21192c;
+      border-radius: 30px 30px 0 0;
+      padding: 24px;
+      animation: slideUp .25s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      float: right;
+      border: 0;
+      background: rgba(255,255,255,.07);
+      color: var(--cream);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+    }
+
+    .modal h2 {
+      margin-top: 4px;
+    }
+
+    .detail-section {
+      margin-top: 20px;
+    }
+
+    .detail-section h3 {
+      font-size: 14px;
+      color: var(--pink);
+      margin-bottom: 7px;
+    }
+
+    .detail-section p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 13px;
+      margin: 0;
+    }
+
+    /* RESPONSIVE */
+
+    @media (min-width: 600px) {
+      .need-grid {
+        grid-template-columns: repeat(4,1fr);
+      }
+
+      .style-grid {
+        grid-template-columns: repeat(3,1fr);
+      }
+
+      .routine-list {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <!-- HOME -->
-  <section id="home" class="screen active">
-
-    <header>
-      <div class="logo">Moonie <span>Yoga 🌙</span></div>
-      <div class="subtitle">Move · Breathe · Flow · Rest</div>
-    </header>
-
-    <div class="hero">
-      <small>Práctica de hoy</small>
-      <h1 id="todayTitle">Soltar el Día</h1>
-      <p id="todayDescription">
-        Una práctica suave para liberar tensión y volver a tu cuerpo.
-      </p>
-      <button class="primary" onclick="startRoutine('Soltar el Día')">
-        Comenzar práctica 🌙
-      </button>
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-moon">🌙</div>
+      <div>
+        <div class="brand-title">Moonie Yoga</div>
+        <div class="brand-subtitle">Move · Breathe · Flow · Rest</div>
+      </div>
     </div>
 
-    <h2 class="section-title">¿Qué necesitas hoy?</h2>
-
-    <div class="needs">
-
-      <button class="need" onclick="filterNeed('descansar')">
-        😴
-        <strong>Descansar</strong>
-        <small>Bajar revoluciones</small>
-      </button>
-
-      <button class="need" onclick="filterNeed('activar')">
-        ⚡
-        <strong>Activarme</strong>
-        <small>Despertar energía</small>
-      </button>
-
-      <button class="need" onclick="filterNeed('relajar')">
-        🌿
-        <strong>Relajarme</strong>
-        <small>Soltar tensión</small>
-      </button>
-
-      <button class="need" onclick="filterNeed('fortalecer')">
-        💪
-        <strong>Fortalecer</strong>
-        <small>Crear fuerza</small>
-      </button>
-
-      <button class="need" onclick="filterNeed('flexibilizar')">
-        🧘‍♀️
-        <strong>Flexibilizar</strong>
-        <small>Crear espacio</small>
-      </button>
-
-      <button class="need" onclick="filterNeed('dormir')">
-        🌙
-        <strong>Dormir</strong>
-        <small>Preparar el descanso</small>
-      </button>
-
-    </div>
-
-    <h2 class="section-title">Prácticas recomendadas</h2>
-
-    <div id="homeRoutines" class="routines"></div>
-
-  </section>
-
-
-  <!-- EXPLORE -->
-  <section id="explore" class="screen">
-
-    <header>
-      <div class="logo">Explorar 🌙</div>
-      <div class="subtitle">Encuentra la práctica que necesitas</div>
-    </header>
-
-    <h2 class="section-title">Estilos</h2>
-
-    <div class="routines">
-
-      <div class="routine" onclick="filterStyle('Yin')">
-        <div class="routine-top">
-          <h3>🌙 Yin Yoga</h3>
-          <span class="badge">Suave</span>
-        </div>
-        <p>Permanencias, quietud, respiración y escucha.</p>
-      </div>
-
-      <div class="routine" onclick="filterStyle('Hatha')">
-        <div class="routine-top">
-          <h3>🌿 Hatha</h3>
-          <span class="badge">Equilibrio</span>
-        </div>
-        <p>Posturas, respiración, concentración y presencia.</p>
-      </div>
-
-      <div class="routine" onclick="filterStyle('Vinyasa')">
-        <div class="routine-top">
-          <h3>🔥 Vinyasa</h3>
-          <span class="badge">Fluir</span>
-        </div>
-        <p>Movimiento sincronizado con la respiración.</p>
-      </div>
-
-      <div class="routine" onclick="filterStyle('Restaurativo')">
-        <div class="routine-top">
-          <h3>🫶 Restaurativo</h3>
-          <span class="badge">Descanso</span>
-        </div>
-        <p>Prácticas de muy bajo esfuerzo y relajación.</p>
-      </div>
-
-      <div class="routine" onclick="filterStyle('Nidra')">
-        <div class="routine-top">
-          <h3>🌌 Yoga Nidra</h3>
-          <span class="badge">Interior</span>
-        </div>
-        <p>Relajación guiada y atención consciente.</p>
-      </div>
-
-      <div class="routine" onclick="filterStyle('Pranayama')">
-        <div class="routine-top">
-          <h3>🫁 Pranayama</h3>
-          <span class="badge">Respiración</span>
-        </div>
-        <p>Explora diferentes formas tradicionales de trabajo respiratorio.</p>
-      </div>
-
-    </div>
-
-    <h2 class="section-title">Todas las prácticas</h2>
-    <div id="allRoutines" class="routines"></div>
-
-  </section>
-
-
-  <!-- PRACTICE -->
-  <section id="practice" class="screen">
-
-    <button class="back" onclick="showScreen('home')">
-      ← Volver
+    <button class="icon-button" onclick="toggleMoonMode()" aria-label="Modo luna">
+      ☾
     </button>
+  </header>
 
-    <div class="timer">
 
-      <div class="moon">🌙</div>
+  <!-- ================= HOME ================= -->
 
-      <h2 id="routineName">Práctica</h2>
+  <main id="home" class="screen active">
 
-      <div class="timer-orb">
+    <section class="hero">
+      <div class="eyebrow">Tu espacio de práctica</div>
+      <h1>¿Qué necesitas hoy?</h1>
+      <p>
+        Escucha tu cuerpo, respira y elige la práctica que encaje contigo.
+      </p>
+    </section>
 
-        <div id="timer" class="timer-time">
-          00:00
-        </div>
 
-        <div id="poseName" class="timer-pose">
-          Preparación
-        </div>
+    <section class="daily-card">
 
-      </div>
+      <div class="daily-label">✦ Práctica recomendada</div>
 
-      <div id="nextPose" class="timer-next">
-        Siguiente: —
-      </div>
+      <h2 id="dailyRoutineName">
+        Despertar Solar
+      </h2>
 
-      <div class="timer-controls">
+      <p id="dailyRoutineDescription">
+        Una práctica suave para despertar el cuerpo, movilizar la columna
+        y comenzar el día con presencia.
+      </p>
 
-        <button class="control" onclick="previousPose()">
-          ←
-        </button>
-
-        <button id="playButton" class="primary" onclick="toggleTimer()">
-          ▶ Comenzar
-        </button>
-
-        <button class="control" onclick="nextPose()">
-          →
-        </button>
-
-      </div>
-
-      <div class="progress-wrap">
-
-        <div class="progress-bar">
-          <div id="progress" class="progress"></div>
-        </div>
-
-        <p id="stepCounter" style="color:var(--muted);font-size:12px;margin-top:8px;">
-          0 / 0
-        </p>
-
-      </div>
-
-      <button class="control back-home" onclick="resetTimer()">
-        Reiniciar práctica
+      <button
+        class="primary-button"
+        onclick="openDailyPractice()">
+        Comenzar práctica
       </button>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- ASANAS -->
-  <section id="asanas" class="screen">
+    <section class="section">
 
-    <header>
-      <div class="logo">Asanas 🪷</div>
-      <div class="subtitle">Tu biblioteca de posturas</div>
-    </header>
+      <div class="section-header">
+        <h2 class="section-title">¿Qué necesitas?</h2>
+      </div>
 
-    <div id="asanaList"></div>
+      <div class="need-grid">
 
-  </section>
+        <button class="need-button" onclick="filterNeed('rest')">
+          <span class="need-icon">😴</span>
+          <span class="need-name">Descansar</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('energy')">
+          <span class="need-icon">⚡</span>
+          <span class="need-name">Activarme</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('relax')">
+          <span class="need-icon">🌿</span>
+          <span class="need-name">Relajarme</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('strength')">
+          <span class="need-icon">💪</span>
+          <span class="need-name">Fortalecer</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('flexibility')">
+          <span class="need-icon">🧘‍♀️</span>
+          <span class="need-name">Flexibilizar</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('sleep')">
+          <span class="need-icon">🌙</span>
+          <span class="need-name">Dormir</span>
+        </button>
+
+        <button class="need-button" onclick="filterNeed('release')">
+          <span class="need-icon">🫶</span>
+          <span class="need-name">Soltar tensión</span>
+        </button>
+
+        <button class="need-button" onclick="showScreen('explore')">
+          <span class="need-icon">✨</span>
+          <span class="need-name">Explorar</span>
+        </button>
+
+      </div>
+
+    </section>
 
 
-  <!-- PROGRESS -->
-  <section id="progressScreen" class="screen">
+    <section class="section">
 
-    <header>
-      <div class="logo">Tu camino 🌙</div>
-      <div class="subtitle">Cada práctica cuenta.</div>
-    </header>
+      <div class="section-header">
+        <h2 class="section-title">Para ti</h2>
 
-    <div class="hero">
+        <button
+          class="section-link"
+          onclick="showScreen('routines')">
+          Ver todas
+        </button>
+      </div>
 
-      <div class="moon">🌙</div>
+      <div id="homeRoutines" class="routine-list"></div>
 
-      <h1 id="completedCount">0</h1>
+    </section>
 
-      <p>prácticas completadas</p>
+  </main>
 
-      <div class="success">
-        🪷 Sigue volviendo a tu esterilla.
-        No necesitas hacerlo perfecto. Solo necesitas volver.
+
+  <!-- ================= ROUTINES ================= -->
+
+  <main id="routines" class="screen">
+
+    <section class="hero">
+      <div class="eyebrow">Moonie Library</div>
+      <h1>Prácticas</h1>
+      <p>
+        Encuentra una práctica según tu momento, energía y experiencia.
+      </p>
+    </section>
+
+    <div id="allRoutines" class="routine-list"></div>
+
+  </main>
+
+
+  <!-- ================= EXPLORE ================= -->
+
+  <main id="explore" class="screen">
+
+    <section class="hero">
+      <div class="eyebrow">Explora</div>
+      <h1>Encuentra tu camino</h1>
+      <p>
+        Diferentes estilos, objetivos y formas de practicar yoga.
+      </p>
+    </section>
+
+
+    <section class="section">
+
+      <h2 class="section-title">Estilos</h2>
+
+      <div class="style-grid">
+
+        <button class="style-card" onclick="filterStyle('Yin')">
+          <span class="style-icon">🌙</span>
+          <strong>Yin Yoga</strong>
+          <span>Quietud, tejidos y presencia.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Hatha')">
+          <span class="style-icon">🪷</span>
+          <strong>Hatha</strong>
+          <span>Postura, respiración y equilibrio.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Vinyasa')">
+          <span class="style-icon">🔥</span>
+          <strong>Vinyasa</strong>
+          <span>Movimiento unido a la respiración.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Restaurativo')">
+          <span class="style-icon">🌿</span>
+          <strong>Restaurativo</strong>
+          <span>Descanso y soporte.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Movilidad')">
+          <span class="style-icon">🌊</span>
+          <strong>Movilidad</strong>
+          <span>Explora tu movimiento.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Nidra')">
+          <span class="style-icon">🌌</span>
+          <strong>Yoga Nidra</strong>
+          <span>Relajación profunda guiada.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Pranayama')">
+          <span class="style-icon">🌬️</span>
+          <strong>Pranayama</strong>
+          <span>Respiración consciente.</span>
+        </button>
+
+        <button class="style-card" onclick="filterStyle('Fuerza')">
+          <span class="style-icon">⚡</span>
+          <strong>Fuerza</strong>
+          <span>Estabilidad y control.</span>
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= ASANAS ================= -->
+
+  <main id="asanas" class="screen">
+
+    <section class="hero">
+      <div class="eyebrow">Biblioteca</div>
+      <h1>Asanas</h1>
+      <p>
+        Conoce cada postura, su anatomía, respiración, variantes y precauciones.
+      </p>
+    </section>
+
+    <div id="asanaList" class="asana-grid"></div>
+
+  </main>
+
+
+  <!-- ================= PROGRESS ================= -->
+
+  <main id="progressScreen" class="screen">
+
+    <section class="hero">
+      <div class="eyebrow">Tu camino</div>
+      <h1>Progreso</h1>
+      <p>
+        Cada práctica cuenta. Observa cómo construyes tu camino poco a poco.
+      </p>
+    </section>
+
+
+    <div class="progress-card">
+
+      <div
+        id="completedCount"
+        class="progress-number">
+        0
+      </div>
+
+      <div class="progress-label">
+        prácticas completadas
+      </div>
+
+      <div class="week-grid">
+
+        <div class="day">
+          L
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          M
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          X
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          J
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          V
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          S
+          <div class="day-dot">·</div>
+        </div>
+
+        <div class="day">
+          D
+          <div class="day-dot">·</div>
+        </div>
+
       </div>
 
     </div>
 
-  </section>
+  </main>
+
+
+  <!-- ================= PRACTICE ================= -->
+
+  <main id="practice" class="screen">
+
+    <div class="practice-header">
+
+      <button
+        class="back-button"
+        onclick="exitPractice()">
+        ← Salir
+      </button>
+
+      <div
+        id="routineName"
+        class="practice-title">
+        Práctica
+      </div>
+
+      <div id="stepCounter" class="practice-title">
+        1 / 1
+      </div>
+
+    </div>
+
+
+    <div class="pose-card">
+
+      <div
+        id="poseIllustration"
+        class="pose-illustration">
+        🧘‍♀️
+      </div>
+
+      <div
+        id="poseName"
+        class="pose-name">
+        Preparando...
+      </div>
+
+      <div
+        id="poseSanskrit"
+        class="pose-sanskrit">
+      </div>
+
+      <div
+        id="timer"
+        class="timer">
+        00:00
+      </div>
+
+      <div class="progress-track">
+        <div
+          id="progress"
+          class="progress-fill">
+        </div>
+      </div>
+
+
+      <div class="practice-controls">
+
+        <button
+          class="control-button"
+          onclick="goToPreviousPose()">
+          ↶
+        </button>
+
+        <button
+          id="playButton"
+          class="control-button control-main"
+          onclick="toggleTimer()">
+          ▶
+        </button>
+
+        <button
+          class="control-button"
+          onclick="goToNextPose()">
+          ↷
+        </button>
+
+      </div>
+
+
+      <div
+        id="nextPose"
+        class="next-pose">
+        Siguiente postura
+      </div>
+
+    </div>
+
+
+    <div
+      id="poseInformation"
+      class="pose-information">
+      Respira de forma natural y encuentra una posición estable.
+    </div>
+
+  </main>
 
 </div>
 
 
-<!-- NAVIGATION -->
+<!-- ================= BOTTOM NAV ================= -->
 
 <nav class="bottom-nav">
 
-  <button class="nav-btn active" onclick="showScreen('home', this)">
-    <span>⌂</span>
-    Inicio
-  </button>
+  <div class="nav-inner">
 
-  <button class="nav-btn" onclick="showScreen('explore', this)">
-    <span>✦</span>
-    Explorar
-  </button>
+    <button
+      class="nav-button active"
+      data-screen="home"
+      onclick="showScreen('home')">
+      <span>⌂</span>
+      Inicio
+    </button>
 
-  <button class="nav-btn" onclick="showScreen('asanas', this)">
-    <span>🪷</span>
-    Asanas
-  </button>
+    <button
+      class="nav-button"
+      data-screen="routines"
+      onclick="showScreen('routines')">
+      <span>🪷</span>
+      Prácticas
+    </button>
 
-  <button class="nav-btn" onclick="showScreen('progressScreen', this)">
-    <span>♡</span>
-    Progreso
-  </button>
+    <button
+      class="nav-button"
+      data-screen="asanas"
+      onclick="showScreen('asanas')">
+      <span>🧘</span>
+      Asanas
+    </button>
+
+    <button
+      class="nav-button"
+      data-screen="progressScreen"
+      onclick="showScreen('progressScreen')">
+      <span>✦</span>
+      Progreso
+    </button>
+
+  </div>
 
 </nav>
 
 
+<!-- ================= ASANA MODAL ================= -->
+
+<div
+  id="asanaModal"
+  class="modal"
+  onclick="closeAsanaModal(event)">
+
+  <div
+    class="modal-content"
+    onclick="event.stopPropagation()">
+
+    <button
+      class="modal-close"
+      onclick="closeAsanaModal()">
+      ✕
+    </button>
+
+    <div id="asanaModalContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="./data.js"></script>
+<script src="./asanas.js"></script>
+<script src="./app.js"></script>
+
+
 <script>
 
-/* =========================
-   RUTINAS
-========================= */
-
-const routines = [
-
-  {
-    name: "Despertar Solar",
-    style: "Hatha",
-    duration: 15,
-    goal: "activar",
-    poses: [
-      ["Respiración consciente", 60],
-      ["Gato-Vaca", 60],
-      ["Postura del Niño", 60],
-      ["Perro Boca Abajo", 90],
-      ["Guerrero I", 90],
-      ["Guerrero II", 90],
-      ["Pinza de Pie", 90],
-      ["Savasana", 180]
-    ]
-  },
-
-  {
-    name: "Morning Flow",
-    style: "Vinyasa",
-    duration: 20,
-    goal: "activar",
-    poses: [
-      ["Respiración consciente", 60],
-      ["Gato-Vaca", 60],
-      ["Perro Boca Abajo", 90],
-      ["Plancha", 45],
-      ["Guerrero I", 90],
-      ["Guerrero II", 90],
-      ["Guerrero III", 60],
-      ["Perro Boca Abajo", 60],
-      ["Pinza de Pie", 90],
-      ["Savasana", 180]
-    ]
-  },
-
-  {
-    name: "Reset del Mediodía",
-    style: "Hatha",
-    duration: 15,
-    goal: "relajar",
-    poses: [
-      ["Postura del Niño", 120],
-      ["Gato-Vaca", 90],
-      ["Anahatasana", 120],
-      ["Torsión Supina", 120],
-      ["Savasana", 180]
-    ]
-  },
-
-  {
-    name: "Power 20",
-    style: "Vinyasa",
-    duration: 20,
-    goal: "fortalecer",
-    poses: [
-      ["Respiración consciente", 60],
-      ["Plancha", 45],
-      ["Chaturanga adaptado", 45],
-      ["Guerrero I", 90],
-      ["Guerrero II", 90],
-      ["Silla", 90],
-      ["Barca", 60],
-      ["Plancha lateral", 60],
-      ["Perro Boca Abajo", 90],
-      ["Savasana", 180]
-    ]
-  },
-
-  {
-    name: "Caderas Libres",
-    style: "Yin",
-    duration: 30,
-    goal: "flexibilizar",
-    poses: [
-      ["Mariposa", 240],
-      ["Rebote", 45],
-      ["Media Mariposa derecha", 180],
-      ["Rebote", 30],
-      ["Media Mariposa izquierda", 180],
-      ["Rebote", 30],
-      ["Dragón derecho", 180],
-      ["Rebote", 45],
-      ["Dragón izquierdo", 180],
-      ["Rebote", 45],
-      ["Ciervo derecho", 180],
-      ["Ciervo izquierdo", 180],
-      ["Savasana", 300]
-    ]
-  },
-
-  {
-    name: "Soltar el Día",
-    style: "Restaurativo",
-    duration: 20,
-    goal: "relajar",
-    poses: [
-      ["Postura del Niño", 180],
-      ["Mariposa", 240],
-      ["Caterpillar", 240],
-      ["Torsión Supina derecha", 120],
-      ["Torsión Supina izquierda", 120],
-      ["Piernas en la pared", 240],
-      ["Savasana", 300]
-    ]
-  },
-
-  {
-    name: "Yin Nocturno",
-    style: "Yin",
-    duration: 30,
-    goal: "dormir",
-    poses: [
-      ["Postura del Niño", 180],
-      ["Mariposa", 240],
-      ["Caterpillar", 240],
-      ["Cisne Dormido derecho", 180],
-      ["Cisne Dormido izquierdo", 180],
-      ["Ciervo derecho", 180],
-      ["Ciervo izquierdo", 180],
-      ["Torsión Supina", 120],
-      ["Piernas en la pared", 180],
-      ["Savasana", 300]
-    ]
-  },
-
-  {
-    name: "Hatha Fundamental",
-    style: "Hatha",
-    duration: 30,
-    goal: "fortalecer",
-    poses: [
-      ["Respiración consciente", 90],
-      ["Gato-Vaca", 90],
-      ["Postura del Niño", 90],
-      ["Perro Boca Abajo", 120],
-      ["Guerrero I", 90],
-      ["Guerrero II", 90],
-      ["Triángulo", 90],
-      ["Puente", 90],
-      ["Torsión Supina", 120],
-      ["Savasana", 240]
-    ]
-  },
-
-  {
-    name: "Respira",
-    style: "Pranayama",
-    duration: 15,
-    goal: "relajar",
-    poses: [
-      ["Respiración diafragmática", 180],
-      ["Respiración consciente", 180],
-      ["Nadi Shodhana suave", 300],
-      ["Respiración natural", 180],
-      ["Meditación silenciosa", 180]
-    ]
-  },
-
-  {
-    name: "Luna Nueva",
-    style: "Yin",
-    duration: 30,
-    goal: "descansar",
-    poses: [
-      ["Postura del Niño", 180],
-      ["Mariposa", 240],
-      ["Caterpillar", 240],
-      ["Dragón derecho", 180],
-      ["Dragón izquierdo", 180],
-      ["Ciervo derecho", 180],
-      ["Ciervo izquierdo", 180],
-      ["Torsión Supina", 180],
-      ["Savasana", 300]
-    ]
-  }
-
-];
-
-
-/* =========================
-   ASANAS
-========================= */
-
-const asanas = [
-
-  {
-    name: "Mariposa",
-    sanskrit: "Baddha Konasana",
-    description: "Sentada, plantas de los pies juntas y rodillas abiertas. En Yin se utiliza una permanencia relajada."
-  },
-
-  {
-    name: "Postura del Niño",
-    sanskrit: "Balasana",
-    description: "Rodillas flexionadas y torso hacia el suelo. Puede utilizarse como postura de descanso."
-  },
-
-  {
-    name: "Esfinge",
-    sanskrit: "Salamba Bhujangasana",
-    description: "Extensión suave de la columna con apoyo de los antebrazos."
-  },
-
-  {
-    name: "Dragón",
-    sanskrit: "Variante Yin de Anjaneyasana",
-    description: "Zancada profunda utilizada en Yin para explorar la zona de caderas y piernas."
-  },
-
-  {
-    name: "Ciervo",
-    sanskrit: "Mrigasana",
-    description: "Postura sentada con una pierna delante y otra hacia atrás, creando una rotación externa e interna de las caderas."
-  },
-
-  {
-    name: "Caterpillar",
-    sanskrit: "Variante Yin de Paschimottanasana",
-    description: "Flexión hacia delante con las piernas extendidas. En Yin se busca una actitud pasiva y sin forzar."
-  },
-
-  {
-    name: "Anahatasana",
-    sanskrit: "Uttana Shishosana",
-    description: "Corazón hacia el suelo mientras las caderas permanecen elevadas."
-  },
-
-  {
-    name: "Savasana",
-    sanskrit: "Shavasana",
-    description: "Tumbada boca arriba, cuerpo relajado y respiración natural."
-  },
-
-  {
-    name: "Piernas en la pared",
-    sanskrit: "Viparita Karani",
-    description: "Postura restaurativa con las piernas elevadas y apoyo cómodo."
-  },
-
-  {
-    name: "Guerrero I",
-    sanskrit: "Virabhadrasana I",
-    description: "Postura de pie que combina estabilidad, fuerza y apertura de la parte anterior del cuerpo."
-  },
-
-  {
-    name: "Guerrero II",
-    sanskrit: "Virabhadrasana II",
-    description: "Postura de pie con piernas activas y brazos extendidos."
-  },
-
-  {
-    name: "Triángulo",
-    sanskrit: "Utthita Trikonasana",
-    description: "Postura lateral de pie con extensión de la columna y apertura de piernas."
-  },
-
-  {
-    name: "Barca",
-    sanskrit: "Navasana",
-    description: "Postura de equilibrio que requiere participación de la musculatura del tronco."
-  },
-
-  {
-    name: "Puente",
-    sanskrit: "Setu Bandha Sarvangasana",
-    description: "Extensión de cadera y columna realizada tumbada boca arriba."
-  },
-
-  {
-    name: "Perro Boca Abajo",
-    sanskrit: "Adho Mukha Svanasana",
-    description: "Postura invertida con manos y pies apoyados, formando una V."
-  }
-
-];
-
-
-/* =========================
-   ESTADO
-========================= */
-
-let currentRoutine = null;
-let currentPose = 0;
-let remaining = 0;
-let timerInterval = null;
-let running = false;
-
-
-/* =========================
-   NAVEGACIÓN
-========================= */
-
-function showScreen(id, button) {
-
-  document.querySelectorAll(".screen")
-    .forEach(screen => screen.classList.remove("active"));
-
-  document.getElementById(id).classList.add("active");
-
-  if (button) {
-
-    document.querySelectorAll(".nav-btn")
-      .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-  }
-
-  window.scrollTo(0,0);
-}
-
-
-/* =========================
-   RENDER RUTINAS
-========================= */
-
-function routineHTML(routine) {
-
-  return `
-    <div class="routine" onclick="startRoutine('${routine.name}')">
-
-      <div class="routine-top">
-        <h3>${routine.name}</h3>
-        <span class="badge">${routine.duration} min</span>
-      </div>
-
-      <p>${routine.style} · ${routine.goal}</p>
-
-    </div>
-  `;
-}
-
-
-function renderRoutines(list = routines) {
-
-  document.getElementById("homeRoutines").innerHTML =
-    list.slice(0,5).map(routineHTML).join("");
-
-  document.getElementById("allRoutines").innerHTML =
-    list.map(routineHTML).join("");
-}
-
-
-renderRoutines();
-
-
-/* =========================
-   FILTROS
-========================= */
-
-function filterNeed(goal) {
-
-  const filtered = routines.filter(r => r.goal === goal);
-
-  showScreen("explore");
-
-  document.getElementById("allRoutines").innerHTML =
-    filtered.map(routineHTML).join("");
-
-  window.scrollTo(0,0);
-}
-
-
-function filterStyle(style) {
-
-  const filtered = routines.filter(r => r.style === style);
-
-  showScreen("explore");
-
-  document.getElementById("allRoutines").innerHTML =
-    filtered.map(routineHTML).join("");
-
-  window.scrollTo(0,0);
-}
-
-
-/* =========================
-   TEMPORIZADOR
-========================= */
-
-function startRoutine(name) {
-
-  const found = routines.find(r => r.name === name);
-
-  if (!found) return;
-
-  currentRoutine = found;
-  currentPose = 0;
-  remaining = currentRoutine.poses[0][1];
-  running = false;
-
-  clearInterval(timerInterval);
-
-  document.getElementById("routineName").textContent =
-    currentRoutine.name;
-
-  updateTimer();
-
-  document.getElementById("playButton").textContent =
-    "▶ Comenzar";
-
-  showScreen("practice");
-
-}
-
-
-function toggleTimer() {
-
-  if (running) {
-
-    pauseTimer();
-
-  } else {
-
-    runTimer();
-
-  }
-
-}
-
-
-function runTimer() {
-
-  if (!currentRoutine) return;
-
-  running = true;
-
-  document.getElementById("playButton").textContent =
-    "Ⅱ Pausar";
-
-  timerInterval = setInterval(() => {
-
-    remaining--;
-
-    if (remaining <= 0) {
-
-      nextPose(true);
-
-    }
-
-    updateTimer();
-
-  },1000);
-
-}
-
-
-function pauseTimer() {
-
-  running = false;
-
-  clearInterval(timerInterval);
-
-  document.getElementById("playButton").textContent =
-    "▶ Continuar";
-
-}
-
-
-function resetTimer() {
-
-  clearInterval(timerInterval);
-
-  running = false;
-  currentPose = 0;
-
-  if (currentRoutine) {
-    remaining = currentRoutine.poses[0][1];
-  }
-
-  updateTimer();
-
-  document.getElementById("playButton").textContent =
-    "▶ Comenzar";
-}
-
-
-function nextPose(automatic = false) {
-
-  if (!currentRoutine) return;
-
-  if (currentPose >= currentRoutine.poses.length - 1) {
-
-    finishRoutine();
-
-    return;
-  }
-
-  currentPose++;
-
-  remaining = currentRoutine.poses[currentPose][1];
-
-  vibrate([55]);
-
-  updateTimer();
-
-}
-
-
-function previousPose() {
-
-  if (!currentRoutine) return;
-
-  if (currentPose > 0) {
-
-    currentPose--;
-
-    remaining = currentRoutine.poses[currentPose][1];
-
-    vibrate([55]);
-
-    updateTimer();
-
-  }
-
-}
-
-
-function updateTimer() {
-
-  if (!currentRoutine) return;
-
-  const pose =
-    currentRoutine.poses[currentPose];
-
-  const minutes =
-    Math.floor(remaining / 60);
-
-  const seconds =
-    remaining % 60;
-
-  document.getElementById("timer").textContent =
-    `${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
-
-  document.getElementById("poseName").textContent =
-    pose[0];
-
-  const next =
-    currentRoutine.poses[currentPose + 1];
-
-  document.getElementById("nextPose").textContent =
-    next
-      ? `Siguiente: ${next[0]}`
-      : "Última postura";
-
-  document.getElementById("stepCounter").textContent =
-    `${currentPose + 1} / ${currentRoutine.poses.length}`;
-
-  const percentage =
-    ((currentPose) / currentRoutine.poses.length) * 100;
-
-  document.getElementById("progress").style.width =
-    percentage + "%";
-
-}
-
-
-function finishRoutine() {
-
-  clearInterval(timerInterval);
-
-  running = false;
-
-  vibrate([55,90,55,90,55]);
-
-  let completed =
-    Number(localStorage.getItem("moonieCompleted") || 0);
-
-  completed++;
-
-  localStorage.setItem(
-    "moonieCompleted",
-    completed
-  );
-
-  updateProgress();
-
-  document.getElementById("timer").textContent =
-    "✨";
-
-  document.getElementById("poseName").textContent =
-    "Práctica completada";
-
-  document.getElementById("nextPose").textContent =
-    "Namaste 🌙";
-
-  document.getElementById("playButton").textContent =
-    "✓ Completada";
-
-}
-
-
-/* =========================
-   VIBRACIÓN
-========================= */
-
-function vibrate(pattern) {
-
-  if (
-    "vibrate" in navigator
-  ) {
-    navigator.vibrate(pattern);
-  }
-
-}
-
-
-/* =========================
-   ASANAS
-========================= */
-
-function renderAsanas() {
-
-  document.getElementById("asanaList").innerHTML =
-    asanas.map(asana => `
-
-      <div class="asana-card">
-
-        <h3>${asana.name}</h3>
-
-        <p>
-          <strong>${asana.sanskrit}</strong>
-        </p>
-
-        <p>
-          ${asana.description}
-        </p>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-renderAsanas();
-
-
-/* =========================
-   PROGRESO
-========================= */
-
-function updateProgress() {
-
-  const completed =
-    Number(localStorage.getItem("moonieCompleted") || 0);
-
-  document.getElementById("completedCount").textContent =
-    completed;
-
-}
-
-
-updateProgress();
-
-
-/* =========================
-   SERVICE WORKER
-========================= */
-
-if ("serviceWorker" in navigator) {
-
-  window.addEventListener("load", () => {
-
-    navigator.serviceWorker.register("./sw.js")
-      .then(() => {
-        console.log("Moonie Yoga offline activado 🌙");
-      })
-      .catch(error => {
-        console.log("Service Worker:", error);
+  /*
+   * Navegación principal
+   */
+
+  function showScreen(screenId) {
+
+    document.querySelectorAll(".screen")
+      .forEach(screen => {
+        screen.classList.remove("active");
       });
 
-  });
+    const screen = document.getElementById(screenId);
 
-}
+    if (screen) {
+      screen.classList.add("active");
+    }
+
+    document.querySelectorAll(".nav-button")
+      .forEach(button => {
+        button.classList.remove("active");
+
+        if (button.dataset.screen === screenId) {
+          button.classList.add("active");
+        }
+      });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    if (screenId === "routines" &&
+        typeof renderRoutines === "function") {
+      renderRoutines();
+    }
+
+    if (screenId === "asanas" &&
+        typeof renderAsanas === "function") {
+      renderAsanas();
+    }
+
+    if (screenId === "progressScreen" &&
+        typeof updateProgress === "function") {
+      updateProgress();
+    }
+  }
+
+
+  /*
+   * Modo Luna
+   */
+
+  function toggleMoonMode() {
+
+    document.body.classList.toggle("moon-mode");
+
+    const enabled =
+      document.body.classList.contains("moon-mode");
+
+    localStorage.setItem(
+      "moonieMoonMode",
+      enabled ? "on" : "off"
+    );
+  }
+
+
+  /*
+   * Práctica recomendada
+   */
+
+  function openDailyPractice() {
+
+    if (
+      typeof MOONIE_ROUTINES !== "undefined" &&
+      MOONIE_ROUTINES.length
+    ) {
+
+      const routine = MOONIE_ROUTINES[0];
+
+      if (typeof openRoutine === "function") {
+        openRoutine(routine.id);
+        return;
+      }
+    }
+
+    showScreen("routines");
+  }
+
+
+  /*
+   * Cerrar práctica
+   */
+
+  function exitPractice() {
+
+    if (typeof pauseTimer === "function") {
+      pauseTimer();
+    }
+
+    showScreen("home");
+  }
+
+
+  /*
+   * Modal de asana
+   */
+
+  function closeAsanaModal(event) {
+
+    if (
+      event &&
+      event.target !== event.currentTarget
+    ) {
+      return;
+    }
+
+    const modal =
+      document.getElementById("asanaModal");
+
+    if (modal) {
+      modal.classList.remove("active");
+    }
+  }
+
+
+  /*
+   * Recuperar modo luna
+   */
+
+  document.addEventListener("DOMContentLoaded", () => {
+
+    if (
+      localStorage.getItem("moonieMoonMode") === "on"
+    ) {
+      document.body.classList.add("moon-mode");
+    }
+
+  });
 
 </script>
 
 </body>
-  </html>
+        </html>
